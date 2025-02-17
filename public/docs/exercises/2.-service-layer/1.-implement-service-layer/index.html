@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Goal
+  #
+
+Refactor the newsletter functionality by implementing a service layer with dependency injection and async operations.
+
+  Learning Objectives
+  #
+
+By the end of this exercise, you will:
+
+Create an interface and service implementation
+Implement dependency injection in ASP.NET Core
+Use the Result pattern for operation outcomes
+Work with async/await patterns
+Understand service lifetimes in ASP.NET Core
+
+
+  Step-by-Step Instructions
+  #
+
+
+  Step 1: Create the Operation Result Pattern
+  #
+
+
+Create a new class OperationResult.cs in the Models folder
+Implement the Result pattern for handling operation outcomes
+
+
+Models/OperationResult.cs">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/exercises/2.-service-layer/1.-implement-service-layer/">
+  <meta property="og:site_name" content="Cloud Developer">
+  <meta property="og:title" content="1. Implement Service Layer">
+  <meta property="og:description" content="Goal # Refactor the newsletter functionality by implementing a service layer with dependency injection and async operations.
+Learning Objectives # By the end of this exercise, you will:
+Create an interface and service implementation Implement dependency injection in ASP.NET Core Use the Result pattern for operation outcomes Work with async/await patterns Understand service lifetimes in ASP.NET Core Step-by-Step Instructions # Step 1: Create the Operation Result Pattern # Create a new class OperationResult.cs in the Models folder Implement the Result pattern for handling operation outcomes Models/OperationResult.cs">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-02-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-16T00:00:00+00:00">
+<title>1. Implement Service Layer | Cloud Developer</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://localhost:1313/docs/exercises/2.-service-layer/1.-implement-service-layer/">
+<link rel="stylesheet" href="/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.7ff7cca3bc03851a4d67f53bfc474d01ff1fb7b0919974b37a3cd192fb06f2fd.js" integrity="sha256-f/fMo7wDhRpNZ/U7/EdNAf8ft7CRmXSzejzRkvsG8v0=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Cloud Developer</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Development</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-14e6e27c0614d805f6bc640747e843ba" class="toggle"  />
+    <label for="section-14e6e27c0614d805f6bc640747e843ba" class="flex justify-between">
+      <a role="button" class="">1. Presentation Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/exercises/1.-presentation-layer/1.-hello-world/" class="">1. Hello World</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/exercises/1.-presentation-layer/2.-create-a-form-using-basic-html/" class="">2. Create A Form With Basic HTML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/" class="">3. Helper Tags and Model Binding</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/" class="">4. Data Annotations and Client-Side Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/exercises/1.-presentation-layer/5.-server-side-validation/" class="">5. Server-Side Validation and Improved Feedback</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e9d84fde028e60811e2751ce39ac1bd9" class="toggle" checked />
+    <label for="section-e9d84fde028e60811e2751ce39ac1bd9" class="flex justify-between">
+      <a role="button" class="">2. Service Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/exercises/2.-service-layer/1.-implement-service-layer/" class="active">1. Implement Service Layer</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>1. Implement Service Layer</h3>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#goal">Goal</a></li>
+    <li><a href="#learning-objectives">Learning Objectives</a></li>
+    <li><a href="#step-by-step-instructions">Step-by-Step Instructions</a>
+      <ul>
+        <li><a href="#step-1-create-the-operation-result-pattern">Step 1: Create the Operation Result Pattern</a></li>
+        <li><a href="#step-2-create-the-newsletter-service-interface">Step 2: Create the Newsletter Service Interface</a></li>
+        <li><a href="#step-3-implement-the-newsletter-service">Step 3: Implement the Newsletter Service</a></li>
+        <li><a href="#step-4-register-the-service">Step 4: Register the Service</a></li>
+        <li><a href="#step-5-update-the-controller">Step 5: Update the Controller</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-tests">Final Tests</a>
+      <ul>
+        <li><a href="#test-service-registration">Test Service Registration</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="goal">
+  Goal
+  <a class="anchor" href="#goal">#</a>
+</h2>
+<p>Refactor the newsletter functionality by implementing a <strong>service layer</strong> with dependency injection and async operations.</p>
+<h2 id="learning-objectives">
+  Learning Objectives
+  <a class="anchor" href="#learning-objectives">#</a>
+</h2>
+<p>By the end of this exercise, you will:</p>
+<ul>
+<li>Create an <strong>interface</strong> and <strong>service implementation</strong></li>
+<li>Implement <strong>dependency injection</strong> in ASP.NET Core</li>
+<li>Use the <strong>Result pattern</strong> for operation outcomes</li>
+<li>Work with <strong>async/await</strong> patterns</li>
+<li>Understand <strong>service lifetimes</strong> in ASP.NET Core</li>
+</ul>
+<h2 id="step-by-step-instructions">
+  Step-by-Step Instructions
+  <a class="anchor" href="#step-by-step-instructions">#</a>
+</h2>
+<h3 id="step-1-create-the-operation-result-pattern">
+  Step 1: Create the Operation Result Pattern
+  <a class="anchor" href="#step-1-create-the-operation-result-pattern">#</a>
+</h3>
+<ol>
+<li>Create a new class <code>OperationResult.cs</code> in the Models folder</li>
+<li>Implement the Result pattern for handling operation outcomes</li>
+</ol>
+<blockquote>
+<p><code>Models/OperationResult.cs</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> CloudSoft.Models;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OperationResult</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">bool</span> IsSuccess { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Message { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> OperationResult(<span style="color:#66d9ef">bool</span> success, <span style="color:#66d9ef">string</span> message)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        IsSuccess = success;
+</span></span><span style="display:flex;"><span>        Message = message;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> OperationResult Success(<span style="color:#66d9ef">string</span> message) =&gt; <span style="color:#66d9ef">new</span>(<span style="color:#66d9ef">true</span>, message);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> OperationResult Failure(<span style="color:#66d9ef">string</span> message) =&gt; <span style="color:#66d9ef">new</span>(<span style="color:#66d9ef">false</span>, message);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>💡 <strong>Information</strong></p>
+<p>The Result pattern provides:</p>
+<ul>
+<li>A standardized way to handle operation outcomes</li>
+<li>Clear separation between success and failure cases</li>
+<li>Immutable results through private setters</li>
+<li>Factory methods for creating results</li>
+<li>Consistent messaging across the application</li>
+</ul></blockquote>
+<h3 id="step-2-create-the-newsletter-service-interface">
+  Step 2: Create the Newsletter Service Interface
+  <a class="anchor" href="#step-2-create-the-newsletter-service-interface">#</a>
+</h3>
+<ol>
+<li>Create a new interface <code>INewsletterService.cs</code> in the Services folder</li>
+<li>Define the contract for newsletter operations</li>
+</ol>
+<blockquote>
+<p><code>Services/INewsletterService.cs</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> CloudSoft.Models;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> CloudSoft.Services;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">INewsletterService</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Task&lt;OperationResult&gt; SignUpForNewsletterAsync(Subscriber subscriber);
+</span></span><span style="display:flex;"><span>    Task&lt;OperationResult&gt; OptOutFromNewsletterAsync(<span style="color:#66d9ef">string</span> email);
+</span></span><span style="display:flex;"><span>    Task&lt;IEnumerable&lt;Subscriber&gt;&gt; GetActiveSubscribersAsync();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>💡 <strong>Information</strong></p>
+<p>Interfaces provide:</p>
+<ul>
+<li>A contract for implementation</li>
+<li>Dependency inversion principle</li>
+<li>Easier testing through mocking</li>
+<li>Clear separation of concerns</li>
+</ul>
+<p>Using Task<!-- raw HTML omitted --> enables:</p>
+<ul>
+<li>Asynchronous operations</li>
+<li>Non-blocking execution</li>
+<li>Better scalability</li>
+<li>Future-proofing for database operations</li>
+</ul></blockquote>
+<h3 id="step-3-implement-the-newsletter-service">
+  Step 3: Implement the Newsletter Service
+  <a class="anchor" href="#step-3-implement-the-newsletter-service">#</a>
+</h3>
+<ol>
+<li>Create a new class <code>NewsletterService.cs</code> in the Services folder</li>
+<li>Implement the interface with async operations</li>
+</ol>
+<blockquote>
+<p><code>Services/NewsletterService.cs</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> CloudSoft.Models;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> CloudSoft.Services;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NewsletterService</span> : INewsletterService
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Simulate a database for storing subscribers</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">readonly</span> List&lt;Subscriber&gt; _subscribers = [];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task&lt;OperationResult&gt; SignUpForNewsletterAsync(Subscriber subscriber)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Simulate a long running operation</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> Task.Run(() =&gt;
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Check subscriber is not null and has a valid email</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (subscriber == <span style="color:#66d9ef">null</span> || <span style="color:#66d9ef">string</span>.IsNullOrWhiteSpace(subscriber.Email))
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> OperationResult.Failure(<span style="color:#e6db74">&#34;Invalid subscriber information.&#34;</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Check if the email is already subscribed</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (IsAlreadySubscribed(subscriber.Email))
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> OperationResult.Failure(<span style="color:#e6db74">&#34;You are already subscribed to our newsletter.&#34;</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Add the subscriber to the list</span>
+</span></span><span style="display:flex;"><span>            _subscribers.Add(subscriber);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Return a success message</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> OperationResult.Success(<span style="color:#e6db74">$&#34;Welcome to our newsletter, {subscriber.Name}! You&#39;ll receive updates soon.&#34;</span>);
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task&lt;OperationResult&gt; OptOutFromNewsletterAsync(<span style="color:#66d9ef">string</span> email)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Simulate a long running operation</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> Task.Run(() =&gt;
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Check if the email is valid</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">string</span>.IsNullOrWhiteSpace(email))
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> OperationResult.Failure(<span style="color:#e6db74">&#34;Invalid email address.&#34;</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Find the subscriber by email</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">var</span> subscriber = FindSubscriberByEmail(email);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (subscriber == <span style="color:#66d9ef">null</span>)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> OperationResult.Failure(<span style="color:#e6db74">&#34;We couldn&#39;t find your subscription in our system.&#34;</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Remove the subscriber from the list</span>
+</span></span><span style="display:flex;"><span>            _subscribers.Remove(subscriber);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Return a success message</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> OperationResult.Success(<span style="color:#e6db74">&#34;You have been successfully removed from our newsletter. We&#39;re sorry to see you go!&#34;</span>);
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task&lt;IEnumerable&lt;Subscriber&gt;&gt; GetActiveSubscribersAsync()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Simulate a long running operation and return the list of subscribers</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> Task.Run(() =&gt; _subscribers.ToList());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> IsAlreadySubscribed(<span style="color:#66d9ef">string</span> email)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> _subscribers.Any(s =&gt; s.Email!.Equals(email, StringComparison.OrdinalIgnoreCase));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> Subscriber? FindSubscriberByEmail(<span style="color:#66d9ef">string</span> email)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> _subscribers.FirstOrDefault(s =&gt; 
+</span></span><span style="display:flex;"><span>            s.Email!.Equals(email, StringComparison.OrdinalIgnoreCase));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>💡 <strong>Information</strong></p>
+<p>Task.Run() is used here because:</p>
+<ul>
+<li>We&rsquo;re working with in-memory operations</li>
+<li>In real applications, you&rsquo;d use actual async operations (e.g., database calls)</li>
+<li>It demonstrates the async pattern structure</li>
+<li>Prepares the code for future async implementations</li>
+</ul></blockquote>
+<h3 id="step-4-register-the-service">
+  Step 4: Register the Service
+  <a class="anchor" href="#step-4-register-the-service">#</a>
+</h3>
+<ol>
+<li>Open <code>Program.cs</code></li>
+<li>Add the service registration in the dependency injection container
+<ul>
+<li><code>builder.Services.AddScoped&lt;INewsletterService, NewsletterService&gt;();</code></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><code>Program.cs</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> CloudSoft.Services;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> builder = WebApplication.CreateBuilder(args);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Add services to the container.</span>
+</span></span><span style="display:flex;"><span>builder.Services.AddControllersWithViews();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>builder.Services.AddScoped&lt;INewsletterService, NewsletterService&gt;();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> app = builder.Build();
+</span></span></code></pre></div><blockquote>
+<p>💡 <strong>Information</strong></p>
+<p>AddScoped means:</p>
+<ul>
+<li>A new instance is created for each HTTP request</li>
+<li>All components within the same request share the same instance</li>
+<li>The instance is disposed at the end of the request</li>
+</ul>
+<p>Other lifetimes include:</p>
+<ul>
+<li>Singleton: One instance for the entire application</li>
+<li>Transient: New instance every time requested</li>
+<li>Scoped: New instance per request (what we&rsquo;re using)</li>
+</ul></blockquote>
+<h3 id="step-5-update-the-controller">
+  Step 5: Update the Controller
+  <a class="anchor" href="#step-5-update-the-controller">#</a>
+</h3>
+<ol>
+<li>Update <code>NewsletterController.cs</code> to use dependency injection</li>
+<li>Modify methods to use async/await</li>
+</ol>
+<blockquote>
+<p><code>Controllers/NewsletterController.cs </code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> CloudSoft.Models;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> CloudSoft.Services;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> Microsoft.AspNetCore.Mvc;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> CloudSoft.Controllers;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NewsletterController</span> : Controller
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> INewsletterService _newsletterService;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> NewsletterController(INewsletterService newsletterService)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Inject the INewsletterService via the constructor from the DI container</span>
+</span></span><span style="display:flex;"><span>        _newsletterService = newsletterService;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [HttpGet]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> IActionResult Subscribe()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> View();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [HttpPost]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task&lt;IActionResult&gt; Subscribe(Subscriber subscriber)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Validate the model</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (!ModelState.IsValid)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> View(subscriber);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Check if the email is already subscribed and return a general model level error</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> result = <span style="color:#66d9ef">await</span> _newsletterService.SignUpForNewsletterAsync(subscriber);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (!result.IsSuccess)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            ModelState.AddModelError(<span style="color:#e6db74">&#34;Email&#34;</span>, result.Message);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> View(subscriber);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Write to the console</span>
+</span></span><span style="display:flex;"><span>        Console.WriteLine(<span style="color:#e6db74">$&#34;New subscription - Name: {subscriber.Name} Email: {subscriber.Email}&#34;</span>);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Send a message to the user</span>
+</span></span><span style="display:flex;"><span>        TempData[<span style="color:#e6db74">&#34;SuccessMessage&#34;</span>] = result.Message;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Return the view (using the POST-REDIRECT-GET pattern)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> RedirectToAction(nameof(Subscribe));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [HttpGet]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task&lt;IActionResult&gt; Subscribers()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> subscribers = <span style="color:#66d9ef">await</span> _newsletterService.GetActiveSubscribersAsync();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> View(subscribers);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [HttpPost]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [ValidateAntiForgeryToken]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task&lt;IActionResult&gt; Unsubscribe(<span style="color:#66d9ef">string</span> email)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> result = <span style="color:#66d9ef">await</span> _newsletterService.OptOutFromNewsletterAsync(email);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (result.IsSuccess)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            TempData[<span style="color:#e6db74">&#34;SuccessMessage&#34;</span>] = result.Message;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> RedirectToAction(nameof(Subscribers));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="final-tests">
+  Final Tests
+  <a class="anchor" href="#final-tests">#</a>
+</h2>
+<h3 id="test-service-registration">
+  Test Service Registration
+  <a class="anchor" href="#test-service-registration">#</a>
+</h3>
+<ol>
+<li>Run the application</li>
+<li>Navigate to the Subscribe page</li>
+<li>Submit a subscription</li>
+</ol>
+<p>✅ <strong>Expected Result</strong></p>
+<ul>
+<li>Application starts without errors</li>
+<li>Subscribe form works</li>
+<li>Successful subscription shows success message</li>
+</ul>
+<h1 id="exercise-done-">
+  Exercise Done! 🎯
+  <a class="anchor" href="#exercise-done-">#</a>
+</h1>
+<p>You&rsquo;ve successfully implemented a service layer with modern patterns and practices! 🚀</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#goal">Goal</a></li>
+    <li><a href="#learning-objectives">Learning Objectives</a></li>
+    <li><a href="#step-by-step-instructions">Step-by-Step Instructions</a>
+      <ul>
+        <li><a href="#step-1-create-the-operation-result-pattern">Step 1: Create the Operation Result Pattern</a></li>
+        <li><a href="#step-2-create-the-newsletter-service-interface">Step 2: Create the Newsletter Service Interface</a></li>
+        <li><a href="#step-3-implement-the-newsletter-service">Step 3: Implement the Newsletter Service</a></li>
+        <li><a href="#step-4-register-the-service">Step 4: Register the Service</a></li>
+        <li><a href="#step-5-update-the-controller">Step 5: Update the Controller</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-tests">Final Tests</a>
+      <ul>
+        <li><a href="#test-service-registration">Test Service Registration</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

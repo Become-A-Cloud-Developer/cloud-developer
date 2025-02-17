@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="title = &ldquo;2. Implement Unit Tests and Organize Solution&rdquo;
+weight = 2
+date = 2025-02-16
+draft = true
+&#43;&#43;&#43;
+
+  Goal
+  #
+
+Organize the solution with proper project structure and implement unit tests for the service layer.
+
+  Learning Objectives
+  #
+
+By the end of this exercise, you will:
+
+Understand .NET solution and project organization
+Learn how to create and structure test projects
+Write unit tests using xUnit
+Use dependency injection in unit tests
+Work with test assertions and test patterns
+
+
+  Step-by-Step Instructions
+  #
+
+
+  Step 1: Move the Web project to /src folder
+  #
+
+
+Open a terminal in your project root folder
+Create a new solution file:
+
+
+  Step 1: Create the Solution Structure
+  #
+
+
+
+Delete the .sln file">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/2.-exercises/2.-service-layer/2.-project-structure-and-unit-tests/">
+  <meta property="og:site_name" content="Cloud Developer">
+  <meta property="og:title" content="Cloud Developer">
+  <meta property="og:description" content="title = “2. Implement Unit Tests and Organize Solution” weight = 2 date = 2025-02-16 draft = true &#43;&#43;&#43;
+Goal # Organize the solution with proper project structure and implement unit tests for the service layer.
+Learning Objectives # By the end of this exercise, you will:
+Understand .NET solution and project organization Learn how to create and structure test projects Write unit tests using xUnit Use dependency injection in unit tests Work with test assertions and test patterns Step-by-Step Instructions # Step 1: Move the Web project to /src folder # Open a terminal in your project root folder Create a new solution file: Step 1: Create the Solution Structure # Delete the .sln file">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+<title>2. Project Structure and Unit Tests | Cloud Developer</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://localhost:1313/docs/2.-exercises/2.-service-layer/2.-project-structure-and-unit-tests/">
+<link rel="stylesheet" href="/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.dec46773653bb0445101378b0eefccfc0536a1549f0abe0b661fba7cc7f7f599.js" integrity="sha256-3sRnc2U7sERRATeLDu/M/AU2oVSfCr4LZh&#43;6fMf39Zk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Cloud Developer</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Development</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>2. Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="toggle"  />
+    <label for="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="flex justify-between">
+      <a role="button" class="">1. Presentation Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/1.-hello-world/" class="">1. Hello World</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/2.-create-a-form-using-basic-html/" class="">2. Create A Form With Basic HTML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/" class="">3. Helper Tags and Model Binding</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/" class="">4. Data Annotations and Client-Side Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/5.-server-side-validation/" class="">5. Server-Side Validation and Improved Feedback</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-33da466f9353b53d40da04cbb117ee6d" class="toggle" checked />
+    <label for="section-33da466f9353b53d40da04cbb117ee6d" class="flex justify-between">
+      <a role="button" class="">2. Service Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/2.-service-layer/1.-implement-service-layer/" class="">1. Implement Service Layer</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/2.-service-layer/2.-project-structure-and-unit-tests/" class="active">2. Project Structure and Unit Tests</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>2. Project Structure and Unit Tests</h3>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#goal">Goal</a></li>
+    <li><a href="#learning-objectives">Learning Objectives</a></li>
+    <li><a href="#step-by-step-instructions">Step-by-Step Instructions</a>
+      <ul>
+        <li><a href="#step-1-move-the-web-project-to-src-folder">Step 1: Move the Web project to /src folder</a></li>
+        <li><a href="#step-1-create-the-solution-structure">Step 1: Create the Solution Structure</a></li>
+        <li><a href="#step-2-create-the-test-project">Step 2: Create the Test Project</a></li>
+        <li><a href="#step-3-create-the-newsletter-service-tests">Step 3: Create the Newsletter Service Tests</a></li>
+        <li><a href="#step-4-run-the-tests">Step 4: Run the Tests</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-tests">Final Tests</a>
+      <ul>
+        <li><a href="#step-1-verify-solution-structure">Step 1: Verify Solution Structure</a></li>
+        <li><a href="#step-2-run-all-tests">Step 2: Run All Tests</a></li>
+        <li><a href="#step-3-run-tests-with-coverage-in-vs-code">Step 3: Run Tests with Coverage in VS Code</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><p>title = &ldquo;2. Implement Unit Tests and Organize Solution&rdquo;
+weight = 2
+date = 2025-02-16
+draft = true
++++</p>
+<h2 id="goal">
+  Goal
+  <a class="anchor" href="#goal">#</a>
+</h2>
+<p>Organize the solution with proper project structure and implement unit tests for the service layer.</p>
+<h2 id="learning-objectives">
+  Learning Objectives
+  <a class="anchor" href="#learning-objectives">#</a>
+</h2>
+<p>By the end of this exercise, you will:</p>
+<ul>
+<li>Understand .NET solution and project organization</li>
+<li>Learn how to create and structure test projects</li>
+<li>Write unit tests using xUnit</li>
+<li>Use dependency injection in unit tests</li>
+<li>Work with test assertions and test patterns</li>
+</ul>
+<h2 id="step-by-step-instructions">
+  Step-by-Step Instructions
+  <a class="anchor" href="#step-by-step-instructions">#</a>
+</h2>
+<h3 id="step-1-move-the-web-project-to-src-folder">
+  Step 1: Move the Web project to /src folder
+  <a class="anchor" href="#step-1-move-the-web-project-to-src-folder">#</a>
+</h3>
+<ol>
+<li>Open a terminal in your project root folder</li>
+<li>Create a new solution file:</li>
+</ol>
+<h3 id="step-1-create-the-solution-structure">
+  Step 1: Create the Solution Structure
+  <a class="anchor" href="#step-1-create-the-solution-structure">#</a>
+</h3>
+<ol>
+<li>
+<p>Delete the .sln file</p>
+</li>
+<li>
+<p>Move the Web project to /src folder</p>
+<ul>
+<li>all files except
+<ul>
+<li><code>.gitignore</code></li>
+<li><code>ReadMe.md</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Open a terminal in your project root folder</p>
+</li>
+<li>
+<p>Create a new solution file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet new sln
+</span></span><span style="display:flex;"><span>dotnet sln add src/CloudSoft.csproj
+</span></span></code></pre></div></li>
+<li>
+<p>Run the web project and check it works:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet run --project src/CloudSoft.csproj
+</span></span></code></pre></div></li>
+</ol>
+<blockquote>
+<p>💡 <strong>Information</strong></p>
+<p>This creates a clean solution structure with:</p>
+<ul>
+<li>A root solution file</li>
+<li>Source code under the src folder</li>
+<li>Clear separation of concerns</li>
+</ul></blockquote>
+<h3 id="step-2-create-the-test-project">
+  Step 2: Create the Test Project
+  <a class="anchor" href="#step-2-create-the-test-project">#</a>
+</h3>
+<ol>
+<li>
+<p>Create a new test project in the <code>test</code> folder:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir tests
+</span></span><span style="display:flex;"><span>cd tests
+</span></span><span style="display:flex;"><span>dotnet new xunit -n Services.UnitTests
+</span></span><span style="display:flex;"><span>dotnet add Services.UnitTests reference ../src/CloudSoft.csproj
+</span></span></code></pre></div></li>
+<li>
+<p>Add the test project to the solution. Go back to the solution root folder:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet sln add tests/Services.UnitTests/Services.UnitTests.csproj
+</span></span></code></pre></div></li>
+<li>
+<p>Add required package references. Go to the test projects root folder:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet add package Microsoft.NET.Test.Sdk
+</span></span><span style="display:flex;"><span>dotnet add package xunit
+</span></span><span style="display:flex;"><span>dotnet add package xunit.runner.visualstudio
+</span></span><span style="display:flex;"><span>dotnet add package coverlet.collector
+</span></span></code></pre></div></li>
+<li>
+<p>Go back to the solution root folder and run the example test</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet test
+</span></span></code></pre></div></li>
+</ol>
+<blockquote>
+<p>💡 <strong>Information</strong></p>
+<p>The test project setup:</p>
+<ul>
+<li>Uses xUnit as the testing framework</li>
+<li>Includes necessary testing tools</li>
+<li>Links to the main project for testing</li>
+<li>Follows standard naming conventions</li>
+</ul></blockquote>
+<h3 id="step-3-create-the-newsletter-service-tests">
+  Step 3: Create the Newsletter Service Tests
+  <a class="anchor" href="#step-3-create-the-newsletter-service-tests">#</a>
+</h3>
+<ol>
+<li>Create a new test class <code>NewsletterServiceTests.cs</code> in the test project:</li>
+</ol>
+<blockquote>
+<p><code>tests/Services.UnitTests/NewsletterServiceTests.cs</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> CloudSoft.Models;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> CloudSoft.Services;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> CloudSoft.Services.UnitTests;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NewsletterServiceTests</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> INewsletterService _sut;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> NewsletterServiceTests()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        _sut = <span style="color:#66d9ef">new</span> NewsletterService();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [Fact]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task SignUpForNewsletterAsync_WithValidSubscriber_ReturnsSuccess()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Arrange</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> subscriber = <span style="color:#66d9ef">new</span> Subscriber { Name = <span style="color:#e6db74">&#34;Test User&#34;</span>, Email = <span style="color:#e6db74">&#34;user@example.com&#34;</span> };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Act</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> result = <span style="color:#66d9ef">await</span> _sut.SignUpForNewsletterAsync(subscriber);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Assert</span>
+</span></span><span style="display:flex;"><span>        Assert.True(result.IsSuccess);
+</span></span><span style="display:flex;"><span>        Assert.Contains(<span style="color:#e6db74">&#34;Welcome to our newsletter&#34;</span>, result.Message);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [Fact]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task SignUpForNewsletterAsync_WithDuplicateEmail_ReturnsFailure()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Arrange</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> subscriber1 = <span style="color:#66d9ef">new</span> Subscriber { Name = <span style="color:#e6db74">&#34;Test User 1&#34;</span>, Email = <span style="color:#e6db74">&#34;duplicate@example.com&#34;</span> };
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> subscriber2 = <span style="color:#66d9ef">new</span> Subscriber { Name = <span style="color:#e6db74">&#34;Test User 2&#34;</span>, Email = <span style="color:#e6db74">&#34;duplicate@example.com&#34;</span> };
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> _sut.SignUpForNewsletterAsync(subscriber1);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Act</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> result = <span style="color:#66d9ef">await</span> _sut.SignUpForNewsletterAsync(subscriber2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Assert</span>
+</span></span><span style="display:flex;"><span>        Assert.False(result.IsSuccess);
+</span></span><span style="display:flex;"><span>        Assert.Contains(<span style="color:#e6db74">&#34;already subscribed&#34;</span>, result.Message);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [Fact]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task OptOutFromNewsletterAsync_WithExistingEmail_ReturnsSuccess()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Arrange</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> subscriber = <span style="color:#66d9ef">new</span> Subscriber { Name = <span style="color:#e6db74">&#34;Test User&#34;</span>, Email = <span style="color:#e6db74">&#34;optoutuser@example.com&#34;</span> };
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> _sut.SignUpForNewsletterAsync(subscriber);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Act</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> result = <span style="color:#66d9ef">await</span> _sut.OptOutFromNewsletterAsync(<span style="color:#e6db74">&#34;optoutuser@example.com&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Assert</span>
+</span></span><span style="display:flex;"><span>        Assert.True(result.IsSuccess);
+</span></span><span style="display:flex;"><span>        Assert.Contains(<span style="color:#e6db74">&#34;successfully removed&#34;</span>, result.Message);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [Fact]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task OptOutFromNewsletterAsync_WithNonexistentEmail_ReturnsFailure()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Act</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> result = <span style="color:#66d9ef">await</span> _sut.OptOutFromNewsletterAsync(<span style="color:#e6db74">&#34;nonexistent@example.com&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Assert</span>
+</span></span><span style="display:flex;"><span>        Assert.False(result.IsSuccess);
+</span></span><span style="display:flex;"><span>        Assert.Contains(<span style="color:#e6db74">&#34;couldn&#39;t find your subscription&#34;</span>, result.Message);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [Fact]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task GetActiveSubscribersAsync_ReturnsAllSubscribers()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Arrange</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> subscriber1 = <span style="color:#66d9ef">new</span> Subscriber { Name = <span style="color:#e6db74">&#34;Test User 1&#34;</span>, Email = <span style="color:#e6db74">&#34;test1@example.com&#34;</span> };
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> subscriber2 = <span style="color:#66d9ef">new</span> Subscriber { Name = <span style="color:#e6db74">&#34;Test User 2&#34;</span>, Email = <span style="color:#e6db74">&#34;test2@example.com&#34;</span> };
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> _sut.SignUpForNewsletterAsync(subscriber1);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> _sut.SignUpForNewsletterAsync(subscriber2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Act</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> subscribers = <span style="color:#66d9ef">await</span> _sut.GetActiveSubscribersAsync();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Assert</span>
+</span></span><span style="display:flex;"><span>        Assert.True(subscribers.Count() &gt;= <span style="color:#ae81ff">2</span>); <span style="color:#75715e">// At least 2 subscribers. Other tests add subscribers.</span>
+</span></span><span style="display:flex;"><span>        Assert.Contains(subscribers, s =&gt; s.Email == <span style="color:#e6db74">&#34;test1@example.com&#34;</span>);
+</span></span><span style="display:flex;"><span>        Assert.Contains(subscribers, s =&gt; s.Email == <span style="color:#e6db74">&#34;test2@example.com&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>💡 <strong>Information</strong></p>
+<p>The unit tests follow the AAA pattern:</p>
+<ul>
+<li>Arrange: Set up the test data</li>
+<li>Act: Execute the method being tested</li>
+<li>Assert: Verify the results</li>
+</ul>
+<p>Each test focuses on a specific scenario and has a clear purpose.</p></blockquote>
+<h3 id="step-4-run-the-tests">
+  Step 4: Run the Tests
+  <a class="anchor" href="#step-4-run-the-tests">#</a>
+</h3>
+<ol>
+<li>
+<p>Run all tests from the command line:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet test
+</span></span></code></pre></div></li>
+<li>
+<p>Run tests with coverage:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet test /p:CollectCoverage<span style="color:#f92672">=</span>true
+</span></span></code></pre></div></li>
+</ol>
+<blockquote>
+<p>💡 <strong>Information</strong></p>
+<p>The test runner will:</p>
+<ul>
+<li>Execute all tests in the solution</li>
+<li>Report test results and failures</li>
+<li>Generate code coverage metrics (when enabled)</li>
+</ul></blockquote>
+<h2 id="final-tests">
+  Final Tests
+  <a class="anchor" href="#final-tests">#</a>
+</h2>
+<h3 id="step-1-verify-solution-structure">
+  Step 1: Verify Solution Structure
+  <a class="anchor" href="#step-1-verify-solution-structure">#</a>
+</h3>
+<ol>
+<li>
+<p>Open the solution in Visual Studio Code</p>
+</li>
+<li>
+<p>Verify the following structure exists:</p>
+<pre tabindex="0"><code>CloudSoft.sln
+src/
+  CloudSoft.csproj
+  [other project files]
+tests/
+  Services.UnitTests/
+    Services.UnitTests.csproj
+    NewsletterServiceTests.cs
+</code></pre></li>
+</ol>
+<p>✅ <strong>Expected Result</strong></p>
+<ul>
+<li>Clean, organized project structure</li>
+<li>Solution builds successfully</li>
+<li>Project references are correctly set up</li>
+</ul>
+<h3 id="step-2-run-all-tests">
+  Step 2: Run All Tests
+  <a class="anchor" href="#step-2-run-all-tests">#</a>
+</h3>
+<ol>
+<li>Run the tests using the command line</li>
+<li>Check the test results</li>
+</ol>
+<p>✅ <strong>Expected Result</strong></p>
+<ul>
+<li>All tests pass successfully</li>
+</ul>
+<h3 id="step-3-run-tests-with-coverage-in-vs-code">
+  Step 3: Run Tests with Coverage in VS Code
+  <a class="anchor" href="#step-3-run-tests-with-coverage-in-vs-code">#</a>
+</h3>
+<ol>
+<li>Run tests with coverage:
+<ul>
+<li>Open Test Explorer in VS Code (left side bar, E-kolv)</li>
+<li>Click the &ldquo;Run Tests&rdquo; button with coverage icon (beaker with checkmark)</li>
+<li>View coverage results in the Test Explorer panel</li>
+</ul>
+</li>
+</ol>
+<p>✅ <strong>Expected Result</strong></p>
+<ul>
+<li>Test coverage report shows in VS Code</li>
+<li>Coverage information highlights tested/untested code</li>
+<li>Coverage percentage is displayed for each class</li>
+</ul>
+<h1 id="exercise-done-">
+  Exercise Done! 🧪
+  <a class="anchor" href="#exercise-done-">#</a>
+</h1>
+<p>You&rsquo;ve successfully organized your project and implemented unit tests! 🚀</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#goal">Goal</a></li>
+    <li><a href="#learning-objectives">Learning Objectives</a></li>
+    <li><a href="#step-by-step-instructions">Step-by-Step Instructions</a>
+      <ul>
+        <li><a href="#step-1-move-the-web-project-to-src-folder">Step 1: Move the Web project to /src folder</a></li>
+        <li><a href="#step-1-create-the-solution-structure">Step 1: Create the Solution Structure</a></li>
+        <li><a href="#step-2-create-the-test-project">Step 2: Create the Test Project</a></li>
+        <li><a href="#step-3-create-the-newsletter-service-tests">Step 3: Create the Newsletter Service Tests</a></li>
+        <li><a href="#step-4-run-the-tests">Step 4: Run the Tests</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-tests">Final Tests</a>
+      <ul>
+        <li><a href="#step-1-verify-solution-structure">Step 1: Verify Solution Structure</a></li>
+        <li><a href="#step-2-run-all-tests">Step 2: Run All Tests</a></li>
+        <li><a href="#step-3-run-tests-with-coverage-in-vs-code">Step 3: Run Tests with Coverage in VS Code</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

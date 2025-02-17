@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Data Annotations and Client-Side Validation
+  #
+
+
+  Goal
+  #
+
+Enhance the existing form by introducing data annotations for client-side validation to improve user experience and enforce input constraints.
+
+  Learning Objectives
+  #
+
+By the end of this exercise, you will:
+
+Use data annotations ([Required], [EmailAddress], [StringLength])
+Enable client-side validation using ASP.NET Core built-in validation
+Improve form feedback with validation messages
+
+
+  Step-by-Step Instructions
+  #
+
+
+  Step 1: Update the Model with Data Annotations
+  #
+
+
+Open Subscriber.cs in the Models folder.
+Add validation attributes to enforce required fields and format constraints.
+
+
+Models/Subscriber.cs">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/">
+  <meta property="og:site_name" content="Cloud Developer">
+  <meta property="og:title" content="4. Data Annotations and Client-Side Validation">
+  <meta property="og:description" content="Data Annotations and Client-Side Validation # Goal # Enhance the existing form by introducing data annotations for client-side validation to improve user experience and enforce input constraints.
+Learning Objectives # By the end of this exercise, you will:
+Use data annotations ([Required], [EmailAddress], [StringLength]) Enable client-side validation using ASP.NET Core built-in validation Improve form feedback with validation messages Step-by-Step Instructions # Step 1: Update the Model with Data Annotations # Open Subscriber.cs in the Models folder. Add validation attributes to enforce required fields and format constraints. Models/Subscriber.cs">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-02-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-16T00:00:00+00:00">
+<title>4. Data Annotations and Client-Side Validation | Cloud Developer</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://localhost:1313/docs/exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/">
+<link rel="stylesheet" href="/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.2c3c196bf886214b12703c307814c53cb7bc4f5756191e462376c62d8f824df9.js" integrity="sha256-LDwZa/iGIUsScDwweBTFPLe8T1dWGR5GI3bGLY&#43;CTfk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Cloud Developer</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Development</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-14e6e27c0614d805f6bc640747e843ba" class="toggle" checked />
+    <label for="section-14e6e27c0614d805f6bc640747e843ba" class="flex justify-between">
+      <a role="button" class="">1. Presentation Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/exercises/1.-presentation-layer/1.-hello-world/" class="">1. Hello World</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/exercises/1.-presentation-layer/2.-create-a-form-using-basic-html/" class="">2. Create A Form With Basic HTML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/" class="">3. Helper Tags and Model Binding</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/" class="active">4. Data Annotations and Client-Side Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/exercises/1.-presentation-layer/5.-server-side-validation/" class="">5. Server-Side Validation and Improved Feedback</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>4. Data Annotations and Client-Side Validation</h3>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#goal">Goal</a></li>
+    <li><a href="#learning-objectives">Learning Objectives</a></li>
+    <li><a href="#step-by-step-instructions">Step-by-Step Instructions</a>
+      <ul>
+        <li><a href="#step-1-update-the-model-with-data-annotations">Step 1: Update the Model with Data Annotations</a></li>
+        <li><a href="#step-2-update-the-view-to-display-validation-messages">Step 2: Update the View to Display Validation Messages</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-tests">Final Tests</a>
+      <ul>
+        <li><a href="#run-the-application-and-validate-your-work">Run the Application and Validate Your Work</a></li>
+      </ul>
+    </li>
+    <li><a href="#shout-out-">Shout Out! 🎉</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="data-annotations-and-client-side-validation">
+  Data Annotations and Client-Side Validation
+  <a class="anchor" href="#data-annotations-and-client-side-validation">#</a>
+</h1>
+<h2 id="goal">
+  Goal
+  <a class="anchor" href="#goal">#</a>
+</h2>
+<p>Enhance the existing form by introducing <strong>data annotations</strong> for <strong>client-side validation</strong> to improve user experience and enforce input constraints.</p>
+<h2 id="learning-objectives">
+  Learning Objectives
+  <a class="anchor" href="#learning-objectives">#</a>
+</h2>
+<p>By the end of this exercise, you will:</p>
+<ul>
+<li>Use <strong>data annotations</strong> (<code>[Required]</code>, <code>[EmailAddress]</code>, <code>[StringLength]</code>)</li>
+<li>Enable <strong>client-side validation</strong> using ASP.NET Core built-in validation</li>
+<li>Improve form feedback with validation messages</li>
+</ul>
+<h2 id="step-by-step-instructions">
+  Step-by-Step Instructions
+  <a class="anchor" href="#step-by-step-instructions">#</a>
+</h2>
+<h3 id="step-1-update-the-model-with-data-annotations">
+  Step 1: Update the Model with Data Annotations
+  <a class="anchor" href="#step-1-update-the-model-with-data-annotations">#</a>
+</h3>
+<ol>
+<li>Open <code>Subscriber.cs</code> in the <code>Models</code> folder.</li>
+<li>Add <strong>validation attributes</strong> to enforce required fields and format constraints.</li>
+</ol>
+<blockquote>
+<p><code>Models/Subscriber.cs</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> System.ComponentModel.DataAnnotations;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> CloudSoft.Models;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Subscriber</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [Required]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [StringLength(20, ErrorMessage = &#34;Name cannot exceed 20 characters&#34;)]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string?</span> Name { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [Required]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [EmailAddress]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string?</span> Email { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p><strong>Information</strong></p>
+<ul>
+<li><code>[Required]</code> ensures the field <strong>must be filled</strong>.</li>
+<li><code>[StringLength]</code> limits the length of the <code>Name</code> field.</li>
+<li><code>[EmailAddress]</code> ensures a <strong>valid email format</strong>.</li>
+</ul></blockquote>
+<h3 id="step-2-update-the-view-to-display-validation-messages">
+  Step 2: Update the View to Display Validation Messages
+  <a class="anchor" href="#step-2-update-the-view-to-display-validation-messages">#</a>
+</h3>
+<ol>
+<li>Open <code>Views/Newsletter/Subscribe.cshtml</code>.</li>
+<li>Add validation messages for form fields.</li>
+</ol>
+<blockquote>
+<p><code>Views/Newsletter/Subscribe.cshtml</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>@model CloudSoft.Models.Subscriber
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@{
+</span></span><span style="display:flex;"><span>    ViewData[&#34;Title&#34;] = &#34;Newsletter Signup&#34;;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h2</span>&gt;Newsletter Signup&lt;/<span style="color:#f92672">h2</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@if (ViewBag.Message != null)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color: green;&#34;</span>&gt;@ViewBag.Message&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">asp-action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Subscribe&#34;</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-group&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">asp-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Name&#34;</span>&gt;&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">asp-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Name&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-control&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">asp-validation-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Name&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-danger&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-group&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">asp-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Email&#34;</span>&gt;&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">asp-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Email&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-control&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">asp-validation-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Email&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-danger&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span>&gt;Sign Up&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@section Scripts {
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">partial</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;_ValidationScriptsPartial&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p><strong>Information</strong></p>
+<ul>
+<li>The <code>asp-validation-for</code> <strong>displays validation errors</strong> next to fields.</li>
+<li><code>_ValidationScriptsPartial</code> <strong>enables client-side validation</strong> using jQuery.</li>
+</ul></blockquote>
+<h2 id="final-tests">
+  Final Tests
+  <a class="anchor" href="#final-tests">#</a>
+</h2>
+<h3 id="run-the-application-and-validate-your-work">
+  Run the Application and Validate Your Work
+  <a class="anchor" href="#run-the-application-and-validate-your-work">#</a>
+</h3>
+<ol>
+<li>
+<p>Start the application:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet run
+</span></span></code></pre></div></li>
+<li>
+<p>Open a browser and navigate to:</p>
+<pre tabindex="0"><code>http://localhost:5000/Newsletter/Subscribe
+</code></pre></li>
+<li>
+<p>Try submitting the form <strong>with missing or invalid data</strong>.</p>
+</li>
+<li>
+<p>Ensure <strong>error messages</strong> appear and <strong>prevent submission</strong>.</p>
+</li>
+<li>
+<p>Fill in valid data and confirm successful submission.</p>
+</li>
+</ol>
+<h2 id="shout-out-">
+  Shout Out! 🎉
+  <a class="anchor" href="#shout-out-">#</a>
+</h2>
+<p>Fantastic job! You&rsquo;ve successfully added <strong>data validation and client-side validation</strong> 🚀</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#goal">Goal</a></li>
+    <li><a href="#learning-objectives">Learning Objectives</a></li>
+    <li><a href="#step-by-step-instructions">Step-by-Step Instructions</a>
+      <ul>
+        <li><a href="#step-1-update-the-model-with-data-annotations">Step 1: Update the Model with Data Annotations</a></li>
+        <li><a href="#step-2-update-the-view-to-display-validation-messages">Step 2: Update the View to Display Validation Messages</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-tests">Final Tests</a>
+      <ul>
+        <li><a href="#run-the-application-and-validate-your-work">Run the Application and Validate Your Work</a></li>
+      </ul>
+    </li>
+    <li><a href="#shout-out-">Shout Out! 🎉</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

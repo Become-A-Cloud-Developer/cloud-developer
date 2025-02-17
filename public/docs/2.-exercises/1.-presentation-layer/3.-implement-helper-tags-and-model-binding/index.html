@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Goal
+  #
+
+Enhance the existing form by introducing ASP.NET Core helper tags, model binding (without annotations), and ViewBag for feedback messages.
+
+  Learning Objectives
+  #
+
+By the end of this exercise, you will:
+
+Use ASP.NET Core Tag Helpers (asp-for, asp-action)
+Implement model binding without validation attributes
+Utilize ViewBag to display feedback messages after form submission
+
+
+  Step-by-Step Instructions
+  #
+
+
+  Step 1: Create a Model for Form Data
+  #
+
+
+Navigate to the Models folder and create a new file named Subscriber.cs.
+Define a simple class with Name and Email properties.
+
+
+Models/Subscriber.cs">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/2.-exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/">
+  <meta property="og:site_name" content="Cloud Developer">
+  <meta property="og:title" content="3. Helper Tags and Model Binding">
+  <meta property="og:description" content="Goal # Enhance the existing form by introducing ASP.NET Core helper tags, model binding (without annotations), and ViewBag for feedback messages.
+Learning Objectives # By the end of this exercise, you will:
+Use ASP.NET Core Tag Helpers (asp-for, asp-action) Implement model binding without validation attributes Utilize ViewBag to display feedback messages after form submission Step-by-Step Instructions # Step 1: Create a Model for Form Data # Navigate to the Models folder and create a new file named Subscriber.cs. Define a simple class with Name and Email properties. Models/Subscriber.cs">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-02-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-16T00:00:00+00:00">
+<title>3. Helper Tags and Model Binding | Cloud Developer</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://localhost:1313/docs/2.-exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/">
+<link rel="stylesheet" href="/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.dec46773653bb0445101378b0eefccfc0536a1549f0abe0b661fba7cc7f7f599.js" integrity="sha256-3sRnc2U7sERRATeLDu/M/AU2oVSfCr4LZh&#43;6fMf39Zk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Cloud Developer</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Development</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>2. Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="toggle" checked />
+    <label for="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="flex justify-between">
+      <a role="button" class="">1. Presentation Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/1.-hello-world/" class="">1. Hello World</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/2.-create-a-form-using-basic-html/" class="">2. Create A Form With Basic HTML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/" class="active">3. Helper Tags and Model Binding</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/" class="">4. Data Annotations and Client-Side Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/5.-server-side-validation/" class="">5. Server-Side Validation and Improved Feedback</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-33da466f9353b53d40da04cbb117ee6d" class="toggle"  />
+    <label for="section-33da466f9353b53d40da04cbb117ee6d" class="flex justify-between">
+      <a role="button" class="">2. Service Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/2.-service-layer/1.-implement-service-layer/" class="">1. Implement Service Layer</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/2.-service-layer/2.-project-structure-and-unit-tests/" class="">2. Project Structure and Unit Tests</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>3. Helper Tags and Model Binding</h3>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#goal"><strong>Goal</strong></a></li>
+    <li><a href="#learning-objectives">Learning Objectives</a></li>
+    <li><a href="#step-by-step-instructions">Step-by-Step Instructions</a>
+      <ul>
+        <li><a href="#step-1-create-a-model-for-form-data">Step 1: Create a Model for Form Data</a></li>
+        <li><a href="#step-2-update-the-controller">Step 2: Update the Controller</a></li>
+        <li><a href="#step-3-update-the-view-to-use-tag-helpers-and-display-feedback">Step 3: Update the View to Use Tag Helpers and Display Feedback</a></li>
+        <li><a href="#step-4-update-the-navbar">Step 4: Update the NavBar</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-tests">Final Tests</a>
+      <ul>
+        <li><a href="#run-the-application-and-validate-your-work">Run the Application and Validate Your Work</a></li>
+      </ul>
+    </li>
+    <li><a href="#shout-out-">Shout Out! 🎉</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="goal">
+  <strong>Goal</strong>
+  <a class="anchor" href="#goal">#</a>
+</h2>
+<p>Enhance the existing form by introducing <strong>ASP.NET Core helper tags</strong>, <strong>model binding (without annotations)</strong>, and <strong>ViewBag for feedback messages</strong>.</p>
+<h2 id="learning-objectives">
+  Learning Objectives
+  <a class="anchor" href="#learning-objectives">#</a>
+</h2>
+<p>By the end of this exercise, you will:</p>
+<ul>
+<li>Use <strong>ASP.NET Core Tag Helpers</strong> (<code>asp-for</code>, <code>asp-action</code>)</li>
+<li>Implement <strong>model binding</strong> without validation attributes</li>
+<li>Utilize <strong>ViewBag</strong> to display feedback messages after form submission</li>
+</ul>
+<h2 id="step-by-step-instructions">
+  Step-by-Step Instructions
+  <a class="anchor" href="#step-by-step-instructions">#</a>
+</h2>
+<h3 id="step-1-create-a-model-for-form-data">
+  Step 1: Create a Model for Form Data
+  <a class="anchor" href="#step-1-create-a-model-for-form-data">#</a>
+</h3>
+<ol>
+<li>Navigate to the <code>Models</code> folder and create a new file named <code>Subscriber.cs</code>.</li>
+<li>Define a simple class with <code>Name</code> and <code>Email</code> properties.</li>
+</ol>
+<blockquote>
+<p><code>Models/Subscriber.cs</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> CloudSoft.Models;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Subscriber</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string?</span> Name { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string?</span> Email { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p><strong>Information</strong></p>
+<p>This model will store the form input values and be used for <strong>model binding</strong> in the controller.</p></blockquote>
+<h3 id="step-2-update-the-controller">
+  Step 2: Update the Controller
+  <a class="anchor" href="#step-2-update-the-controller">#</a>
+</h3>
+<ol>
+<li>Open <code>NewsletterController.cs</code> in the <code>Controllers</code> folder.</li>
+<li>Modify the <code>Subscribe</code> action to accept a <code>Subscriber</code> model and store feedback in <code>ViewBag</code>.</li>
+</ol>
+<blockquote>
+<p><code>Controllers/NewsletterController.cs</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> CloudSoft.Models;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> Microsoft.AspNetCore.Mvc;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> CloudSoft.Controllers;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NewsletterController</span> : Controller
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [HttpGet]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> IActionResult Subscribe()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> View();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [HttpPost]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> IActionResult Subscribe(Subscriber subscriber)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Add subscription logic here</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Write to the console</span>
+</span></span><span style="display:flex;"><span>        Console.WriteLine(<span style="color:#e6db74">$&#34;New subscription - Name: {subscriber.Name} Email: {subscriber.Email}&#34;</span>);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Send a message to the user</span>
+</span></span><span style="display:flex;"><span>        ViewBag.Message = <span style="color:#e6db74">$&#34;Thank you for subscribing, {subscriber.Name}!&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Return the view</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> View();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p><strong>Information</strong></p>
+<ul>
+<li>The <code>Subscribe</code> method now <strong>accepts a <code>Subscriber</code> model</strong>, allowing model binding to populate properties automatically.</li>
+<li><code>ViewBag.Message</code> stores feedback that can be displayed in the view.</li>
+</ul></blockquote>
+<h3 id="step-3-update-the-view-to-use-tag-helpers-and-display-feedback">
+  Step 3: Update the View to Use Tag Helpers and Display Feedback
+  <a class="anchor" href="#step-3-update-the-view-to-use-tag-helpers-and-display-feedback">#</a>
+</h3>
+<ol>
+<li>Open <code>Views/Newsletter/Subscribe.cshtml</code>.</li>
+<li>Modify the form to use <strong>Tag Helpers</strong> and display the feedback message.</li>
+</ol>
+<blockquote>
+<p><code>Views/Newsletter/Subscribe.cshtml</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>@model CloudSoft.Models.Subscriber
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@{
+</span></span><span style="display:flex;"><span>    ViewData[&#34;Title&#34;] = &#34;Newsletter Signup&#34;;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h2</span>&gt;Newsletter Signup&lt;/<span style="color:#f92672">h2</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@if (ViewBag.Message != null)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color: green;&#34;</span>&gt;@ViewBag.Message&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">asp-action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Subscribe&#34;</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">asp-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Name&#34;</span>&gt;&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">asp-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Name&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-control&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">asp-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Email&#34;</span>&gt;&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">asp-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Email&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-control&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span>&gt;Sign Up&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">form</span>&gt;
+</span></span></code></pre></div><blockquote>
+<p><strong>Information</strong></p>
+<ul>
+<li><code>@model CloudSoft.Models.Subscriber</code> tells the view what model to use.</li>
+<li><code>ViewBag.Message</code> is displayed after a successful submission.</li>
+<li>The <code>asp-action</code> helper automatically sets the form action to <code>Subscribe</code>.</li>
+<li>The <code>asp-for</code> <strong>Tag Helpers</strong> bind input fields directly to the <code>Subscriber</code> model.</li>
+</ul></blockquote>
+<h3 id="step-4-update-the-navbar">
+  Step 4: Update the NavBar
+  <a class="anchor" href="#step-4-update-the-navbar">#</a>
+</h3>
+<p>The layout defines the shared structure of your application.</p>
+<ol>
+<li>Open the _Layout.cshtml file in the Views/Shared folder.</li>
+<li>Add a navigation link to the Newsletter Subscription feature:</li>
+</ol>
+<blockquote>
+<p><code>Views/Shared/_Layout.cshtml</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nav-item&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nav-link text-dark&#34;</span> <span style="color:#a6e22e">asp-area</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">asp-controller</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Newsletter&#34;</span> <span style="color:#a6e22e">asp-action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Subscribe&#34;</span>&gt;Subscribe&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span></code></pre></div><h2 id="final-tests">
+  Final Tests
+  <a class="anchor" href="#final-tests">#</a>
+</h2>
+<h3 id="run-the-application-and-validate-your-work">
+  Run the Application and Validate Your Work
+  <a class="anchor" href="#run-the-application-and-validate-your-work">#</a>
+</h3>
+<ol>
+<li>
+<p>Start the application:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet run
+</span></span></code></pre></div></li>
+<li>
+<p>Open a browser and navigate to:</p>
+<pre tabindex="0"><code>http://localhost:5000/Newsletter/Subscribe
+</code></pre></li>
+<li>
+<p>Fill out the form and submit it.</p>
+</li>
+<li>
+<p>Ensure the page reloads and displays a confirmation message.</p>
+</li>
+</ol>
+<h2 id="shout-out-">
+  Shout Out! 🎉
+  <a class="anchor" href="#shout-out-">#</a>
+</h2>
+<p>Great job implementing <strong>Tag Helpers and Model Binding!</strong> Next, we&rsquo;ll enhance validation to improve user experience. 🚀</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#goal"><strong>Goal</strong></a></li>
+    <li><a href="#learning-objectives">Learning Objectives</a></li>
+    <li><a href="#step-by-step-instructions">Step-by-Step Instructions</a>
+      <ul>
+        <li><a href="#step-1-create-a-model-for-form-data">Step 1: Create a Model for Form Data</a></li>
+        <li><a href="#step-2-update-the-controller">Step 2: Update the Controller</a></li>
+        <li><a href="#step-3-update-the-view-to-use-tag-helpers-and-display-feedback">Step 3: Update the View to Use Tag Helpers and Display Feedback</a></li>
+        <li><a href="#step-4-update-the-navbar">Step 4: Update the NavBar</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-tests">Final Tests</a>
+      <ul>
+        <li><a href="#run-the-application-and-validate-your-work">Run the Application and Validate Your Work</a></li>
+      </ul>
+    </li>
+    <li><a href="#shout-out-">Shout Out! 🎉</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
