@@ -2,27 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/docs/exercises/1.-presentation-layer/</loc>
+    <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/</loc>
     <lastmod>2025-02-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/docs/exercises/1.-presentation-layer/1.-hello-world/</loc>
+    <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/1.-hello-world/</loc>
     <lastmod>2025-02-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/docs/development/</loc>
+    <loc>http://localhost:1313/docs/4.-exercises/2.-network/exercise-1---creating-a-virtual-network/</loc>
+    <lastmod>2024-12-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/docs/exercises/1.-presentation-layer/2.-create-a-form-using-basic-html/</loc>
+    <loc>http://localhost:1313/docs/1.-development/</loc>
+  </url><url>
+    <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/2.-create-a-form-using-basic-html/</loc>
     <lastmod>2025-02-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/docs/exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/</loc>
+    <loc>http://localhost:1313/docs/2.-exercises/</loc>
     <lastmod>2025-02-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/docs/exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/</loc>
+    <loc>http://localhost:1313/docs/4.-exercises/2.-network/</loc>
+    <lastmod>2024-12-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/docs/4.-exercises/2.-network/exercise-2---creating-a-virtual-network-with-enhanced-security/</loc>
+    <lastmod>2024-12-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/</loc>
     <lastmod>2025-02-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/docs/exercises/1.-presentation-layer/5.-server-side-validation/</loc>
+    <loc>http://localhost:1313/docs/3.-basic-it/</loc>
+  </url><url>
+    <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/</loc>
     <lastmod>2025-02-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/docs/exercises/</loc>
+    <loc>http://localhost:1313/docs/4.-exercises/</loc>
+    <lastmod>2024-12-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/5.-server-side-validation/</loc>
+    <lastmod>2025-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/6.-display-a-list-of-subscribers/</loc>
     <lastmod>2025-02-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>

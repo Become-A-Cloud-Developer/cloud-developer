@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Overview
+  #
+
+The objective of this exercise is to create a Virtual Network (vNet) with a subnet secured by a Network Security Group (NSG) attached to the subnet itself. You will also provision three servers with specific roles: Web Server, Reverse Proxy, and Bastion Host. Application Security Groups (ASGs) will be configured for the Reverse Proxy and Bastion Host, and all server configurations will be automated using cloud-init.
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/4.-exercises/2.-network/exercise-2---creating-a-virtual-network-with-enhanced-security/">
+  <meta property="og:site_name" content="Cloud Developer">
+  <meta property="og:title" content="2. Creating a Virtual Network with Enhanced Security">
+  <meta property="og:description" content="Overview # The objective of this exercise is to create a Virtual Network (vNet) with a subnet secured by a Network Security Group (NSG) attached to the subnet itself. You will also provision three servers with specific roles: Web Server, Reverse Proxy, and Bastion Host. Application Security Groups (ASGs) will be configured for the Reverse Proxy and Bastion Host, and all server configurations will be automated using cloud-init.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2024-12-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-02T00:00:00+00:00">
+<title>2. Creating a Virtual Network with Enhanced Security | Cloud Developer</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://localhost:1313/docs/4.-exercises/2.-network/exercise-2---creating-a-virtual-network-with-enhanced-security/">
+<link rel="stylesheet" href="/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.a009b40c1441d7958e2c1296aa73a8974331e1b687bb586986ffe655b1793bc3.js" integrity="sha256-oAm0DBRB15WOLBKWqnOol0Mx4baHu1hphv/mVbF5O8M=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Cloud Developer</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Development</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="toggle"  />
+    <label for="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="flex justify-between">
+      <a role="button" class="">1. Presentation Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/1.-hello-world/" class="">1. Hello World</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/2.-create-a-form-using-basic-html/" class="">2. Create A Form With Basic HTML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/" class="">3. Helper Tags and Model Binding</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/" class="">4. Data Annotations and Client-Side Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/5.-server-side-validation/" class="">5. Server-Side Validation and Improved Feedback</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/6.-display-a-list-of-subscribers/" class="">6. Displaying a List of Subscribers</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Basic IT</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7d0a2b83d4441b1271f24ade16347a90" class="toggle"  />
+    <label for="section-7d0a2b83d4441b1271f24ade16347a90" class="flex justify-between">
+      <a role="button" class="">1. Virtual Machine</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-1---provisioning-a-vm-via-azure-portal-with-username-and-password/" class="">1. Provisioning a VM via Azure Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-2---provisioning-a-vm-with-ssh-keys-and-exploring-linux/" class="">2. Provisioning a VM with SSH Keys and Exploring Linux</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-3---automating-nginx-installation-with-custom-data-scripts/" class="">3. Automating Nginx Installation with Custom Data Scripts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-4---creating-a-resource-group-using-az-cli/" class="">4. Creating a Resource Group Using AZ CLI</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1fb80a125bb9cc435f505b7ef954f3ca" class="toggle" checked />
+    <label for="section-1fb80a125bb9cc435f505b7ef954f3ca" class="flex justify-between">
+      <a role="button" class="">2. Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-1---creating-a-virtual-network/" class="">1. Creating a Virtual Network (vNet)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-2---creating-a-virtual-network-with-enhanced-security/" class="active">2. Creating a Virtual Network with Enhanced Security</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>2. Creating a Virtual Network with Enhanced Security</h3>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#step-1-log-in-to-azure-portal">Step 1: Log in to Azure Portal</a></li>
+        <li><a href="#step-2-create-a-virtual-network">Step 2: Create a Virtual Network</a></li>
+        <li><a href="#step-3-create-application-security-groups">Step 3: Create Application Security Groups</a></li>
+        <li><a href="#step-4-create-a-network-security-group-and-rules">Step 4: Create a Network Security Group and Rules</a></li>
+        <li><a href="#step-5-provision-vms-and-configure-with-cloud-init">Step 5: Provision VMs and Configure with Cloud-Init</a></li>
+        <li><a href="#test-and-verify">Test and Verify</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="overview">
+  Overview
+  <a class="anchor" href="#overview">#</a>
+</h2>
+<p>The objective of this exercise is to create a Virtual Network (vNet) with a subnet secured by a Network Security Group (NSG) attached to the subnet itself. You will also provision three servers with specific roles: Web Server, Reverse Proxy, and Bastion Host. Application Security Groups (ASGs) will be configured for the Reverse Proxy and Bastion Host, and all server configurations will be automated using <strong>cloud-init</strong>.</p>
+<p><img src="/NetworkOverview.png" alt="NetworkOverview" /></p>
+<h3 id="step-1-log-in-to-azure-portal">
+  Step 1: Log in to Azure Portal
+  <a class="anchor" href="#step-1-log-in-to-azure-portal">#</a>
+</h3>
+<ol>
+<li>Open <a href="https://portal.azure.com">https://portal.azure.com</a>.</li>
+<li>Sign in with your Azure account credentials.</li>
+</ol>
+<h3 id="step-2-create-a-virtual-network">
+  Step 2: Create a Virtual Network
+  <a class="anchor" href="#step-2-create-a-virtual-network">#</a>
+</h3>
+<ol>
+<li>In the Azure Portal, use the search bar at the top to search for <strong>&ldquo;Virtual Networks&rdquo;</strong>.</li>
+<li>Select <strong>Virtual Networks</strong> from the search results or from the left menu</li>
+<li>Click the <strong>+ Create</strong> button at the top of the Virtual Networks page.</li>
+<li>On the <strong>Basics</strong> tab, fill in the following information:
+<ul>
+<li><strong>Subscription</strong>: Select your subscription.</li>
+<li><strong>Resource Group</strong>: Choose an existing resource group or create a new one (e.g., <code>DemoRG</code>).</li>
+<li><strong>Name</strong>: Enter <code>DemoVNet</code>.</li>
+<li><strong>Region</strong>: Choose a region close to your location (e.g., <code>North Europe</code>).</li>
+</ul>
+</li>
+<li>Click <strong>Review + Create</strong> and then click Create to deploy the Virtual Network.</li>
+</ol>
+<h3 id="step-3-create-application-security-groups">
+  Step 3: Create Application Security Groups
+  <a class="anchor" href="#step-3-create-application-security-groups">#</a>
+</h3>
+<ol>
+<li>
+<p>In the Azure Portal, search for <strong>Application Security Groups</strong>.</p>
+</li>
+<li>
+<p>Create two ASGs:</p>
+<p>Reverse Proxy:</p>
+<ul>
+<li><strong>Name</strong>: <code>ReverseProxyASG</code></li>
+<li><strong>Resource Group</strong>: <code>DemoRG</code></li>
+</ul>
+<p>Bastion Host:</p>
+<ul>
+<li><strong>Name</strong>: <code>BastionHostASG </code></li>
+<li><strong>Resource Group</strong>: <code>DemoRG</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="step-4-create-a-network-security-group-and-rules">
+  Step 4: Create a Network Security Group and Rules
+  <a class="anchor" href="#step-4-create-a-network-security-group-and-rules">#</a>
+</h3>
+<ol>
+<li>
+<p>In the Azure Portal, search for <strong>Network Security Groups</strong>.</p>
+</li>
+<li>
+<p>Click <strong>+ Create</strong> and provide the following information:</p>
+<ul>
+<li><strong>Name</strong>: <code>DemoNSG</code>.</li>
+<li><strong>Resource Group</strong>: Select <code>DemoRG</code>.</li>
+<li><strong>Region</strong>: Choose the same region as the VNet.</li>
+</ul>
+</li>
+<li>
+<p>Got to resource and add inbound security rules:</p>
+<ul>
+<li>Go to <strong>Settings -&gt; Inbound security rules</strong></li>
+</ul>
+<p>SSH:</p>
+<ul>
+<li>Source: Service Tag</li>
+<li>Source service tag: Internet</li>
+<li>Destination: Application security group</li>
+<li>Destination application security group: BastionHostASG</li>
+<li>Service: SSH</li>
+<li>Click <strong>Add</strong></li>
+</ul>
+<p>HTTP:</p>
+<ul>
+<li>Source: Service Tag</li>
+<li>Source service tag: Internet</li>
+<li>Destination: Application security group</li>
+<li>Destination application security group: ReverseProxyASG</li>
+<li>Service: HTTP</li>
+<li>Click <strong>Add</strong></li>
+</ul>
+</li>
+<li>
+<p>Attach the NSG to the <code>default</code> subnet in the VNet.</p>
+<ul>
+<li>Go to <strong>Settings -&gt; Subnets</strong></li>
+<li>Click <strong>+ Associate</strong> and select
+<ul>
+<li>Virtual network: DemoVNet</li>
+<li>Subnet: default</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="step-5-provision-vms-and-configure-with-cloud-init">
+  Step 5: Provision VMs and Configure with Cloud-Init
+  <a class="anchor" href="#step-5-provision-vms-and-configure-with-cloud-init">#</a>
+</h3>
+<ol>
+<li>Create three VMs using the following specifications:
+<ul>
+<li>
+<p><strong>VM Names</strong>: <code>WebServer</code>, <code>ReverseProxy</code>, <code>BastionHost</code>.</p>
+</li>
+<li>
+<p><strong>Image</strong>: Ubuntu Server 24.04 LTS.</p>
+</li>
+<li>
+<p><strong>Size</strong>: <code>Standard_B1s</code>.</p>
+</li>
+<li>
+<p><strong>Subnet</strong>: Use <code>default</code>.</p>
+</li>
+<li>
+<p><strong>Public IP</strong>: Attach only to the Bastion Host and the Reverse Proxy.</p>
+</li>
+<li>
+<p><strong>NSG</strong>: Leave <strong>None</strong> for all NICs.</p>
+</li>
+<li>
+<p><strong>ASG</strong>: Attach <code>ReverseProxyASG</code> to the Reverse Proxy and <code>BastionHostASG</code> to the Bastion Host.</p>
+</li>
+<li>
+<p><strong>WebServer (<code>cloud-config</code>)</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e">#cloud-config</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">packages</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">write_files</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/var/www/html/index.html</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">content</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;!DOCTYPE html&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;html&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;head&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &lt;title&gt;Hello World!&lt;/title&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;/head&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;body&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &lt;h1&gt;Hello World!&lt;/h1&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;/body&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;/html&gt;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/etc/nginx/sites-available/default</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">content</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      server {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        listen 8080 default_server;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        server_name _;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        root /var/www/html;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        index index.html;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      }</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">runcmd</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">systemctl restart nginx</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>ReverseProxy (<code>cloud-config</code>)</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e">#cloud-config</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">packages</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">write_files</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/etc/nginx/sites-available/default</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">content</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      server {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        listen 80;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        location / {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          proxy_pass http://webserver.internal.cloudapp.net:8080/;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          proxy_set_header Host $host;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          proxy_set_header X-Real-IP $remote_addr;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      }</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">runcmd</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">systemctl restart nginx</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ol>
+<h3 id="test-and-verify">
+  Test and Verify
+  <a class="anchor" href="#test-and-verify">#</a>
+</h3>
+<p>This chapter ensures the Virtual Network (VNet), Network Security Group (NSG), and Virtual Machines (VMs) are configured correctly and functioning as intended. Follow these steps to verify each aspect of the setup:</p>
+<h4 id="1-verify-nsg-rules">
+  1. <strong>Verify NSG Rules</strong>
+  <a class="anchor" href="#1-verify-nsg-rules">#</a>
+</h4>
+<ul>
+<li>Navigate to the <strong>DemoNSG</strong> in the Azure Portal.</li>
+<li>Check the inbound security rules:
+<ul>
+<li>SSH is allowed only for the <code>BastionHostASG</code>.</li>
+<li>HTTP traffic is allowed only for the <code>ReverseProxyASG</code>.</li>
+</ul>
+</li>
+<li>Confirm that the NSG is associated with the <code>default</code> subnet in the VNet.</li>
+</ul>
+<blockquote>
+<p>✅ <strong>Verification Step</strong>:</p>
+<ul>
+<li>Attempt SSH access from the Internet to the Web Server or Reverse Proxy. This should fail.</li>
+<li>Attempt HTTP access to the Web Server directly. This should fail.</li>
+<li>Attempt HTTP access to the Reverse Proxy. This should succeed.</li>
+</ul></blockquote>
+<h4 id="2-check-application-security-groups">
+  2. <strong>Check Application Security Groups</strong>
+  <a class="anchor" href="#2-check-application-security-groups">#</a>
+</h4>
+<ul>
+<li>Ensure the Application Security Groups (ASGs) are correctly associated:
+<ul>
+<li><code>ReverseProxyASG</code> is assigned to the Reverse Proxy VM.</li>
+<li><code>BastionHostASG</code> is assigned to the Bastion Host VM.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>✅ <strong>Verification Step</strong>:</p>
+<ul>
+<li>Navigate to the <strong>Networking</strong> section of the Reverse Proxy and Bastion Host VMs.</li>
+<li>Confirm the ASGs are listed under <strong>Application Security Groups</strong>.</li>
+</ul></blockquote>
+<h4 id="3-test-http-access-to-reverse-proxy">
+  3. <strong>Test HTTP Access to Reverse Proxy</strong>
+  <a class="anchor" href="#3-test-http-access-to-reverse-proxy">#</a>
+</h4>
+<ul>
+<li>Open a browser or use a tool like <code>curl</code> to access the Reverse Proxy&rsquo;s public IP on port <code>80</code>.</li>
+<li>Verify that the Reverse Proxy forwards traffic to the Web Server using its internal DNS name.</li>
+</ul>
+<blockquote>
+<p><strong>Command</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://&lt;ReverseProxy_PublicIP&gt;
+</span></span></code></pre></div><p><strong>Expected Output</strong>:</p>
+<ul>
+<li>The HTTP response displays the content of the Web Server&rsquo;s <code>index.html</code> page with the message:  <strong>Hello World!</strong></li>
+</ul></blockquote>
+<h4 id="4-test-internal-communication">
+  4. <strong>Test Internal Communication</strong>
+  <a class="anchor" href="#4-test-internal-communication">#</a>
+</h4>
+<ul>
+<li>Use the Bastion Host to SSH into the Reverse Proxy using the private IP address.</li>
+<li>From the Reverse Proxy, test internal DNS resolution and HTTP connectivity to the Web Server.</li>
+</ul>
+<blockquote>
+<p><strong>Commands</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh azureuser@&lt;BastionHost_PublicIP&gt;
+</span></span><span style="display:flex;"><span>curl http://webserver.internal.cloudapp.net:8080
+</span></span></code></pre></div><p><strong>Expected Output</strong>:</p>
+<ul>
+<li>The DNS name <code>webserver.internal.cloudapp.net</code> resolves to the Web Server.</li>
+<li>The HTTP response from the Web Server shows the <code>index.html</code> page with the message: <strong>Hello World!</strong></li>
+</ul></blockquote>
+<h4 id="5-verify-security-configuration">
+  5. <strong>Verify Security Configuration</strong>
+  <a class="anchor" href="#5-verify-security-configuration">#</a>
+</h4>
+<ul>
+<li>Confirm that:
+<ul>
+<li>SSH is accessible only via the Bastion Host.</li>
+<li>HTTP traffic to the Web Server is routed only through the Reverse Proxy.</li>
+<li>Direct Internet access to the Web Server is blocked.</li>
+</ul>
+</li>
+</ul>
+<h4 id="summary-of-verification-steps">
+  Summary of Verification Steps
+  <a class="anchor" href="#summary-of-verification-steps">#</a>
+</h4>
+<ul>
+<li><strong>NSG and Subnet</strong>: Ensure the NSG is applied correctly to the subnet, restricting access as per rules.</li>
+<li><strong>ASG Configuration</strong>: Verify the ASGs are correctly assigned to the Reverse Proxy and Bastion Host.</li>
+<li><strong>Internal DNS</strong>: Validate that the Reverse Proxy uses the Web Server’s internal DNS name for communication.</li>
+<li><strong>Cloud-Init Automation</strong>: Ensure the Web Server and Reverse Proxy are configured correctly via <code>cloud-config</code> without manual intervention.</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#step-1-log-in-to-azure-portal">Step 1: Log in to Azure Portal</a></li>
+        <li><a href="#step-2-create-a-virtual-network">Step 2: Create a Virtual Network</a></li>
+        <li><a href="#step-3-create-application-security-groups">Step 3: Create Application Security Groups</a></li>
+        <li><a href="#step-4-create-a-network-security-group-and-rules">Step 4: Create a Network Security Group and Rules</a></li>
+        <li><a href="#step-5-provision-vms-and-configure-with-cloud-init">Step 5: Provision VMs and Configure with Cloud-Init</a></li>
+        <li><a href="#test-and-verify">Test and Verify</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Overview
+  #
+
+This exercise introduces secure SSH authentication using Azure Portal&rsquo;s Generate Key Pair feature. You will also connect to the VM using SSH from your local (your laptop) Terminal. While logged in we will explore the Linux filesystem with basic command-line utilities.
+
+  Step 1: Log in to Azure Portal
+  #
+
+
+Open a web browser and navigate to the Azure Portal.
+Sign in using your Azure account credentials.
+
+
+  Step 2: Create a Virtual Machine with SSH Key Pair
+  #
+
+
+Navigate to Virtual Machines and click Create &gt; Azure Virtual machine.
+Configure the VM:
+
+Subscription: Select your subscription.
+Create a new Resource Group: LabSSHResourceGroup. (You can create a new resource group here if you don´t have one already)
+Virtual Machine Name: LabSSHVM.
+Region: Same as the resource group.
+Zone options: Select Azure-selected zone
+Image: Select Ubuntu Server 24.04 LTS.
+Size: Choose Standard_B1s.
+Authentication Type: Select SSH Public Key.
+Username: azureuser.
+
+
+Under SSH Public Key Source, select Generate new key pair.
+Configure inbound ports:
+
+Check Allow selected ports and select HTTP (80) and SSH (22).
+
+
+Note the name for your key pair (e.g., LabSSHKey) and click Download private key and create resource.
+
+
+💡 Information">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/4.-exercises/1.-virtual-machine/exercise-2---provisioning-a-vm-with-ssh-keys-and-exploring-linux/">
+  <meta property="og:site_name" content="Cloud Developer">
+  <meta property="og:title" content="2. Provisioning a VM with SSH Keys and Exploring Linux">
+  <meta property="og:description" content="Overview # This exercise introduces secure SSH authentication using Azure Portal’s Generate Key Pair feature. You will also connect to the VM using SSH from your local (your laptop) Terminal. While logged in we will explore the Linux filesystem with basic command-line utilities.
+Step 1: Log in to Azure Portal # Open a web browser and navigate to the Azure Portal. Sign in using your Azure account credentials. Step 2: Create a Virtual Machine with SSH Key Pair # Navigate to Virtual Machines and click Create &gt; Azure Virtual machine. Configure the VM: Subscription: Select your subscription. Create a new Resource Group: LabSSHResourceGroup. (You can create a new resource group here if you don´t have one already) Virtual Machine Name: LabSSHVM. Region: Same as the resource group. Zone options: Select Azure-selected zone Image: Select Ubuntu Server 24.04 LTS. Size: Choose Standard_B1s. Authentication Type: Select SSH Public Key. Username: azureuser. Under SSH Public Key Source, select Generate new key pair. Configure inbound ports: Check Allow selected ports and select HTTP (80) and SSH (22). Note the name for your key pair (e.g., LabSSHKey) and click Download private key and create resource. 💡 Information">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2024-11-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-11-25T00:00:00+00:00">
+<title>2. Provisioning a VM with SSH Keys and Exploring Linux | Cloud Developer</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://localhost:1313/docs/4.-exercises/1.-virtual-machine/exercise-2---provisioning-a-vm-with-ssh-keys-and-exploring-linux/">
+<link rel="stylesheet" href="/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.a009b40c1441d7958e2c1296aa73a8974331e1b687bb586986ffe655b1793bc3.js" integrity="sha256-oAm0DBRB15WOLBKWqnOol0Mx4baHu1hphv/mVbF5O8M=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Cloud Developer</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Development</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="toggle"  />
+    <label for="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="flex justify-between">
+      <a role="button" class="">1. Presentation Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/1.-hello-world/" class="">1. Hello World</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/2.-create-a-form-using-basic-html/" class="">2. Create A Form With Basic HTML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/" class="">3. Helper Tags and Model Binding</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/" class="">4. Data Annotations and Client-Side Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/5.-server-side-validation/" class="">5. Server-Side Validation and Improved Feedback</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/6.-display-a-list-of-subscribers/" class="">6. Displaying a List of Subscribers</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Basic IT</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7d0a2b83d4441b1271f24ade16347a90" class="toggle" checked />
+    <label for="section-7d0a2b83d4441b1271f24ade16347a90" class="flex justify-between">
+      <a role="button" class="">1. Virtual Machine</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-1---provisioning-a-vm-via-azure-portal-with-username-and-password/" class="">1. Provisioning a VM via Azure Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-2---provisioning-a-vm-with-ssh-keys-and-exploring-linux/" class="active">2. Provisioning a VM with SSH Keys and Exploring Linux</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-3---automating-nginx-installation-with-custom-data-scripts/" class="">3. Automating Nginx Installation with Custom Data Scripts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-4---creating-a-resource-group-using-az-cli/" class="">4. Creating a Resource Group Using AZ CLI</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1fb80a125bb9cc435f505b7ef954f3ca" class="toggle"  />
+    <label for="section-1fb80a125bb9cc435f505b7ef954f3ca" class="flex justify-between">
+      <a role="button" class="">2. Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-1---creating-a-virtual-network/" class="">1. Creating a Virtual Network (vNet)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-2---creating-a-virtual-network-with-enhanced-security/" class="">2. Creating a Virtual Network with Enhanced Security</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>2. Provisioning a VM with SSH Keys and Exploring Linux</h3>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#step-1-log-in-to-azure-portal">Step 1: Log in to Azure Portal</a></li>
+        <li><a href="#step-2-create-a-virtual-machine-with-ssh-key-pair">Step 2: Create a Virtual Machine with SSH Key Pair</a></li>
+        <li><a href="#step-3-secure-the-ssh-private-key-only-mac-and-linux-users">Step 3: Secure the SSH Private Key (Only Mac And Linux Users)</a></li>
+        <li><a href="#step-4-connect-to-the-vm">Step 4: Connect to the VM</a></li>
+        <li><a href="#step-5-explore-the-linux-filesystem">Step 5: Explore the Linux Filesystem</a></li>
+        <li><a href="#step-6-create-and-execute-a-bash-script-to-install-nginx">Step 6: Create and Execute a Bash Script to Install Nginx</a></li>
+        <li><a href="#step-7-clean-up-resources-optional">Step 7: Clean Up Resources (Optional)</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-complete">Exercise Complete!</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="overview">
+  Overview
+  <a class="anchor" href="#overview">#</a>
+</h2>
+<p>This exercise introduces secure SSH authentication using <strong>Azure Portal&rsquo;s Generate Key Pair feature</strong>. You will also connect to the VM using SSH from your local (your laptop) Terminal. While logged in we will explore the Linux filesystem with basic command-line utilities.</p>
+<h3 id="step-1-log-in-to-azure-portal">
+  Step 1: Log in to Azure Portal
+  <a class="anchor" href="#step-1-log-in-to-azure-portal">#</a>
+</h3>
+<ol>
+<li>Open a web browser and navigate to the <a href="https://portal.azure.com/">Azure Portal</a>.</li>
+<li>Sign in using your Azure account credentials.</li>
+</ol>
+<h3 id="step-2-create-a-virtual-machine-with-ssh-key-pair">
+  Step 2: Create a Virtual Machine with SSH Key Pair
+  <a class="anchor" href="#step-2-create-a-virtual-machine-with-ssh-key-pair">#</a>
+</h3>
+<ol>
+<li>Navigate to <strong>Virtual Machines</strong> and click <strong>Create</strong> &gt; <strong>Azure Virtual machine</strong>.</li>
+<li>Configure the VM:
+<ul>
+<li><strong>Subscription</strong>: Select your subscription.</li>
+<li><strong>Create a new Resource Group</strong>: <code>LabSSHResourceGroup</code>. (You can create a new resource group here if you don´t have one already)</li>
+<li><strong>Virtual Machine Name</strong>: <code>LabSSHVM</code>.</li>
+<li><strong>Region</strong>: Same as the resource group.</li>
+<li><strong>Zone options</strong>: Select <em>Azure-selected zone</em></li>
+<li><strong>Image</strong>: Select <code>Ubuntu Server 24.04 LTS</code>.</li>
+<li><strong>Size</strong>: Choose <code>Standard_B1s</code>.</li>
+<li><strong>Authentication Type</strong>: Select <strong>SSH Public Key</strong>.</li>
+<li><strong>Username</strong>: <code>azureuser</code>.</li>
+</ul>
+</li>
+<li>Under <strong>SSH Public Key Source</strong>, select <strong>Generate new key pair</strong>.</li>
+<li>Configure inbound ports:
+<ul>
+<li>Check <strong>Allow selected ports</strong> and select <strong>HTTP (80)</strong> and <strong>SSH (22)</strong>.</li>
+</ul>
+</li>
+<li>Note the name for your key pair (e.g., <code>LabSSHKey</code>) and click <strong>Download private key and create resource</strong>.</li>
+</ol>
+<blockquote>
+<p>💡 <strong>Information</strong></p>
+<p>The <strong>Generate new key pair</strong> option allows you to securely create an SSH key pair. The private key will be downloaded to your computer and should be stored securely. Azure automatically applies the corresponding public key to the VM.</p></blockquote>
+<h3 id="step-3-secure-the-ssh-private-key-only-mac-and-linux-users">
+  Step 3: Secure the SSH Private Key (Only Mac And Linux Users)
+  <a class="anchor" href="#step-3-secure-the-ssh-private-key-only-mac-and-linux-users">#</a>
+</h3>
+<ol>
+<li>
+<p>Locate the downloaded private key file (e.g., <code>LabSSHKey.pem</code>) on your local machine.</p>
+</li>
+<li>
+<p>Open the Terminal and change file permissions (only Mac/Linux Users)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chmod <span style="color:#ae81ff">400</span> ~/Downloads/LabSSHKey.pem
+</span></span></code></pre></div><blockquote>
+<p>💡 <strong>Information</strong></p>
+<p>The <code>chmod 400</code> command restricts permissions on the private key file, ensuring it is readable only by the file&rsquo;s owner. This is required for secure SSH connections. Failure to set these permissions will result in SSH errors.</p>
+<p>Make sure the key is in the Downloads folder. Otherwise you need to adjust the command above accordingly.</p></blockquote>
+</li>
+</ol>
+<h3 id="step-4-connect-to-the-vm">
+  Step 4: Connect to the VM
+  <a class="anchor" href="#step-4-connect-to-the-vm">#</a>
+</h3>
+<ol>
+<li>
+<p>In the Azure Portal, navigate to your VM&rsquo;s <strong>Overview</strong> tab and copy the public IP address of <code>LabSSHVM</code>.</p>
+</li>
+<li>
+<p>Open your terminal:</p>
+<ul>
+<li><strong>Windows</strong>: Use <strong>Git Bash</strong>.</li>
+<li><strong>Mac/Linux</strong>: Use your default terminal.</li>
+</ul>
+</li>
+<li>
+<p>Connect to the VM using SSH:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh -i ~/Downloads/LabSSHKey.pem azureuser@&lt;VM_Public_IP&gt;
+</span></span></code></pre></div><ul>
+<li>Replace <code>&lt;VM_Public_IP&gt;</code> with the public IP address you copied.</li>
+<li>On Windows you might need to use the absolute path for the key. You can usually do that by drag-and-drop the key <code>LabSSHKey.pem</code> from the file explorer into the Terminal</li>
+</ul>
+<blockquote>
+<p>✅ <strong>Verification Step:</strong></p>
+<p>Ensure you are logged into the VM and see the <code>azureuser@LabSSHVM</code> prompt.</p></blockquote>
+</li>
+</ol>
+<h3 id="step-5-explore-the-linux-filesystem">
+  Step 5: Explore the Linux Filesystem
+  <a class="anchor" href="#step-5-explore-the-linux-filesystem">#</a>
+</h3>
+<ol>
+<li>
+<p>List the contents of the root directory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls /
+</span></span></code></pre></div><ul>
+<li>Key directories:
+<ul>
+<li><code>/home</code>: User home directories.</li>
+<li><code>/etc</code>: Configuration files.</li>
+<li><code>/var</code>: Logs and variable data.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Check your current working directory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pwd
+</span></span></code></pre></div></li>
+</ol>
+<blockquote>
+<p>💡 <strong>Information</strong></p>
+<p>The Linux filesystem is hierarchical, starting from <code>/</code> (root).</p></blockquote>
+<h3 id="step-6-create-and-execute-a-bash-script-to-install-nginx">
+  Step 6: Create and Execute a Bash Script to Install Nginx
+  <a class="anchor" href="#step-6-create-and-execute-a-bash-script-to-install-nginx">#</a>
+</h3>
+<ol>
+<li>
+<p><strong>Create the Bash Script</strong>:</p>
+<ul>
+<li>
+<p>While logged into the VM, create a new script file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nano install_nginx.sh
+</span></span></code></pre></div></li>
+<li>
+<p>Add the following content to the file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>apt update
+</span></span><span style="display:flex;"><span>apt install nginx -y
+</span></span></code></pre></div></li>
+<li>
+<p>Save and exit by pressing <code>CTRL+X</code>, <code>y</code>,  <code>Enter</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Make the Script Executable</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chmod +x install_nginx.sh
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Run the Script with Elevated Privileges</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo ./install_nginx.sh
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Verify the Installation</strong>:</p>
+<ul>
+<li>
+<p>Check if Nginx is running:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>systemctl status nginx
+</span></span></code></pre></div><p>Ensure the status shows <code>active (running)</code>.</p>
+</li>
+<li>
+<p>Test Nginx using <code>curl</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl localhost
+</span></span></code></pre></div><p>The output should include the default Nginx HTML content, such as <code>Welcome to nginx!</code>.</p>
+</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>💡 <strong>Information</strong></p>
+<p><strong>Systemctl and the Init System</strong></p>
+<p>The <code>systemctl</code> command is used to interact with the system&rsquo;s <strong>init system</strong> (often <code>systemd</code> on modern Linux distributions). It is responsible for managing services, such as starting, stopping, enabling, or checking the status of services like Nginx.</p>
+<ul>
+<li><code>start</code>: Starts the service immediately.</li>
+<li><code>enable</code>: Configures the service to start automatically at boot.</li>
+<li><code>status</code>: Displays the current status of the service.</li>
+</ul></blockquote>
+<h3 id="step-7-clean-up-resources-optional">
+  Step 7: Clean Up Resources (Optional)
+  <a class="anchor" href="#step-7-clean-up-resources-optional">#</a>
+</h3>
+<ol>
+<li>In the Azure Portal, go to <strong>Resource Groups</strong> and locate <code>LabSSHResourceGroup</code>.</li>
+<li>Click <strong>Delete resource group</strong>.</li>
+</ol>
+<h2 id="exercise-complete">
+  Exercise Complete!
+  <a class="anchor" href="#exercise-complete">#</a>
+</h2>
+<p>You have successfully provisioned a VM using Azure&rsquo;s Generate Key Pair feature, connected securely using SSH, and explored the Linux filesystem and basic commands.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#step-1-log-in-to-azure-portal">Step 1: Log in to Azure Portal</a></li>
+        <li><a href="#step-2-create-a-virtual-machine-with-ssh-key-pair">Step 2: Create a Virtual Machine with SSH Key Pair</a></li>
+        <li><a href="#step-3-secure-the-ssh-private-key-only-mac-and-linux-users">Step 3: Secure the SSH Private Key (Only Mac And Linux Users)</a></li>
+        <li><a href="#step-4-connect-to-the-vm">Step 4: Connect to the VM</a></li>
+        <li><a href="#step-5-explore-the-linux-filesystem">Step 5: Explore the Linux Filesystem</a></li>
+        <li><a href="#step-6-create-and-execute-a-bash-script-to-install-nginx">Step 6: Create and Execute a Bash Script to Install Nginx</a></li>
+        <li><a href="#step-7-clean-up-resources-optional">Step 7: Clean Up Resources (Optional)</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-complete">Exercise Complete!</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

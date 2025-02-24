@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Overview
+  #
+
+The objective of this exercise is to create a Virtual Network (vNet) with a default subnet using the Azure Portal, laying the foundation for a secure network architecture. You will also provision three servers having the roles Web Server, Reverse Proxy and Bastion Host respectively. Finally, firewall rules will be created to secure the network using Azure Network Security Groups (NSG)
+
+
+  Step 1: Log in to Azure Portal
+  #
+
+
+Open https://portal.azure.com.
+Sign in with your Azure account credentials.
+
+
+  Step 2: Create a Virtual Network
+  #
+
+
+In the Azure Portal, use the search bar at the top to search for &ldquo;Virtual Networks&rdquo;.
+Select Virtual Networks from the search results or from the left menu
+Click the &#43; Create button at the top of the Virtual Networks page.
+On the Basics tab, fill in the following information:
+
+Subscription: Select your subscription.
+Resource Group: Choose an existing resource group or create a new one (e.g., DemoRG).
+Name: Enter DemoVNet.
+Region: Choose a region close to your location (e.g., North Europe).
+
+
+Click Review &#43; Create and then click Create to deploy the Virtual Network.
+
+
+💡 Information">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/4.-exercises/2.-network/exercise-1---creating-a-virtual-network/">
+  <meta property="og:site_name" content="Cloud Developer">
+  <meta property="og:title" content="1. Creating a Virtual Network (vNet)">
+  <meta property="og:description" content="Overview # The objective of this exercise is to create a Virtual Network (vNet) with a default subnet using the Azure Portal, laying the foundation for a secure network architecture. You will also provision three servers having the roles Web Server, Reverse Proxy and Bastion Host respectively. Finally, firewall rules will be created to secure the network using Azure Network Security Groups (NSG)
+Step 1: Log in to Azure Portal # Open https://portal.azure.com. Sign in with your Azure account credentials. Step 2: Create a Virtual Network # In the Azure Portal, use the search bar at the top to search for “Virtual Networks”. Select Virtual Networks from the search results or from the left menu Click the &#43; Create button at the top of the Virtual Networks page. On the Basics tab, fill in the following information: Subscription: Select your subscription. Resource Group: Choose an existing resource group or create a new one (e.g., DemoRG). Name: Enter DemoVNet. Region: Choose a region close to your location (e.g., North Europe). Click Review &#43; Create and then click Create to deploy the Virtual Network. 💡 Information">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2024-12-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-02T00:00:00+00:00">
+<title>1. Creating a Virtual Network (vNet) | Cloud Developer</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://localhost:1313/docs/4.-exercises/2.-network/exercise-1---creating-a-virtual-network/">
+<link rel="stylesheet" href="/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.a009b40c1441d7958e2c1296aa73a8974331e1b687bb586986ffe655b1793bc3.js" integrity="sha256-oAm0DBRB15WOLBKWqnOol0Mx4baHu1hphv/mVbF5O8M=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Cloud Developer</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Development</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="toggle"  />
+    <label for="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="flex justify-between">
+      <a role="button" class="">1. Presentation Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/1.-hello-world/" class="">1. Hello World</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/2.-create-a-form-using-basic-html/" class="">2. Create A Form With Basic HTML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/" class="">3. Helper Tags and Model Binding</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/" class="">4. Data Annotations and Client-Side Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/5.-server-side-validation/" class="">5. Server-Side Validation and Improved Feedback</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/6.-display-a-list-of-subscribers/" class="">6. Displaying a List of Subscribers</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Basic IT</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7d0a2b83d4441b1271f24ade16347a90" class="toggle"  />
+    <label for="section-7d0a2b83d4441b1271f24ade16347a90" class="flex justify-between">
+      <a role="button" class="">1. Virtual Machine</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-1---provisioning-a-vm-via-azure-portal-with-username-and-password/" class="">1. Provisioning a VM via Azure Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-2---provisioning-a-vm-with-ssh-keys-and-exploring-linux/" class="">2. Provisioning a VM with SSH Keys and Exploring Linux</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-3---automating-nginx-installation-with-custom-data-scripts/" class="">3. Automating Nginx Installation with Custom Data Scripts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-4---creating-a-resource-group-using-az-cli/" class="">4. Creating a Resource Group Using AZ CLI</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1fb80a125bb9cc435f505b7ef954f3ca" class="toggle" checked />
+    <label for="section-1fb80a125bb9cc435f505b7ef954f3ca" class="flex justify-between">
+      <a role="button" class="">2. Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-1---creating-a-virtual-network/" class="active">1. Creating a Virtual Network (vNet)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-2---creating-a-virtual-network-with-enhanced-security/" class="">2. Creating a Virtual Network with Enhanced Security</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>1. Creating a Virtual Network (vNet)</h3>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#step-1-log-in-to-azure-portal">Step 1: Log in to Azure Portal</a></li>
+        <li><a href="#step-2-create-a-virtual-network">Step 2: Create a Virtual Network</a></li>
+        <li><a href="#step-2-provision-an-ubuntu-vm-in-the-vnetsubnet-web-server">Step 2: Provision an Ubuntu VM in the VNet/Subnet (Web Server)</a></li>
+        <li><a href="#step-3-configure-the-web-server">Step 3: Configure the Web Server</a></li>
+        <li><a href="#step-4-provision-another-ubuntu-vm-in-the-vnetsubnet-reverse-proxy">Step 4: Provision another Ubuntu VM in the VNet/Subnet (Reverse Proxy)</a></li>
+        <li><a href="#step-5-configure-the-reverse-proxy">Step 5: Configure the Reverse Proxy</a></li>
+        <li><a href="#step-6-provision-another-ubuntu-vm-in-the-vnetsubnet-bastion-host">Step 6: Provision another Ubuntu VM in the VNet/Subnet (Bastion Host)</a></li>
+        <li><a href="#step-7-use-the-bastion-host-to-ssh-in-to-the-other-servers">Step 7: Use the Bastion Host to SSH in to the other servers</a></li>
+        <li><a href="#step-8-secure-the-solution-with-nsg-network-security-groups">Step 8: Secure the solution with NSG (Network Security Groups)</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="overview">
+  Overview
+  <a class="anchor" href="#overview">#</a>
+</h2>
+<p>The objective of this exercise is to create a Virtual Network (vNet) with a default subnet using the Azure Portal, laying the foundation for a secure network architecture. You will also provision three servers having the roles Web Server, Reverse Proxy and Bastion Host respectively. Finally, firewall rules will be created to secure the network using Azure Network Security Groups (NSG)</p>
+<p><img src="/NetworkOverview.png" alt="NetworkOverview" /></p>
+<h3 id="step-1-log-in-to-azure-portal">
+  Step 1: Log in to Azure Portal
+  <a class="anchor" href="#step-1-log-in-to-azure-portal">#</a>
+</h3>
+<ol>
+<li>Open <a href="https://portal.azure.com">https://portal.azure.com</a>.</li>
+<li>Sign in with your Azure account credentials.</li>
+</ol>
+<h3 id="step-2-create-a-virtual-network">
+  Step 2: Create a Virtual Network
+  <a class="anchor" href="#step-2-create-a-virtual-network">#</a>
+</h3>
+<ol>
+<li>In the Azure Portal, use the search bar at the top to search for <strong>&ldquo;Virtual Networks&rdquo;</strong>.</li>
+<li>Select <strong>Virtual Networks</strong> from the search results or from the left menu</li>
+<li>Click the <strong>+ Create</strong> button at the top of the Virtual Networks page.</li>
+<li>On the <strong>Basics</strong> tab, fill in the following information:
+<ul>
+<li><strong>Subscription</strong>: Select your subscription.</li>
+<li><strong>Resource Group</strong>: Choose an existing resource group or create a new one (e.g., <code>DemoRG</code>).</li>
+<li><strong>Name</strong>: Enter <code>DemoVNet</code>.</li>
+<li><strong>Region</strong>: Choose a region close to your location (e.g., <code>North Europe</code>).</li>
+</ul>
+</li>
+<li>Click <strong>Review + Create</strong> and then click Create to deploy the Virtual Network.</li>
+</ol>
+<blockquote>
+<p>💡 <strong>Information</strong></p>
+<ul>
+<li>A Virtual Network (VNet) is the foundation of a cloud-based network.</li>
+<li>Subnets allow logical segmentation within the VNet for better security and resource management.</li>
+<li>The address space <code>10.0.0.0/16</code> allows over 65,000 addresses, and subnets divide this range into smaller, manageable blocks (in this case the <code>default</code> subnet <code>10.0.0.0/24</code>)</li>
+</ul></blockquote>
+<blockquote>
+<p>✅ <strong>Verification Step:</strong></p>
+<ol>
+<li>After deployment, return to <strong>Virtual Networks</strong> in the Azure Portal.</li>
+<li>Select the <code>DemoVNet</code> from the list of Virtual Networks.</li>
+<li>Confirm that the following settings are present:
+<ul>
+<li><strong>Address Space</strong>: <code>10.0.0.0/16</code>.</li>
+<li><strong>Subnets</strong>: <code>default</code> with address range <code>10.0.0.0/24</code>.</li>
+</ul>
+</li>
+</ol></blockquote>
+<h3 id="step-2-provision-an-ubuntu-vm-in-the-vnetsubnet-web-server">
+  Step 2: Provision an Ubuntu VM in the VNet/Subnet (Web Server)
+  <a class="anchor" href="#step-2-provision-an-ubuntu-vm-in-the-vnetsubnet-web-server">#</a>
+</h3>
+<ol>
+<li>In the Azure Portal, go to <strong>&ldquo;Virtual Machines&rdquo;</strong></li>
+<li><strong>Create a New Virtual Machine</strong>
+<ul>
+<li>
+<p>Click <strong>+ Create</strong> at the top of the Virtual Machines page.</p>
+</li>
+<li>
+<p><strong>Subscription</strong>: Select the subscription used in Step 1.</p>
+</li>
+<li>
+<p><strong>Resource Group</strong>: Select the same resource group as before.</p>
+</li>
+<li>
+<p><strong>Virtual Machine Name</strong>: Enter a name, e.g., <code>WebServer</code>.</p>
+</li>
+<li>
+<p><strong>Region</strong>: Use the same region as the VNet.</p>
+</li>
+<li>
+<p><strong>Image</strong>: Choose <strong>Ubuntu Server 24.04 LTS</strong>.</p>
+</li>
+<li>
+<p><strong>Size</strong>: Select a small size, e.g., <code>Standard_B1s</code>.</p>
+</li>
+<li>
+<p><strong>Administrator Account</strong>:</p>
+<ul>
+<li>Authentication Type: Select <strong>SSH Public Key</strong>.</li>
+<li>Username: Enter <code>azureuser</code>.</li>
+<li>SSH Public Key: Generate new key pair.</li>
+</ul>
+</li>
+<li>
+<p>Go to the network tab</p>
+<ul>
+<li>Under <strong>Virtual Network</strong>, select the VNet created in Step 1.</li>
+<li>For <strong>Subnet</strong>, choose the default subnet created in Step 1.</li>
+<li><strong>Public IP</strong>: Ensure a public IP address is assigned.</li>
+<li><strong>NIC Network Security Group</strong>: Select <strong>Basic</strong> and allow SSH (port 22).</li>
+</ul>
+</li>
+<li>
+<p>Go to the advanced tab</p>
+<ul>
+<li>Use custom data to install nginx</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>apt update
+</span></span><span style="display:flex;"><span>apt install nginx -y
+</span></span></code></pre></div></li>
+<li>
+<p>Click <strong>Review + create</strong> and then <strong>Create</strong>.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="step-3-configure-the-web-server">
+  Step 3: Configure the Web Server
+  <a class="anchor" href="#step-3-configure-the-web-server">#</a>
+</h3>
+<ol>
+<li>
+<p>Login to the WebServer and change the default Nginx page to &ldquo;Welcome World&rdquo;</p>
+</li>
+<li>
+<p>Run the following commands to change the port nginx listens to (just for this exercise to show that web servers and app servers can potentially listen to many different ports. <code>8080</code> is a very common port to use)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo sed -i <span style="color:#e6db74">&#39;s/listen 80 default_server;/listen 8080 default_server;/&#39;</span> /etc/nginx/sites-available/default
+</span></span><span style="display:flex;"><span>sudo sed -i <span style="color:#e6db74">&#39;/listen \[::\]:80 default_server;/d&#39;</span> /etc/nginx/sites-available/default
+</span></span><span style="display:flex;"><span>sudo nginx -s reload
+</span></span><span style="display:flex;"><span>sudo sed -i <span style="color:#e6db74">&#39;s/Welcome to nginx/Hello World/g&#39;</span> /var/www/html/index.nginx-debian.html
+</span></span></code></pre></div><blockquote>
+<p>✅ <strong>Verification Step:</strong></p>
+<ol>
+<li>Run curl and verify output from default page</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> curl localhost:8080
+</span></span></code></pre></div></blockquote>
+</li>
+</ol>
+<h3 id="step-4-provision-another-ubuntu-vm-in-the-vnetsubnet-reverse-proxy">
+  Step 4: Provision another Ubuntu VM in the VNet/Subnet (Reverse Proxy)
+  <a class="anchor" href="#step-4-provision-another-ubuntu-vm-in-the-vnetsubnet-reverse-proxy">#</a>
+</h3>
+<ol>
+<li>Create another identical VM (including installing Nginx)</li>
+<li>Name it <code>ReverseProxy</code></li>
+</ol>
+<h3 id="step-5-configure-the-reverse-proxy">
+  Step 5: Configure the Reverse Proxy
+  <a class="anchor" href="#step-5-configure-the-reverse-proxy">#</a>
+</h3>
+<ol>
+<li>
+<p>Login to the ReverseProxy and run</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl &lt;PrivateIP_WebServer&gt;:8080
+</span></span></code></pre></div><blockquote>
+<p>✅ <strong>Verification Step:</strong></p>
+<p>Verify output from default page of the Web Server</p></blockquote>
+<blockquote>
+<p>💡 <strong>Information</strong></p>
+<ul>
+<li>There is no firewall between servers in the same network</li>
+<li>You can also use the private IPs within the same vNet</li>
+</ul></blockquote>
+</li>
+<li>
+<p>In order to give the Reverse Proxy its role as &ldquo;Reverse Proxy&rdquo; we need to edit the file <code>/etc/nginx/sites-available/default</code>. Replace the content with this (change the Private IP and Port):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nano /etc/nginx/sites-available/default
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>server <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  listen        <span style="color:#ae81ff">80</span> default_server;
+</span></span><span style="display:flex;"><span>  location / <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    proxy_pass         http://&lt;PrivateIP&gt;:&lt;Port&gt;/;
+</span></span><span style="display:flex;"><span>    proxy_http_version 1.1;
+</span></span><span style="display:flex;"><span>    proxy_set_header   Upgrade $http_upgrade;
+</span></span><span style="display:flex;"><span>    proxy_set_header   Connection keep-alive;
+</span></span><span style="display:flex;"><span>    proxy_set_header   Host $host;
+</span></span><span style="display:flex;"><span>    proxy_cache_bypass $http_upgrade;
+</span></span><span style="display:flex;"><span>    proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+</span></span><span style="display:flex;"><span>    proxy_set_header   X-Forwarded-Proto $scheme;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nginx -t
+</span></span><span style="display:flex;"><span>sudo nginx -s reload
+</span></span><span style="display:flex;"><span>curl localhost
+</span></span></code></pre></div><blockquote>
+<p>✅ <strong>Verification Step:</strong></p>
+<p>Verify output from default page of the Web Server</p></blockquote>
+<blockquote>
+<p>💡 <strong>Information</strong></p>
+<p>Nginx is a very versatile software that beside being used for web servers it is also very often used for reverse proxies.</p></blockquote>
+</li>
+</ol>
+<h3 id="step-6-provision-another-ubuntu-vm-in-the-vnetsubnet-bastion-host">
+  Step 6: Provision another Ubuntu VM in the VNet/Subnet (Bastion Host)
+  <a class="anchor" href="#step-6-provision-another-ubuntu-vm-in-the-vnetsubnet-bastion-host">#</a>
+</h3>
+<ol>
+<li>Create another identical VM (but don´t install Nginx)</li>
+<li>Name it <code>BastionHost</code></li>
+</ol>
+<h3 id="step-7-use-the-bastion-host-to-ssh-in-to-the-other-servers">
+  Step 7: Use the Bastion Host to SSH in to the other servers
+  <a class="anchor" href="#step-7-use-the-bastion-host-to-ssh-in-to-the-other-servers">#</a>
+</h3>
+<ol>
+<li>
+<p>Login to the Bastion Host.</p>
+</li>
+<li>
+<p>Try to login to the other two servers from here.</p>
+<blockquote>
+<p>💡 <strong>Information</strong></p>
+<p>Each server has its own ssh key. We don´t want to store the keys on the Bastion Host, instead we use an ssh agent to bring the keys to the other servers in memory to the Bastion Host.</p></blockquote>
+</li>
+<li>
+<p>Exit the terminal, so that you are back on your laptop</p>
+</li>
+<li>
+<p>Start the SSH Agent, on your laptop, and give it the keys:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>eval <span style="color:#66d9ef">$(</span>ssh-agent<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>ssh-add ~/Downloads/WebServer_key.pem
+</span></span><span style="display:flex;"><span>ssh-add ~/Downloads/ReverseProxy_key.pem
+</span></span><span style="display:flex;"><span>ssh-add ~/Downloads/BastionHost_key.pem
+</span></span><span style="display:flex;"><span>ssh-add -l
+</span></span></code></pre></div></li>
+<li>
+<p>SSH Jump via BastionHost using the Agent (<code>-A</code>):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh -A azureuser@&lt;BastionHost_IP&gt;
+</span></span></code></pre></div></li>
+<li>
+<p>Inside the BastionHost, try to SSH into WebServer using its private IP:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh -A azureuser@&lt;WebServer_InternalIP&gt;
+</span></span></code></pre></div><blockquote>
+<p>✅ <strong>Verification Step:</strong></p>
+<p>Verify that you could SSH into the Web Server</p></blockquote>
+</li>
+</ol>
+<h3 id="step-8-secure-the-solution-with-nsg-network-security-groups">
+  Step 8: Secure the solution with NSG (Network Security Groups)
+  <a class="anchor" href="#step-8-secure-the-solution-with-nsg-network-security-groups">#</a>
+</h3>
+<p>Currently there is one NSG for each NIC of each server. You will find the firewall rules in each NSG under the menu <strong>Networking -&gt; Network settings</strong> for each VM.</p>
+<ol>
+<li>
+<p>Modify the NSG of the <strong>Web Server</strong></p>
+<ul>
+<li>Navigate to the <code>WebServer</code> VM</li>
+<li>Select the menu <strong>Networking -&gt; Network settings</strong></li>
+<li>Follow the link <code>WebServer-nsg</code></li>
+<li>Delete the row with the SSH rule.</li>
+</ul>
+<blockquote>
+<p>✅ <strong>Verification Step:</strong></p>
+<ul>
+<li>Verify that you <strong>cannot</strong> SSH into the Web Server from the Internet</li>
+<li>Verify that you <strong>can</strong> SSH into the Web Server from the BastionHost</li>
+<li>Verify that you <strong>cannot</strong> browse (HTTP) into the Web Server from the Internet</li>
+<li>Verify that you <strong>can</strong> browse (HTTP) into the Web Server from the ReverseProxy</li>
+</ul></blockquote>
+</li>
+<li>
+<p>Modify the NSG of the <strong>Reverse Proxy</strong></p>
+<ul>
+<li>Navigate to the <code>ReverseProxy</code> VM</li>
+<li>Select the menu <strong>Networking -&gt; Network settings</strong></li>
+<li>Follow the link <code>ReverseProxy-nsg</code></li>
+<li>Delete the row with the SSH rule.</li>
+<li>Select the menu <strong>Settings -&gt; Inbound security rules</strong></li>
+<li>Click <strong>+ Add</strong></li>
+<li>In Service, choose <strong>HTTP</strong></li>
+<li>Click <strong>Add</strong></li>
+</ul>
+<blockquote>
+<p>✅ <strong>Verification Step:</strong></p>
+<ul>
+<li>Verify that you <strong>cannot</strong> SSH into the Reverse Proxy from the Internet</li>
+<li>Verify that you <strong>can</strong> SSH into the Reverse Proxy from the BastionHost</li>
+<li>Verify that you <strong>can</strong> browse (HTTP) into the Reverse Proxy from the Internet</li>
+<li>Verify that you get the page served by the Web Server (Hello World)</li>
+</ul></blockquote>
+</li>
+</ol>
+<h2 id="conclusion">
+  Conclusion
+  <a class="anchor" href="#conclusion">#</a>
+</h2>
+<p>By completing this exercise, you achieved the following learning outcomes:</p>
+<ol>
+<li><strong>VNet Creation:</strong> Established a Virtual Network with a subnet to provide a secure foundation for cloud infrastructure.</li>
+<li><strong>VM Provisioning:</strong> Deployed and configured VMs with specific roles (Web Server, Reverse Proxy, Bastion Host) to simulate a functional network.</li>
+<li><strong>Nginx Configuration:</strong> Explored the use of Nginx as a web server and reverse proxy.</li>
+<li><strong>Secure Networking:</strong> Applied Azure NSGs to enforce access control and secure the environment.</li>
+<li><strong>SSH Agent Forwarding:</strong> Practiced secure internal server management without exposing sensitive credentials.</li>
+</ol>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#step-1-log-in-to-azure-portal">Step 1: Log in to Azure Portal</a></li>
+        <li><a href="#step-2-create-a-virtual-network">Step 2: Create a Virtual Network</a></li>
+        <li><a href="#step-2-provision-an-ubuntu-vm-in-the-vnetsubnet-web-server">Step 2: Provision an Ubuntu VM in the VNet/Subnet (Web Server)</a></li>
+        <li><a href="#step-3-configure-the-web-server">Step 3: Configure the Web Server</a></li>
+        <li><a href="#step-4-provision-another-ubuntu-vm-in-the-vnetsubnet-reverse-proxy">Step 4: Provision another Ubuntu VM in the VNet/Subnet (Reverse Proxy)</a></li>
+        <li><a href="#step-5-configure-the-reverse-proxy">Step 5: Configure the Reverse Proxy</a></li>
+        <li><a href="#step-6-provision-another-ubuntu-vm-in-the-vnetsubnet-bastion-host">Step 6: Provision another Ubuntu VM in the VNet/Subnet (Bastion Host)</a></li>
+        <li><a href="#step-7-use-the-bastion-host-to-ssh-in-to-the-other-servers">Step 7: Use the Bastion Host to SSH in to the other servers</a></li>
+        <li><a href="#step-8-secure-the-solution-with-nsg-network-security-groups">Step 8: Secure the solution with NSG (Network Security Groups)</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

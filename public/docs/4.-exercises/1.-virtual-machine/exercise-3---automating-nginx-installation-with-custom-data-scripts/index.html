@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Overview
+  #
+
+This exercise introduces the use of custom data scripts to automate the installation of Nginx during VM provisioning. You will also edit the default Nginx index page to display custom content.
+
+  Step 1: Log in to Azure Portal
+  #
+
+
+Open a web browser and navigate to the Azure Portal.
+Sign in using your Azure account credentials.
+
+
+  Step 2: Create a Virtual Machine with Custom Data
+  #
+
+
+
+Navigate to Virtual Machines in the Azure Portal and click Create &gt; Virtual machine.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/4.-exercises/1.-virtual-machine/exercise-3---automating-nginx-installation-with-custom-data-scripts/">
+  <meta property="og:site_name" content="Cloud Developer">
+  <meta property="og:title" content="3. Automating Nginx Installation with Custom Data Scripts">
+  <meta property="og:description" content="Overview # This exercise introduces the use of custom data scripts to automate the installation of Nginx during VM provisioning. You will also edit the default Nginx index page to display custom content.
+Step 1: Log in to Azure Portal # Open a web browser and navigate to the Azure Portal. Sign in using your Azure account credentials. Step 2: Create a Virtual Machine with Custom Data # Navigate to Virtual Machines in the Azure Portal and click Create &gt; Virtual machine.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2024-11-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-11-25T00:00:00+00:00">
+<title>3. Automating Nginx Installation with Custom Data Scripts | Cloud Developer</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://localhost:1313/docs/4.-exercises/1.-virtual-machine/exercise-3---automating-nginx-installation-with-custom-data-scripts/">
+<link rel="stylesheet" href="/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.a009b40c1441d7958e2c1296aa73a8974331e1b687bb586986ffe655b1793bc3.js" integrity="sha256-oAm0DBRB15WOLBKWqnOol0Mx4baHu1hphv/mVbF5O8M=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Cloud Developer</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Development</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="toggle"  />
+    <label for="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="flex justify-between">
+      <a role="button" class="">1. Presentation Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/1.-hello-world/" class="">1. Hello World</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/2.-create-a-form-using-basic-html/" class="">2. Create A Form With Basic HTML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/" class="">3. Helper Tags and Model Binding</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/" class="">4. Data Annotations and Client-Side Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/5.-server-side-validation/" class="">5. Server-Side Validation and Improved Feedback</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/6.-display-a-list-of-subscribers/" class="">6. Displaying a List of Subscribers</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Basic IT</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7d0a2b83d4441b1271f24ade16347a90" class="toggle" checked />
+    <label for="section-7d0a2b83d4441b1271f24ade16347a90" class="flex justify-between">
+      <a role="button" class="">1. Virtual Machine</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-1---provisioning-a-vm-via-azure-portal-with-username-and-password/" class="">1. Provisioning a VM via Azure Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-2---provisioning-a-vm-with-ssh-keys-and-exploring-linux/" class="">2. Provisioning a VM with SSH Keys and Exploring Linux</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-3---automating-nginx-installation-with-custom-data-scripts/" class="active">3. Automating Nginx Installation with Custom Data Scripts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-4---creating-a-resource-group-using-az-cli/" class="">4. Creating a Resource Group Using AZ CLI</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1fb80a125bb9cc435f505b7ef954f3ca" class="toggle"  />
+    <label for="section-1fb80a125bb9cc435f505b7ef954f3ca" class="flex justify-between">
+      <a role="button" class="">2. Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-1---creating-a-virtual-network/" class="">1. Creating a Virtual Network (vNet)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-2---creating-a-virtual-network-with-enhanced-security/" class="">2. Creating a Virtual Network with Enhanced Security</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>3. Automating Nginx Installation with Custom Data Scripts</h3>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#step-1-log-in-to-azure-portal">Step 1: Log in to Azure Portal</a></li>
+        <li><a href="#step-2-create-a-virtual-machine-with-custom-data">Step 2: Create a Virtual Machine with Custom Data</a></li>
+        <li><a href="#step-3-edit-the-nginx-default-page">Step 3: Edit the Nginx Default Page</a></li>
+        <li><a href="#step-4-clean-up-resources-optional">Step 4: Clean Up Resources (Optional)</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-complete">Exercise Complete!</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="overview">
+  Overview
+  <a class="anchor" href="#overview">#</a>
+</h2>
+<p>This exercise introduces the use of <strong>custom data scripts</strong> to automate the installation of Nginx during VM provisioning. You will also edit the default Nginx index page to display custom content.</p>
+<h3 id="step-1-log-in-to-azure-portal">
+  Step 1: Log in to Azure Portal
+  <a class="anchor" href="#step-1-log-in-to-azure-portal">#</a>
+</h3>
+<ol>
+<li>Open a web browser and navigate to the <a href="https://portal.azure.com/">Azure Portal</a>.</li>
+<li>Sign in using your Azure account credentials.</li>
+</ol>
+<h3 id="step-2-create-a-virtual-machine-with-custom-data">
+  Step 2: Create a Virtual Machine with Custom Data
+  <a class="anchor" href="#step-2-create-a-virtual-machine-with-custom-data">#</a>
+</h3>
+<ol>
+<li>
+<p>Navigate to <strong>Virtual Machines</strong> in the Azure Portal and click <strong>Create</strong> &gt; <strong>Virtual machine</strong>.</p>
+</li>
+<li>
+<p>Configure the VM:</p>
+<ul>
+<li><strong>Subscription</strong>: Select your subscription.</li>
+<li><strong>Create a new Resource Group</strong>: <code>LabCustomDataRG</code>.</li>
+<li><strong>Virtual Machine Name</strong>: <code>LabCustomDataVM</code>.</li>
+<li><strong>Region</strong>: Same as the resource group.</li>
+<li><strong>Zone options</strong>: Select <em>Azure-selected zone</em></li>
+<li><strong>Image</strong>: Select <code>Ubuntu Server 24.04 LTS</code>.</li>
+<li><strong>Size</strong>: Choose <code>Standard_B1s</code>.</li>
+<li><strong>Authentication Type</strong>: Select <strong>SSH Public Key</strong>.</li>
+<li><strong>Username</strong>: <code>azureuser</code>.</li>
+<li><strong>SSH Public Key Source</strong>: Use an existing SSH key or generate a new one.</li>
+<li><strong>Allow selected ports</strong> and select <strong>HTTP (80)</strong> and <strong>SSH (22)</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Under <strong>Advanced</strong> &gt; <strong>Custom Data</strong>, paste the content:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>apt update
+</span></span><span style="display:flex;"><span>apt install nginx -y
+</span></span></code></pre></div></li>
+<li>
+<p>Click <strong>Review + Create</strong>, and then <strong>Create</strong>.</p>
+</li>
+</ol>
+<blockquote>
+<p>💡 <strong>Information</strong></p>
+<p>The <strong>Custom Data</strong> field allows you to execute a script during the initial boot of the VM, automating configurations and software installations.</p>
+<p>This script:</p>
+<ul>
+<li>Updates the system&rsquo;s package list (<code>apt update</code>).</li>
+<li>Installs the Nginx web server (<code>apt install nginx -y</code>).</li>
+</ul>
+<p>It is important that you 1) don´t use <code>sudo</code> 2) make sure it is <em>non-interactive</em> 3) use a shebang</p></blockquote>
+<blockquote>
+<p>✅ <strong>Verification Step:</strong></p>
+<p>Open a browser and go to the <code>&lt;VM_Public_IP&gt;</code>. You should see the <strong>&ldquo;Welcome to Nginx!&rdquo;</strong> default page. This might take a minute, so be patient and refresh the page.</p></blockquote>
+<h3 id="step-3-edit-the-nginx-default-page">
+  Step 3: Edit the Nginx Default Page
+  <a class="anchor" href="#step-3-edit-the-nginx-default-page">#</a>
+</h3>
+<ol>
+<li>
+<p>Connect to the VM using SSH:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh -i &lt;private-key&gt; azureuser@&lt;VM_Public_IP&gt;
+</span></span></code></pre></div><ul>
+<li>Replace <code>&lt;private-key&gt;</code> with your private key file.</li>
+<li>Replace <code>&lt;VM_Public_IP&gt;</code> with the VM&rsquo;s public IP address.</li>
+<li>Don´t forget to <code>chmod 400</code> the key if you are on Mac or Linux</li>
+</ul>
+</li>
+<li>
+<p>Navigate to the Nginx <em>root</em> directory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /var/www/html/
+</span></span></code></pre></div></li>
+<li>
+<p>Open <code>index.nginx-debian.html</code> in a text editor:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nano index.nginx-debian.html
+</span></span></code></pre></div></li>
+<li>
+<p>Modify the content (e.g., add &ldquo;Hello World&rdquo; to the <code>&lt;h1&gt;</code> tag).</p>
+</li>
+<li>
+<p>Save and exit by pressing <code>Ctrl+x</code>, <code>y</code>, and <code>Enter</code>.</p>
+</li>
+</ol>
+<blockquote>
+<p>✅ <strong>Verification Step:</strong></p>
+<p>Refresh the page in your browser or rerun the <code>curl localhost</code> command to see the updated content.</p></blockquote>
+<h3 id="step-4-clean-up-resources-optional">
+  Step 4: Clean Up Resources (Optional)
+  <a class="anchor" href="#step-4-clean-up-resources-optional">#</a>
+</h3>
+<ol>
+<li>In the Azure Portal, go to <strong>Resource Groups</strong> and locate <code>LabSSHResourceGroup</code>.</li>
+<li>Click <strong>Delete resource group</strong>.</li>
+</ol>
+<h2 id="exercise-complete">
+  Exercise Complete!
+  <a class="anchor" href="#exercise-complete">#</a>
+</h2>
+<p>You have successfully automated the installation of Nginx using a custom data script and edited the default web page to display custom content.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#step-1-log-in-to-azure-portal">Step 1: Log in to Azure Portal</a></li>
+        <li><a href="#step-2-create-a-virtual-machine-with-custom-data">Step 2: Create a Virtual Machine with Custom Data</a></li>
+        <li><a href="#step-3-edit-the-nginx-default-page">Step 3: Edit the Nginx Default Page</a></li>
+        <li><a href="#step-4-clean-up-resources-optional">Step 4: Clean Up Resources (Optional)</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-complete">Exercise Complete!</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

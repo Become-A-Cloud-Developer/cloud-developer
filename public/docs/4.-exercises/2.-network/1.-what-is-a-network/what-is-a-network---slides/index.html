@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  What is a Network?
+  #
+
+
+Connectivity: Enables communication paths between devices and networks.
+Data Transmission: Transfers data using routing (inter-network) and switching (intra-network).
+Protocols: Ensure data is transmitted correctly and securely (e.g., TCP/IP, HTTP).
+Security: Implements firewalls, encryption, and access controls to protect data.
+
+
+
+  Key Network Components
+  #
+
+
+Routers: Direct data between networks; use IP addresses to forward packets.
+Switches: Manage data within local networks based on MAC addresses.
+Firewalls: Monitor and control traffic using security rules.
+Wireless Access Points: Connect wireless devices to a wired network.
+Intermediaries: Load balancers, reverse proxies, and bastion hosts enhance performance and security.
+
+
+
+  Network Topologies
+  #
+
+
+Bus: Shared communication line; cost-effective but limited performance.
+Star: Devices connect to a central hub; isolates faults effectively.
+Ring: Circular connection; efficient but can fail without redundancy.
+Mesh: Multiple connections; highly reliable but costly.
+Hybrid: Combines topologies for specific needs.
+
+
+
+  Levels of Abstraction
+  #
+
+
+Physical Layer: Hardware like cables, switches and routers.
+Virtual Network Layer: Isolated network segments (e.g., VLANs, VPNs).
+Cloud Network Layer: Managed solutions like Azure VNets and AWS VPCs.
+Serverless Networking: Automated routing and scaling by cloud providers.
+
+
+
+  Network Security
+  #
+
+
+Firewalls: Block unauthorized access.
+Encryption: Protects data in transit.
+Intrusion Detection Systems (IDS): Monitor for suspicious activity.
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/4.-exercises/2.-network/1.-what-is-a-network/what-is-a-network---slides/">
+  <meta property="og:site_name" content="Cloud Developer">
+  <meta property="og:title" content="What is a Network?">
+  <meta property="og:description" content="What is a Network? # Connectivity: Enables communication paths between devices and networks. Data Transmission: Transfers data using routing (inter-network) and switching (intra-network). Protocols: Ensure data is transmitted correctly and securely (e.g., TCP/IP, HTTP). Security: Implements firewalls, encryption, and access controls to protect data. Key Network Components # Routers: Direct data between networks; use IP addresses to forward packets. Switches: Manage data within local networks based on MAC addresses. Firewalls: Monitor and control traffic using security rules. Wireless Access Points: Connect wireless devices to a wired network. Intermediaries: Load balancers, reverse proxies, and bastion hosts enhance performance and security. Network Topologies # Bus: Shared communication line; cost-effective but limited performance. Star: Devices connect to a central hub; isolates faults effectively. Ring: Circular connection; efficient but can fail without redundancy. Mesh: Multiple connections; highly reliable but costly. Hybrid: Combines topologies for specific needs. Levels of Abstraction # Physical Layer: Hardware like cables, switches and routers. Virtual Network Layer: Isolated network segments (e.g., VLANs, VPNs). Cloud Network Layer: Managed solutions like Azure VNets and AWS VPCs. Serverless Networking: Automated routing and scaling by cloud providers. Network Security # Firewalls: Block unauthorized access. Encryption: Protects data in transit. Intrusion Detection Systems (IDS): Monitor for suspicious activity.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2024-12-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-02T00:00:00+00:00">
+<title>What is a Network? | Cloud Developer</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://localhost:1313/docs/4.-exercises/2.-network/1.-what-is-a-network/what-is-a-network---slides/">
+<link rel="stylesheet" href="/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.4aa7ac62544fd6497f5115d43bcbf40eb1b313587c992f7ca17eabf73cf0c505.js" integrity="sha256-SqesYlRP1kl/URXUO8v0DrGzE1h8mS98oX6r9zzwxQU=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Cloud Developer</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Development</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="toggle"  />
+    <label for="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="flex justify-between">
+      <a role="button" class="">1. Presentation Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/1.-hello-world/" class="">1. Hello World</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/2.-create-a-form-using-basic-html/" class="">2. Create A Form With Basic HTML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/" class="">3. Helper Tags and Model Binding</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/" class="">4. Data Annotations and Client-Side Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/5.-server-side-validation/" class="">5. Server-Side Validation and Improved Feedback</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/6.-display-a-list-of-subscribers/" class="">6. Displaying a List of Subscribers</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Basic IT</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1fb80a125bb9cc435f505b7ef954f3ca" class="toggle" checked />
+    <label for="section-1fb80a125bb9cc435f505b7ef954f3ca" class="flex justify-between">
+      <a role="button" class="">2. Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/what-is-a-network---article/" class="">What is a Network?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/1.-what-is-a-network/what-is-a-network---slides-swe/" class="">Vad är ett nätverk?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/1.-what-is-a-network/what-is-a-network---slides/" class="active">What is a Network?</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>What is a Network?</h3>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-a-network">What is a Network?</a></li>
+    <li><a href="#key-network-components">Key Network Components</a></li>
+    <li><a href="#network-topologies">Network Topologies</a></li>
+    <li><a href="#levels-of-abstraction">Levels of Abstraction</a></li>
+    <li><a href="#network-security">Network Security</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="what-is-a-network">
+  What is a Network?
+  <a class="anchor" href="#what-is-a-network">#</a>
+</h2>
+<ul>
+<li><strong>Connectivity</strong>: Enables communication paths between devices and networks.</li>
+<li><strong>Data Transmission</strong>: Transfers data using routing (inter-network) and switching (intra-network).</li>
+<li><strong>Protocols</strong>: Ensure data is transmitted correctly and securely (e.g., TCP/IP, HTTP).</li>
+<li><strong>Security</strong>: Implements firewalls, encryption, and access controls to protect data.</li>
+</ul>
+<hr>
+<h2 id="key-network-components">
+  Key Network Components
+  <a class="anchor" href="#key-network-components">#</a>
+</h2>
+<ul>
+<li><strong>Routers</strong>: Direct data between networks; use IP addresses to forward packets.</li>
+<li><strong>Switches</strong>: Manage data within local networks based on MAC addresses.</li>
+<li><strong>Firewalls</strong>: Monitor and control traffic using security rules.</li>
+<li><strong>Wireless Access Points</strong>: Connect wireless devices to a wired network.</li>
+<li><strong>Intermediaries</strong>: Load balancers, reverse proxies, and bastion hosts enhance performance and security.</li>
+</ul>
+<hr>
+<h2 id="network-topologies">
+  Network Topologies
+  <a class="anchor" href="#network-topologies">#</a>
+</h2>
+<ul>
+<li><strong>Bus</strong>: Shared communication line; cost-effective but limited performance.</li>
+<li><strong>Star</strong>: Devices connect to a central hub; isolates faults effectively.</li>
+<li><strong>Ring</strong>: Circular connection; efficient but can fail without redundancy.</li>
+<li><strong>Mesh</strong>: Multiple connections; highly reliable but costly.</li>
+<li><strong>Hybrid</strong>: Combines topologies for specific needs.</li>
+</ul>
+<hr>
+<h2 id="levels-of-abstraction">
+  Levels of Abstraction
+  <a class="anchor" href="#levels-of-abstraction">#</a>
+</h2>
+<ul>
+<li><strong>Physical Layer</strong>: Hardware like cables, switches and routers.</li>
+<li><strong>Virtual Network Layer</strong>: Isolated network segments (e.g., VLANs, VPNs).</li>
+<li><strong>Cloud Network Layer</strong>: Managed solutions like Azure VNets and AWS VPCs.</li>
+<li><strong>Serverless Networking</strong>: Automated routing and scaling by cloud providers.</li>
+</ul>
+<hr>
+<h2 id="network-security">
+  Network Security
+  <a class="anchor" href="#network-security">#</a>
+</h2>
+<ul>
+<li><strong>Firewalls</strong>: Block unauthorized access.</li>
+<li><strong>Encryption</strong>: Protects data in transit.</li>
+<li><strong>Intrusion Detection Systems (IDS)</strong>: Monitor for suspicious activity.</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-a-network">What is a Network?</a></li>
+    <li><a href="#key-network-components">Key Network Components</a></li>
+    <li><a href="#network-topologies">Network Topologies</a></li>
+    <li><a href="#levels-of-abstraction">Levels of Abstraction</a></li>
+    <li><a href="#network-security">Network Security</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

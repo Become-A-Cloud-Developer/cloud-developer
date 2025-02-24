@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Overview
+  #
+
+This exercise introduces the Azure CLI for managing Azure resources. You will use Azure CLI commands to create a resource group and verify its creation.
+
+  Step 1: Log in to Azure Cloud Shell
+  #
+
+
+Open the Azure Portal and click the Cloud Shell icon (top-right corner).
+Select Bash as your shell environment if prompted.
+
+
+💡 Information
+The Azure Cloud Shell is a Terminal in the Azure Portal that comes pre-configured with the Azure CLI. It enables you to run CLI commands without additional setup.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/4.-exercises/1.-virtual-machine/exercise-4---creating-a-resource-group-using-az-cli/">
+  <meta property="og:site_name" content="Cloud Developer">
+  <meta property="og:title" content="4. Creating a Resource Group Using AZ CLI">
+  <meta property="og:description" content="Overview # This exercise introduces the Azure CLI for managing Azure resources. You will use Azure CLI commands to create a resource group and verify its creation.
+Step 1: Log in to Azure Cloud Shell # Open the Azure Portal and click the Cloud Shell icon (top-right corner). Select Bash as your shell environment if prompted. 💡 Information
+The Azure Cloud Shell is a Terminal in the Azure Portal that comes pre-configured with the Azure CLI. It enables you to run CLI commands without additional setup.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2024-11-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-11-25T00:00:00+00:00">
+<title>4. Creating a Resource Group Using AZ CLI | Cloud Developer</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://localhost:1313/docs/4.-exercises/1.-virtual-machine/exercise-4---creating-a-resource-group-using-az-cli/">
+<link rel="stylesheet" href="/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.a009b40c1441d7958e2c1296aa73a8974331e1b687bb586986ffe655b1793bc3.js" integrity="sha256-oAm0DBRB15WOLBKWqnOol0Mx4baHu1hphv/mVbF5O8M=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Cloud Developer</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Development</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="toggle"  />
+    <label for="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="flex justify-between">
+      <a role="button" class="">1. Presentation Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/1.-hello-world/" class="">1. Hello World</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/2.-create-a-form-using-basic-html/" class="">2. Create A Form With Basic HTML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/" class="">3. Helper Tags and Model Binding</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/" class="">4. Data Annotations and Client-Side Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/5.-server-side-validation/" class="">5. Server-Side Validation and Improved Feedback</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/6.-display-a-list-of-subscribers/" class="">6. Displaying a List of Subscribers</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Basic IT</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7d0a2b83d4441b1271f24ade16347a90" class="toggle" checked />
+    <label for="section-7d0a2b83d4441b1271f24ade16347a90" class="flex justify-between">
+      <a role="button" class="">1. Virtual Machine</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-1---provisioning-a-vm-via-azure-portal-with-username-and-password/" class="">1. Provisioning a VM via Azure Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-2---provisioning-a-vm-with-ssh-keys-and-exploring-linux/" class="">2. Provisioning a VM with SSH Keys and Exploring Linux</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-3---automating-nginx-installation-with-custom-data-scripts/" class="">3. Automating Nginx Installation with Custom Data Scripts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-4---creating-a-resource-group-using-az-cli/" class="active">4. Creating a Resource Group Using AZ CLI</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1fb80a125bb9cc435f505b7ef954f3ca" class="toggle"  />
+    <label for="section-1fb80a125bb9cc435f505b7ef954f3ca" class="flex justify-between">
+      <a role="button" class="">2. Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-1---creating-a-virtual-network/" class="">1. Creating a Virtual Network (vNet)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-2---creating-a-virtual-network-with-enhanced-security/" class="">2. Creating a Virtual Network with Enhanced Security</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>4. Creating a Resource Group Using AZ CLI</h3>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#step-1-log-in-to-azure-cloud-shell">Step 1: Log in to Azure Cloud Shell</a></li>
+        <li><a href="#step-2-create-a-resource-group">Step 2: Create a Resource Group</a></li>
+        <li><a href="#step-3-clean-up-resources-optional">Step 3: Clean Up Resources (Optional)</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-complete">Exercise Complete!</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="overview">
+  Overview
+  <a class="anchor" href="#overview">#</a>
+</h2>
+<p>This exercise introduces the <strong>Azure CLI</strong> for managing Azure resources. You will use Azure CLI commands to create a resource group and verify its creation.</p>
+<h3 id="step-1-log-in-to-azure-cloud-shell">
+  Step 1: Log in to Azure Cloud Shell
+  <a class="anchor" href="#step-1-log-in-to-azure-cloud-shell">#</a>
+</h3>
+<ol>
+<li>Open the <a href="https://portal.azure.com/">Azure Portal</a> and click the <strong>Cloud Shell</strong> icon (top-right corner).</li>
+<li>Select <strong>Bash</strong> as your shell environment if prompted.</li>
+</ol>
+<blockquote>
+<p>💡 <strong>Information</strong><br>
+The Azure Cloud Shell is a Terminal in the Azure Portal that comes pre-configured with the Azure CLI. It enables you to run CLI commands without additional setup.</p></blockquote>
+<h3 id="step-2-create-a-resource-group">
+  Step 2: Create a Resource Group
+  <a class="anchor" href="#step-2-create-a-resource-group">#</a>
+</h3>
+<ol>
+<li>
+<p>Run the following command to create a resource group:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>az group create --name MyCLIDemoGroup --location northeurope
+</span></span></code></pre></div><ul>
+<li><strong><code>--name</code></strong>: Specifies the name of the resource group (e.g., <code>MyCLIDemoGroup</code>).</li>
+<li><strong><code>--location</code></strong>: Sets the region where the resources in the group will be located (e.g., <code>northeurope</code>).</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>✅ <strong>Verification Step:</strong>
+Review the output to confirm successful creation. You should see a JSON response similar to:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;/subscriptions/&lt;subscription-id&gt;/resourceGroups/MyCLIDemoGroup&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;location&#34;</span>: <span style="color:#e6db74">&#34;eastus&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;MyCLIDemoGroup&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;properties&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;provisioningState&#34;</span>: <span style="color:#e6db74">&#34;Succeeded&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In the Azure Portal under <strong>Resource groups</strong> you should also see it listed</p>
+<p>You can also list all resource groups in your subscription by running the command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>az group list --output table
+</span></span></code></pre></div></blockquote>
+<blockquote>
+<p>💡 <strong>Information</strong></p>
+<p>A <strong>Resource Group</strong> acts as a container for all resources within Azure, making it easier to organize, manage, and delete resources as a single unit.</p></blockquote>
+<h3 id="step-3-clean-up-resources-optional">
+  Step 3: Clean Up Resources (Optional)
+  <a class="anchor" href="#step-3-clean-up-resources-optional">#</a>
+</h3>
+<ol>
+<li>
+<p>Delete the resource group to avoid unnecessary costs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>az group delete --name MyCLIDemoGroup --no-wait --yes
+</span></span></code></pre></div><ul>
+<li><strong><code>--no-wait</code></strong>: Ensures the command returns immediately without waiting for the operation to complete.</li>
+<li><strong><code>--yes</code></strong>: Confirms the deletion without additional prompts.</li>
+</ul>
+</li>
+</ol>
+<h2 id="exercise-complete">
+  Exercise Complete!
+  <a class="anchor" href="#exercise-complete">#</a>
+</h2>
+<p>You have successfully created and managed a resource group using Azure CLI, gaining hands-on experience with command-line operations in Azure.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#step-1-log-in-to-azure-cloud-shell">Step 1: Log in to Azure Cloud Shell</a></li>
+        <li><a href="#step-2-create-a-resource-group">Step 2: Create a Resource Group</a></li>
+        <li><a href="#step-3-clean-up-resources-optional">Step 3: Clean Up Resources (Optional)</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-complete">Exercise Complete!</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

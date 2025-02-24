@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Overview
+  #
+
+This exercise will guide you through provisioning a complete solution on Azure using only Azure CLI. The solution comprises three servers: a web server, a reverse proxy, and a bastion host. These components are connected via a virtual network and secured with a Network Security Group (NSG) and Application Security Groups (ASGs).
+By the end of this exercise, you will have a working environment with secure, isolated network communication between components.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/4.-exercises/2.-network/exercise-3---creating-a-virtual-network-with-enhanced-security-using-azure-cli/">
+  <meta property="og:site_name" content="Cloud Developer">
+  <meta property="og:title" content="3. Creating a Virtual Network with Enhanced Security using Azure CLI">
+  <meta property="og:description" content="Overview # This exercise will guide you through provisioning a complete solution on Azure using only Azure CLI. The solution comprises three servers: a web server, a reverse proxy, and a bastion host. These components are connected via a virtual network and secured with a Network Security Group (NSG) and Application Security Groups (ASGs).
+By the end of this exercise, you will have a working environment with secure, isolated network communication between components.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2024-12-05T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-05T00:00:00+00:00">
+<title>3. Creating a Virtual Network with Enhanced Security using Azure CLI | Cloud Developer</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://localhost:1313/docs/4.-exercises/2.-network/exercise-3---creating-a-virtual-network-with-enhanced-security-using-azure-cli/">
+<link rel="stylesheet" href="/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.0b8067c4721a3050cefdff965181142700fcbd871e8b7f532e78d973714ed860.js" integrity="sha256-C4BnxHIaMFDO/f&#43;WUYEUJwD8vYcei39TLnjZc3FO2GA=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Cloud Developer</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Development</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="toggle"  />
+    <label for="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="flex justify-between">
+      <a role="button" class="">1. Presentation Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/1.-hello-world/" class="">1. Hello World</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/2.-create-a-form-using-basic-html/" class="">2. Create A Form With Basic HTML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/" class="">3. Helper Tags and Model Binding</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/" class="">4. Data Annotations and Client-Side Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/5.-server-side-validation/" class="">5. Server-Side Validation and Improved Feedback</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/6.-display-a-list-of-subscribers/" class="">6. Displaying a List of Subscribers</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Basic IT</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1fb80a125bb9cc435f505b7ef954f3ca" class="toggle" checked />
+    <label for="section-1fb80a125bb9cc435f505b7ef954f3ca" class="flex justify-between">
+      <a role="button" class="">2. Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-1---creating-a-virtual-network/" class="">1. Creating a Virtual Network (vNet)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-2---creating-a-virtual-network-with-enhanced-security/" class="">2. Creating a Virtual Network with Enhanced Security</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-3---creating-a-virtual-network-with-enhanced-security-using-azure-cli/" class="active">3. Creating a Virtual Network with Enhanced Security using Azure CLI</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>3. Creating a Virtual Network with Enhanced Security using Azure CLI</h3>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#objectives">Objectives</a></li>
+      </ul>
+    </li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#step-1-create-a-resource-group">Step 1: Create a Resource Group</a></li>
+    <li><a href="#step-2-create-a-virtual-network">Step 2: Create a Virtual Network</a></li>
+    <li><a href="#step-3-configure-network-security">Step 3: Configure Network Security</a>
+      <ul>
+        <li><a href="#set-up-application-security-groups-asgs">Set Up Application Security Groups (ASGs)</a></li>
+        <li><a href="#create-the-network-security-group-nsg">Create the Network Security Group (NSG)</a></li>
+        <li><a href="#apply-nsg-rules">Apply NSG Rules</a></li>
+        <li><a href="#associate-the-nsg-with-the-subnet">Associate the NSG with the Subnet</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-4-provision-the-virtual-machines">Step 4: Provision the Virtual Machines</a>
+      <ul>
+        <li><a href="#provision-the-web-server">Provision the Web Server</a></li>
+        <li><a href="#provision-the-reverse-proxy">Provision the Reverse Proxy</a></li>
+        <li><a href="#provision-the-bastion-host">Provision the Bastion Host</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-5-attach-asgs-to-vm-nics">Step 5: Attach ASGs to VM NICs</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#test-and-verify">Test and Verify</a>
+      <ul>
+        <li><a href="#verify-nsg-rules">Verify NSG Rules</a></li>
+        <li><a href="#verify-asg-assignments">Verify ASG Assignments</a></li>
+        <li><a href="#test-http-access">Test HTTP Access</a></li>
+        <li><a href="#test-internal-communication">Test Internal Communication</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#cleanup-resources">Cleanup Resources</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="overview">
+  Overview
+  <a class="anchor" href="#overview">#</a>
+</h2>
+<p>This exercise will guide you through provisioning a complete solution on Azure using only Azure CLI. The solution comprises three servers: a web server, a reverse proxy, and a bastion host. These components are connected via a virtual network and secured with a Network Security Group (NSG) and Application Security Groups (ASGs).</p>
+<p>By the end of this exercise, you will have a working environment with secure, isolated network communication between components.</p>
+<h3 id="objectives">
+  Objectives
+  <a class="anchor" href="#objectives">#</a>
+</h3>
+<ol>
+<li><strong>Create a resource group and a virtual network</strong> to connect the servers.</li>
+<li><strong>Set up a Network Security Group (NSG)</strong> for subnet-level security.</li>
+<li><strong>Configure Application Security Groups (ASGs)</strong> for more granular control.</li>
+<li><strong>Provision three virtual machines</strong> for the web server, reverse proxy, and bastion host.</li>
+<li><strong>Test the configuration</strong> by accessing the reverse proxy through the bastion host.</li>
+</ol>
+<h2 id="prerequisites">
+  Prerequisites
+  <a class="anchor" href="#prerequisites">#</a>
+</h2>
+<ul>
+<li>Azure CLI installed on your machine. If not, install it from <a href="https://learn.microsoft.com/cli/azure/install-azure-cli">here</a>.</li>
+<li>An active Azure subscription.</li>
+</ul>
+<h2 id="step-1-create-a-resource-group">
+  Step 1: Create a Resource Group
+  <a class="anchor" href="#step-1-create-a-resource-group">#</a>
+</h2>
+<p>A resource group is a container that holds all the related resources.</p>
+<p>Run the following command to set up the resource group:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>az group create --name DemoRG --location northeurope
+</span></span></code></pre></div><p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>az group create</code></strong>: Creates a new resource group.</li>
+<li><strong><code>--name DemoRG</code></strong>: Names the resource group <code>DemoRG</code>.</li>
+<li><strong><code>--location northeurope</code></strong>: Sets the location to North Europe.</li>
+</ul>
+<h2 id="step-2-create-a-virtual-network">
+  Step 2: Create a Virtual Network
+  <a class="anchor" href="#step-2-create-a-virtual-network">#</a>
+</h2>
+<p>The virtual network (VNet) connects the components.</p>
+<p>Run the following command to set up the  VNet:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>az network vnet create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group DemoRG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name DemoVNet <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --address-prefix 10.0.0.0/16 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --subnet-name default <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --subnet-prefix 10.0.0.0/24
+</span></span></code></pre></div><p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>az network vnet create</code></strong>: Creates a virtual network.</li>
+<li><strong><code>--resource-group DemoRG</code></strong>: Specifies the resource group.</li>
+<li><strong><code>--name DemoVNet</code></strong>: Names the VNet <code>DemoVNet</code>.</li>
+<li><strong><code>--address-prefix 10.0.0.0/16</code></strong>: Sets the address space for the VNet.</li>
+<li><strong><code>--subnet-name default</code></strong>: Names the subnet <code>default</code>.</li>
+<li><strong><code>--subnet-prefix 10.0.0.0/24</code></strong>: Sets the address range for the subnet.</li>
+</ul>
+<h2 id="step-3-configure-network-security">
+  Step 3: Configure Network Security
+  <a class="anchor" href="#step-3-configure-network-security">#</a>
+</h2>
+<h3 id="set-up-application-security-groups-asgs">
+  Set Up Application Security Groups (ASGs)
+  <a class="anchor" href="#set-up-application-security-groups-asgs">#</a>
+</h3>
+<p>ASGs allow grouping of virtual machines for applying NSG rules more effectively.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>az network asg create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group DemoRG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name ReverseProxyASG
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>az network asg create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group DemoRG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name BastionHostASG
+</span></span></code></pre></div><p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>az network asg create</code></strong>: Creates an Application Security Group.</li>
+<li><strong><code>--name ReverseProxyASG</code></strong>: Names the ASG <code>ReverseProxyASG</code>.</li>
+</ul>
+<h3 id="create-the-network-security-group-nsg">
+  Create the Network Security Group (NSG)
+  <a class="anchor" href="#create-the-network-security-group-nsg">#</a>
+</h3>
+<p>The NSG controls inbound and outbound traffic to the subnet.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>az network nsg create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group DemoRG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name DemoNSG
+</span></span></code></pre></div><p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>az network nsg create</code></strong>: Creates a Network Security Group.</li>
+<li><strong><code>--name DemoNSG</code></strong>: Names the NSG <code>DemoNSG</code>.</li>
+<li><strong><code>--location northeurope</code></strong>: Ensures the NSG is in the same region as the VNet.</li>
+</ul>
+<h3 id="apply-nsg-rules">
+  Apply NSG Rules
+  <a class="anchor" href="#apply-nsg-rules">#</a>
+</h3>
+<h4 id="a-allow-ssh-access-to-bastion-host-asg">
+  a. Allow SSH Access to Bastion Host ASG
+  <a class="anchor" href="#a-allow-ssh-access-to-bastion-host-asg">#</a>
+</h4>
+<p><strong>Command:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>az network nsg rule create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group DemoRG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --nsg-name DemoNSG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name AllowSSH <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --priority <span style="color:#ae81ff">1000</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --access Allow <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --protocol Tcp <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --direction Inbound <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --source-address-prefixes Internet <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --source-port-ranges <span style="color:#e6db74">&#34;*&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --destination-asg BastionHostASG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --destination-port-ranges <span style="color:#ae81ff">22</span>
+</span></span></code></pre></div><p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>az network nsg rule create</code></strong>: Adds a rule to the NSG.</li>
+<li><strong><code>--nsg-name DemoNSG</code></strong>: Targets the NSG <code>DemoNSG</code>.</li>
+<li><strong><code>--name AllowSSH</code></strong>: Names the rule <code>AllowSSH</code>.</li>
+<li><strong><code>--priority 1000</code></strong>: Sets the priority (lower number means higher priority).</li>
+<li><strong><code>--access Allow</code></strong>: Allows traffic.</li>
+<li><strong><code>--protocol Tcp</code></strong>: Applies to TCP protocol.</li>
+<li><strong><code>--direction Inbound</code></strong>: Applies to incoming traffic.</li>
+<li><strong><code>--source-address-prefixes Internet</code></strong>: Source is any Internet address.</li>
+<li><strong><code>--destination-asg BastionHostASG</code></strong>: Targets the <code>BastionHostASG</code>.</li>
+<li><strong><code>--destination-port-ranges 22</code></strong>: Applies to port 22 (SSH).</li>
+</ul>
+<h4 id="b-allow-http-access-to-reverse-proxy-asg">
+  b. Allow HTTP Access to Reverse Proxy ASG
+  <a class="anchor" href="#b-allow-http-access-to-reverse-proxy-asg">#</a>
+</h4>
+<p><strong>Command:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>az network nsg rule create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group DemoRG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --nsg-name DemoNSG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name AllowHTTP <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --priority <span style="color:#ae81ff">2000</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --access Allow <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --protocol Tcp <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --direction Inbound <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --source-address-prefixes Internet <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --source-port-ranges <span style="color:#e6db74">&#34;*&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --destination-asg ReverseProxyASG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --destination-port-ranges <span style="color:#ae81ff">80</span>
+</span></span></code></pre></div><p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>--name AllowHTTP</code></strong>: Names the rule <code>AllowHTTP</code>.</li>
+<li><strong><code>--priority 2000</code></strong>: Sets a lower priority than SSH rule.</li>
+<li><strong><code>--destination-asg ReverseProxyASG</code></strong>: Targets the <code>ReverseProxyASG</code>.</li>
+<li><strong><code>--destination-port-ranges 80</code></strong>: Applies to port 80 (HTTP).</li>
+</ul>
+<h3 id="associate-the-nsg-with-the-subnet">
+  Associate the NSG with the Subnet
+  <a class="anchor" href="#associate-the-nsg-with-the-subnet">#</a>
+</h3>
+<p>Attach the NSG to the VNet&rsquo;s subnet.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>az network vnet subnet update <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group DemoRG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --vnet-name DemoVNet <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name default <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --network-security-group DemoNSG
+</span></span></code></pre></div><h2 id="step-4-provision-the-virtual-machines">
+  Step 4: Provision the Virtual Machines
+  <a class="anchor" href="#step-4-provision-the-virtual-machines">#</a>
+</h2>
+<p>Deploy three VMs: the web server, reverse proxy, and bastion host. Use the configuration files for the web server and reverse proxy.</p>
+<h3 id="provision-the-web-server">
+  Provision the Web Server
+  <a class="anchor" href="#provision-the-web-server">#</a>
+</h3>
+<h4 id="create-configuration-file">
+  Create Configuration File
+  <a class="anchor" href="#create-configuration-file">#</a>
+</h4>
+<ol>
+<li>
+<p><strong>Create the Web Server Configuration File</strong>:
+Save the following content as <code>web_server_config.yaml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e">#cloud-config</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">packages</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">write_files</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/var/www/html/index.html</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">content</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;!DOCTYPE html&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;html&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;head&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &lt;title&gt;Hello World!&lt;/title&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;/head&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;body&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &lt;h1&gt;Hello World!&lt;/h1&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;/body&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;/html&gt;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/etc/nginx/sites-available/default</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">content</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      server {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        listen 8080 default_server;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        server_name _;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        root /var/www/html;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        index index.html;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      }</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">runcmd</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">systemctl restart nginx</span>
+</span></span></code></pre></div></li>
+</ol>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>Installs Nginx.</li>
+<li>Creates a custom <code>index.html</code>.</li>
+<li>Configures Nginx to listen on port 8080.</li>
+<li>Restarts Nginx service.</li>
+</ul>
+<p>Ensure the file is accessible to the CLI during VM creation.</p>
+<h4 id="provision-the-web-server-1">
+  Provision the Web Server
+  <a class="anchor" href="#provision-the-web-server-1">#</a>
+</h4>
+<p>Now, use the configuration file to deploy the web server:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>az vm create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group DemoRG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name WebServer <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --image Ubuntu2204 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --size Standard_B1s <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --admin-username azureuser <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --vnet-name DemoVNet <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --subnet default <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --nsg <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --public-ip-address <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --generate-ssh-keys <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --custom-data @web_server_config.yaml
+</span></span></code></pre></div><p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>az vm create</code></strong>: Creates a virtual machine.</li>
+<li><strong><code>--name WebServer</code></strong>: Names the VM <code>WebServer</code>.</li>
+<li><strong><code>--image Ubuntu2204</code></strong>: Uses Ubuntu Server 22.04 LTS image.</li>
+<li><strong><code>--size Standard_B1s</code></strong>: Sets the VM size.</li>
+<li><strong><code>--admin-username azureuser</code></strong>: Sets the admin username.</li>
+<li><strong><code>--vnet-name DemoVNet</code></strong>: Places VM in <code>DemoVNet</code>.</li>
+<li><strong><code>--subnet default</code></strong>: Uses the <code>default</code> subnet.</li>
+<li><strong><code>--nsg &quot;&quot;</code></strong>: No NSG at NIC level.</li>
+<li><strong><code>--public-ip-address &quot;&quot;</code></strong>: No public IP assigned.</li>
+<li><strong><code>--generate-ssh-keys</code></strong>: Generates SSH keys if not present.</li>
+<li><strong><code>--custom-data web_server_config.yaml</code></strong>: Uses cloud-init file to configure the VM.</li>
+</ul>
+<h3 id="provision-the-reverse-proxy">
+  Provision the Reverse Proxy
+  <a class="anchor" href="#provision-the-reverse-proxy">#</a>
+</h3>
+<h4 id="create-configuration-file-1">
+  Create Configuration File
+  <a class="anchor" href="#create-configuration-file-1">#</a>
+</h4>
+<ol start="2">
+<li>
+<p><strong>Create the Reverse Proxy Configuration File</strong>:
+Save the following content as <code>reverse_proxy_config.yaml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e">#cloud-config</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">packages</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">write_files</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/etc/nginx/sites-available/default</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">content</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      server {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        listen 80;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        location / {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          proxy_pass http://webserver.internal.cloudapp.net:8080/;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          proxy_set_header Host $host;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          proxy_set_header X-Real-IP $remote_addr;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      }</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">runcmd</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">systemctl restart nginx</span>
+</span></span></code></pre></div></li>
+</ol>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>Installs Nginx.</li>
+<li>Configures Nginx as a reverse proxy to the Web Server.</li>
+<li>Restarts Nginx service.</li>
+</ul>
+<p>Ensure the file is accessible to the CLI during VM creation.</p>
+<h4 id="provision-the-reverse-proxy-1">
+  Provision the Reverse Proxy
+  <a class="anchor" href="#provision-the-reverse-proxy-1">#</a>
+</h4>
+<p>Now, use the configuration file to deploy the Reverse Proxy :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>az vm create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group DemoRG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name ReverseProxy <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --image Ubuntu2204 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --size Standard_B1s <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --admin-username azureuser <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --vnet-name DemoVNet <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --subnet default <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --nsg <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --generate-ssh-keys <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --custom-data @reverse_proxy_config.yaml
+</span></span></code></pre></div><p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>--name ReverseProxy</code></strong>: Names the VM <code>ReverseProxy</code>.</li>
+<li><strong><code>--generate-ssh-keys</code></strong>: Reuses existing SSH keys.</li>
+<li><strong><code>--custom-data reverse_proxy_config.yaml</code></strong>: Uses cloud-init file.</li>
+</ul>
+<h3 id="provision-the-bastion-host">
+  Provision the Bastion Host
+  <a class="anchor" href="#provision-the-bastion-host">#</a>
+</h3>
+<h4 id="provision-the-bastion-host-1">
+  Provision the Bastion Host
+  <a class="anchor" href="#provision-the-bastion-host-1">#</a>
+</h4>
+<p>Now, use the configuration file to deploy the Bastion Host :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>az vm create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group DemoRG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name BastionHost <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --image Ubuntu2204 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --size Standard_B1s <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --admin-username azureuser <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --vnet-name DemoVNet <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --subnet default <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --nsg <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --generate-ssh-keys
+</span></span></code></pre></div><p><strong>Explanation:</strong></p>
+<ul>
+<li><strong><code>--name BastionHost</code></strong>: Names the VM <code>BastionHost</code>.</li>
+<li><strong>No <code>--custom-data</code></strong>: Standard VM without cloud-init.</li>
+<li><strong>Public IP Address</strong>: Assigned by default for SSH access.</li>
+</ul>
+<h2 id="step-5-attach-asgs-to-vm-nics">
+  Step 5: Attach ASGs to VM NICs
+  <a class="anchor" href="#step-5-attach-asgs-to-vm-nics">#</a>
+</h2>
+<p>To ensure proper traffic management and rule enforcement, Application Security Groups (ASGs) must be attached to the Network Interface Cards (NICs) of the virtual machines. This step will be divided into two parts: attaching the ASG to the Reverse Proxy and then to the Bastion Host.</p>
+<h4 id="attach-asg-to-the-reverse-proxy-nic">
+  Attach ASG to the Reverse Proxy NIC
+  <a class="anchor" href="#attach-asg-to-the-reverse-proxy-nic">#</a>
+</h4>
+<ol>
+<li>
+<p><strong>Retrieve the NIC ID</strong> for the Reverse Proxy virtual machine:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>REVERSE_PROXY_NIC_ID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>az vm show --resource-group DemoRG --name ReverseProxy --query <span style="color:#e6db74">&#39;networkProfile.networkInterfaces[0].id&#39;</span> --output tsv<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Extract the NIC Name</strong> from the NIC ID:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>REVERSE_PROXY_NIC_NAME<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>basename $REVERSE_PROXY_NIC_ID<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Get the IP Configuration Name</strong> for the Reverse Proxy NIC:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>REVERSE_PROXY_NIC_IP_CONFIG<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>az network nic show --resource-group DemoRG --name $REVERSE_PROXY_NIC_NAME --query <span style="color:#e6db74">&#39;ipConfigurations[0].name&#39;</span> --output tsv<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Attach the Reverse Proxy ASG</strong> to the NIC:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>az network nic ip-config update <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group DemoRG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --nic-name $REVERSE_PROXY_NIC_NAME <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name $REVERSE_PROXY_NIC_IP_CONFIG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --application-security-groups ReverseProxyASG
+</span></span></code></pre></div></li>
+</ol>
+<h4 id="attach-asg-to-the-bastion-host-nic">
+  Attach ASG to the Bastion Host NIC
+  <a class="anchor" href="#attach-asg-to-the-bastion-host-nic">#</a>
+</h4>
+<ol>
+<li>
+<p><strong>Retrieve the NIC ID</strong> for the Bastion Host virtual machine:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>BASTION_HOST_NIC_ID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>az vm show --resource-group DemoRG --name BastionHost --query <span style="color:#e6db74">&#39;networkProfile.networkInterfaces[0].id&#39;</span> --output tsv<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Extract the NIC Name</strong> from the NIC ID:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>BASTION_HOST_NIC_NAME<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>basename $BASTION_HOST_NIC_ID<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Get the IP Configuration Name</strong> for the Bastion Host NIC:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>BASTION_HOST_NIC_IP_CONFIG<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>az network nic show --resource-group DemoRG --name $BASTION_HOST_NIC_NAME --query <span style="color:#e6db74">&#39;ipConfigurations[0].name&#39;</span> --output tsv<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Attach the Bastion Host ASG</strong> to the NIC:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>az network nic ip-config update <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group DemoRG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --nic-name $BASTION_HOST_NIC_NAME <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name $BASTION_HOST_NIC_IP_CONFIG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --application-security-groups BastionHostASG
+</span></span></code></pre></div></li>
+</ol>
+<h2 id="test-and-verify">
+  Test and Verify
+  <a class="anchor" href="#test-and-verify">#</a>
+</h2>
+<h3 id="verify-nsg-rules">
+  Verify NSG Rules
+  <a class="anchor" href="#verify-nsg-rules">#</a>
+</h3>
+<ul>
+<li>
+<p>Ensure that:</p>
+<ul>
+<li>SSH is allowed only to the Bastion Host.</li>
+<li>HTTP is allowed only to the Reverse Proxy.</li>
+</ul>
+</li>
+</ul>
+<h3 id="verify-asg-assignments">
+  Verify ASG Assignments
+  <a class="anchor" href="#verify-asg-assignments">#</a>
+</h3>
+<ul>
+<li>
+<p>Check that:</p>
+<ul>
+<li><code>ReverseProxyASG</code> is attached to the Reverse Proxy NIC.</li>
+<li><code>BastionHostASG</code> is attached to the Bastion Host NIC.</li>
+</ul>
+</li>
+</ul>
+<h3 id="test-http-access">
+  Test HTTP Access
+  <a class="anchor" href="#test-http-access">#</a>
+</h3>
+<ul>
+<li>Access the Reverse Proxy&rsquo;s public IP on port 80.</li>
+<li>You should see the &ldquo;Hello World!&rdquo; page served by the Web Server.</li>
+</ul>
+<h3 id="test-internal-communication">
+  Test Internal Communication
+  <a class="anchor" href="#test-internal-communication">#</a>
+</h3>
+<ul>
+<li>From the Bastion Host, SSH into the Reverse Proxy using its private IP.</li>
+<li>From the Reverse Proxy, ensure it can reach the Web Server via its internal DNS name.</li>
+</ul>
+<h2 id="summary">
+  Summary
+  <a class="anchor" href="#summary">#</a>
+</h2>
+<p>In this exercise, you:</p>
+<ul>
+<li>Created a resource group and a virtual network with a subnet.</li>
+<li>Configured Application Security Groups and a Network Security Group with specific rules.</li>
+<li>Provisioned three VMs with roles of Web Server, Reverse Proxy, and Bastion Host.</li>
+<li>Automated server configurations using cloud-init.</li>
+<li>Verified that the network security settings work as intended.</li>
+</ul>
+<hr>
+<h2 id="cleanup-resources">
+  Cleanup Resources
+  <a class="anchor" href="#cleanup-resources">#</a>
+</h2>
+<p>Once you&rsquo;ve validated the setup, delete the resources to avoid incurring costs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>az group delete --name DemoRG --yes --no-wait
+</span></span></code></pre></div><hr>
+<h1 id="tldr">
+  TL;DR
+  <a class="anchor" href="#tldr">#</a>
+</h1>
+<blockquote>
+<p><code>web_server_config.yaml</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e">#cloud-config</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">packages</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">write_files</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/var/www/html/index.html</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">content</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;!DOCTYPE html&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;html&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;head&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &lt;title&gt;Hello World!&lt;/title&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;/head&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;body&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &lt;h1&gt;Hello World!&lt;/h1&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;/body&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &lt;/html&gt;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/etc/nginx/sites-available/default</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">content</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      server {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        listen 8080 default_server;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        server_name _;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        root /var/www/html;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        index index.html;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      }</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">runcmd</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">systemctl restart nginx</span>
+</span></span></code></pre></div><blockquote>
+<p><code>reverse_proxy_config.yaml</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e">#cloud-config</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">packages</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">write_files</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/etc/nginx/sites-available/default</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">content</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      server {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        listen 80;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        location / {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          proxy_pass http://webserver.internal.cloudapp.net:8080/;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          proxy_set_header Host \$host;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          proxy_set_header X-Real-IP \$remote_addr;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      }</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">runcmd</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">systemctl restart nginx</span>
+</span></span></code></pre></div><blockquote>
+<p><code>provision_solution.sh</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Variables</span>
+</span></span><span style="display:flex;"><span>RESOURCE_GROUP<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;DemoRG&#34;</span>
+</span></span><span style="display:flex;"><span>LOCATION<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;northeurope&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>VNET_NAME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;DemoVNet&#34;</span>
+</span></span><span style="display:flex;"><span>SUBNET_NAME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>
+</span></span><span style="display:flex;"><span>NSG_NAME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;DemoNSG&#34;</span>
+</span></span><span style="display:flex;"><span>ASG_REVERSE_PROXY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ReverseProxyASG&#34;</span>
+</span></span><span style="display:flex;"><span>ASG_BASTION_HOST<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;BastionHostASG&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>WEB_SERVER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;WebServer&#34;</span>
+</span></span><span style="display:flex;"><span>REVERSE_PROXY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ReverseProxy&#34;</span>
+</span></span><span style="display:flex;"><span>BASTION_HOST<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;BastionHost&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create Resource Group</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Creating Resource Group...&#34;</span>
+</span></span><span style="display:flex;"><span>az group create --name $RESOURCE_GROUP --location $LOCATION
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create Virtual Network and Subnet</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Creating Virtual Network and Subnet...&#34;</span>
+</span></span><span style="display:flex;"><span>az network vnet create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group $RESOURCE_GROUP <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name $VNET_NAME <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --address-prefix 10.0.0.0/16 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --subnet-name $SUBNET_NAME <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --subnet-prefix 10.0.0.0/24
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create Application Security Groups</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Creating Application Security Groups...&#34;</span>
+</span></span><span style="display:flex;"><span>az network asg create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group $RESOURCE_GROUP <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name $ASG_REVERSE_PROXY
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>az network asg create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group $RESOURCE_GROUP <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name $ASG_BASTION_HOST
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create Network Security Group</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Creating Network Security Group...&#34;</span>
+</span></span><span style="display:flex;"><span>az network nsg create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group $RESOURCE_GROUP <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name $NSG_NAME
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create NSG Rules</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Adding SSH and HTTP rules to NSG...&#34;</span>
+</span></span><span style="display:flex;"><span>az network nsg rule create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group $RESOURCE_GROUP <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --nsg-name $NSG_NAME <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name AllowSSH <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --priority <span style="color:#ae81ff">1000</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --access Allow <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --protocol Tcp <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --direction Inbound <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --source-address-prefixes Internet <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --source-port-ranges <span style="color:#e6db74">&#34;*&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --destination-asg $ASG_BASTION_HOST <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --destination-port-ranges <span style="color:#ae81ff">22</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>az network nsg rule create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group $RESOURCE_GROUP <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --nsg-name $NSG_NAME <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name AllowHTTP <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --priority <span style="color:#ae81ff">2000</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --access Allow <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --protocol Tcp <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --direction Inbound <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --source-address-prefixes Internet <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --source-port-ranges <span style="color:#e6db74">&#34;*&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --destination-asg $ASG_REVERSE_PROXY <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --destination-port-ranges <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Associate NSG with Subnet</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Associating NSG with Subnet...&#34;</span>
+</span></span><span style="display:flex;"><span>az network vnet subnet update <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group $RESOURCE_GROUP <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --vnet-name $VNET_NAME <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name $SUBNET_NAME <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --network-security-group $NSG_NAME
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create Web Server VM</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Creating Web Server VM...&#34;</span>
+</span></span><span style="display:flex;"><span>az vm create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group $RESOURCE_GROUP <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name $WEB_SERVER <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --image Ubuntu2204 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --size Standard_B1s <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --admin-username azureuser <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --vnet-name $VNET_NAME <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --subnet $SUBNET_NAME <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --nsg <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --public-ip-address <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --generate-ssh-keys <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --custom-data @web_server_config.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create Reverse Proxy VM</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Creating Reverse Proxy VM...&#34;</span>
+</span></span><span style="display:flex;"><span>az vm create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group $RESOURCE_GROUP <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name $REVERSE_PROXY <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --image Ubuntu2204 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --size Standard_B1s <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --admin-username azureuser <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --vnet-name $VNET_NAME <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --subnet $SUBNET_NAME <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --nsg <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --generate-ssh-keys <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --custom-data @reverse_proxy_config.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create Bastion Host VM</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Creating Bastion Host VM...&#34;</span>
+</span></span><span style="display:flex;"><span>az vm create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group $RESOURCE_GROUP <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name $BASTION_HOST <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --image Ubuntu2204 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --size Standard_B1s <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --admin-username azureuser <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --vnet-name $VNET_NAME <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --subnet $SUBNET_NAME <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --nsg <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --generate-ssh-keys
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Attach ASGs to NIC IP Configurations</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Attaching ASGs to NICs...&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get NIC IDs</span>
+</span></span><span style="display:flex;"><span>REVERSE_PROXY_NIC_ID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>az vm show --resource-group $RESOURCE_GROUP --name $REVERSE_PROXY --query <span style="color:#e6db74">&#39;networkProfile.networkInterfaces[0].id&#39;</span> --output tsv<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>BASTION_HOST_NIC_ID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>az vm show --resource-group $RESOURCE_GROUP --name $BASTION_HOST --query <span style="color:#e6db74">&#39;networkProfile.networkInterfaces[0].id&#39;</span> --output tsv<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Extract NIC Names</span>
+</span></span><span style="display:flex;"><span>REVERSE_PROXY_NIC_NAME<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>basename $REVERSE_PROXY_NIC_ID<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>BASTION_HOST_NIC_NAME<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>basename $BASTION_HOST_NIC_ID<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get the NIC IP Configurations</span>
+</span></span><span style="display:flex;"><span>REVERSE_PROXY_NIC_IP_CONFIG<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>az network nic show --resource-group $RESOURCE_GROUP --name $REVERSE_PROXY_NIC_NAME --query <span style="color:#e6db74">&#39;ipConfigurations[0].name&#39;</span> --output tsv<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>BASTION_HOST_NIC_IP_CONFIG<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>az network nic show --resource-group $RESOURCE_GROUP --name $BASTION_HOST_NIC_NAME --query <span style="color:#e6db74">&#39;ipConfigurations[0].name&#39;</span> --output tsv<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Attach ASG to Reverse Proxy NIC</span>
+</span></span><span style="display:flex;"><span>az network nic ip-config update <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group $RESOURCE_GROUP <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --nic-name $REVERSE_PROXY_NIC_NAME <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name $REVERSE_PROXY_NIC_IP_CONFIG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --application-security-groups $ASG_REVERSE_PROXY
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Attach ASG to Bastion Host NIC</span>
+</span></span><span style="display:flex;"><span>az network nic ip-config update <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --resource-group $RESOURCE_GROUP <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --nic-name $BASTION_HOST_NIC_NAME <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --name $BASTION_HOST_NIC_IP_CONFIG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --application-security-groups $ASG_BASTION_HOST
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Provisioning Complete!&#34;</span>
+</span></span></code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#objectives">Objectives</a></li>
+      </ul>
+    </li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#step-1-create-a-resource-group">Step 1: Create a Resource Group</a></li>
+    <li><a href="#step-2-create-a-virtual-network">Step 2: Create a Virtual Network</a></li>
+    <li><a href="#step-3-configure-network-security">Step 3: Configure Network Security</a>
+      <ul>
+        <li><a href="#set-up-application-security-groups-asgs">Set Up Application Security Groups (ASGs)</a></li>
+        <li><a href="#create-the-network-security-group-nsg">Create the Network Security Group (NSG)</a></li>
+        <li><a href="#apply-nsg-rules">Apply NSG Rules</a></li>
+        <li><a href="#associate-the-nsg-with-the-subnet">Associate the NSG with the Subnet</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-4-provision-the-virtual-machines">Step 4: Provision the Virtual Machines</a>
+      <ul>
+        <li><a href="#provision-the-web-server">Provision the Web Server</a></li>
+        <li><a href="#provision-the-reverse-proxy">Provision the Reverse Proxy</a></li>
+        <li><a href="#provision-the-bastion-host">Provision the Bastion Host</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-5-attach-asgs-to-vm-nics">Step 5: Attach ASGs to VM NICs</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#test-and-verify">Test and Verify</a>
+      <ul>
+        <li><a href="#verify-nsg-rules">Verify NSG Rules</a></li>
+        <li><a href="#verify-asg-assignments">Verify ASG Assignments</a></li>
+        <li><a href="#test-http-access">Test HTTP Access</a></li>
+        <li><a href="#test-internal-communication">Test Internal Communication</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#cleanup-resources">Cleanup Resources</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
