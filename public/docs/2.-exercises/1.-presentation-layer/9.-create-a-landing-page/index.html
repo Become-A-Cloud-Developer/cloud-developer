@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Goal
+  #
+
+Create an engaging landing page with a hero section and call-to-action button that directs users to the newsletter subscription page.
+
+  Learning Objectives
+  #
+
+By the end of this exercise, you will:
+
+Create a hero section using Bootstrap
+Implement call-to-action buttons
+Use Bootstrap&rsquo;s spacing utilities
+Apply responsive text classes
+Create gradient backgrounds
+
+
+  Step-by-Step Instructions
+  #
+
+
+  Step 1: Create the Landing Page
+  #
+
+
+Open Views/Home/Index.cshtml
+Replace the content with a hero section and call-to-action
+
+
+Views/Home/Index.cshtml">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/2.-exercises/1.-presentation-layer/9.-create-a-landing-page/">
+  <meta property="og:site_name" content="Cloud Developer">
+  <meta property="og:title" content="9. Landing Page with Hero Section">
+  <meta property="og:description" content="Goal # Create an engaging landing page with a hero section and call-to-action button that directs users to the newsletter subscription page.
+Learning Objectives # By the end of this exercise, you will:
+Create a hero section using Bootstrap Implement call-to-action buttons Use Bootstrap’s spacing utilities Apply responsive text classes Create gradient backgrounds Step-by-Step Instructions # Step 1: Create the Landing Page # Open Views/Home/Index.cshtml Replace the content with a hero section and call-to-action Views/Home/Index.cshtml">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-02-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-16T00:00:00+00:00">
+<title>9. Landing Page with Hero Section | Cloud Developer</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://localhost:1313/docs/2.-exercises/1.-presentation-layer/9.-create-a-landing-page/">
+<link rel="stylesheet" href="/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.dd6bdf4e2778db1776f93d6da63a20b19c1473858e505900fc8811ce6cd493a6.js" integrity="sha256-3WvfTid42xd2&#43;T1tpjogsZwUc4WOUFkA/IgRzmzUk6Y=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Cloud Developer</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Development</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="toggle" checked />
+    <label for="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="flex justify-between">
+      <a role="button" class="">1. Presentation Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/1.-hello-world/" class="">1. Hello World</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/2.-create-a-form-using-basic-html/" class="">2. Create A Form With Basic HTML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/" class="">3. Helper Tags and Model Binding</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/" class="">4. Data Annotations and Client-Side Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/5.-server-side-validation/" class="">5. Server-Side Validation and Improved Feedback</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/6.-display-a-list-of-subscribers/" class="">6. Displaying a List of Subscribers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/7.-implement-unsubscribe-feature/" class="">7. Unsubscribe Functionality</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/8.-style-with-bootstrap/" class="">8. Enhancing UI with Bootstrap</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/9.-create-a-landing-page/" class="active">9. Landing Page with Hero Section</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-33da466f9353b53d40da04cbb117ee6d" class="toggle"  />
+    <label for="section-33da466f9353b53d40da04cbb117ee6d" class="flex justify-between">
+      <a role="button" class="">2. Service Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/2.-service-layer/1.-implement-service-layer/" class="">1. Implement Service Layer</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/2.-service-layer/2.-project-structure-and-unit-tests/" class="">2. Implement Unit Tests and Organize Solution</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Basic IT</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7d0a2b83d4441b1271f24ade16347a90" class="toggle"  />
+    <label for="section-7d0a2b83d4441b1271f24ade16347a90" class="flex justify-between">
+      <a role="button" class="">1. Virtual Machine</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-1---provisioning-a-vm-via-azure-portal-with-username-and-password/" class="">1. Provisioning a VM via Azure Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-2---provisioning-a-vm-with-ssh-keys-and-exploring-linux/" class="">2. Provisioning a VM with SSH Keys and Exploring Linux</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-3---automating-nginx-installation-with-custom-data-scripts/" class="">3. Automating Nginx Installation with Custom Data Scripts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-4---creating-a-resource-group-using-az-cli/" class="">4. Creating a Resource Group Using AZ CLI</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1fb80a125bb9cc435f505b7ef954f3ca" class="toggle"  />
+    <label for="section-1fb80a125bb9cc435f505b7ef954f3ca" class="flex justify-between">
+      <a role="button" class="">2. Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-1---creating-a-virtual-network/" class="">1. Creating a Virtual Network (vNet)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-2---creating-a-virtual-network-with-enhanced-security/" class="">2. Creating a Virtual Network with Enhanced Security</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>9. Landing Page with Hero Section</h3>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#goal">Goal</a></li>
+    <li><a href="#learning-objectives">Learning Objectives</a></li>
+    <li><a href="#step-by-step-instructions">Step-by-Step Instructions</a>
+      <ul>
+        <li><a href="#step-1-create-the-landing-page">Step 1: Create the Landing Page</a></li>
+        <li><a href="#step-2-add-custom-css-styles">Step 2: Add Custom CSS Styles</a></li>
+        <li><a href="#step-3-style-the-about-page">Step 3: Style the About Page</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-tests">Final Tests</a>
+      <ul>
+        <li><a href="#visual-inspection">Visual Inspection</a></li>
+        <li><a href="#functionality-test">Functionality Test</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="goal">
+  Goal
+  <a class="anchor" href="#goal">#</a>
+</h2>
+<p>Create an engaging <strong>landing page</strong> with a hero section and call-to-action button that directs users to the newsletter subscription page.</p>
+<h2 id="learning-objectives">
+  Learning Objectives
+  <a class="anchor" href="#learning-objectives">#</a>
+</h2>
+<p>By the end of this exercise, you will:</p>
+<ul>
+<li>Create a <strong>hero section</strong> using Bootstrap</li>
+<li>Implement <strong>call-to-action buttons</strong></li>
+<li>Use Bootstrap&rsquo;s <strong>spacing utilities</strong></li>
+<li>Apply <strong>responsive text classes</strong></li>
+<li>Create <strong>gradient backgrounds</strong></li>
+</ul>
+<h2 id="step-by-step-instructions">
+  Step-by-Step Instructions
+  <a class="anchor" href="#step-by-step-instructions">#</a>
+</h2>
+<h3 id="step-1-create-the-landing-page">
+  Step 1: Create the Landing Page
+  <a class="anchor" href="#step-1-create-the-landing-page">#</a>
+</h3>
+<ol>
+<li>Open <code>Views/Home/Index.cshtml</code></li>
+<li>Replace the content with a hero section and call-to-action</li>
+</ol>
+<blockquote>
+<p><code>Views/Home/Index.cshtml</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>@{
+</span></span><span style="display:flex;"><span>    ViewData[&#34;Title&#34;] = &#34;Welcome to CloudSoft&#34;;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container-fluid px-0&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Hero Section --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hero-gradient text-white py-5&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container py-5&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;row align-items-center g-5&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-lg-6 mx-auto text-center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">h1</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;display-3 fw-bold mb-3&#34;</span>&gt;Stay Connected with CloudSoft&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lead mb-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                        Get the latest updates, news, and special offers delivered directly to your inbox.
+</span></span><span style="display:flex;"><span>                        Join our newsletter community today!
+</span></span><span style="display:flex;"><span>                    &lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;d-grid gap-2 d-md-flex justify-content-center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">asp-controller</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Newsletter&#34;</span> <span style="color:#a6e22e">asp-action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Subscribe&#34;</span> 
+</span></span><span style="display:flex;"><span>                           <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-light btn-lg px-4 shadow&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fas fa-envelope me-2&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;Subscribe Now
+</span></span><span style="display:flex;"><span>                        &lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;/<span style="color:#f92672">div</span>&gt; 
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><blockquote>
+<p>💡 <strong>Information</strong></p>
+<ul>
+<li><strong>Container Classes</strong>:
+<ul>
+<li><code>container-fluid px-0</code> removes horizontal padding for full-width sections</li>
+<li><code>container</code> centers content with max-width</li>
+</ul>
+</li>
+<li><strong>Background &amp; Text</strong>:
+<ul>
+<li><code>bg-gradient</code> with custom linear gradient creates modern look</li>
+<li><code>text-white</code> ensures text is visible on dark background</li>
+</ul>
+</li>
+<li><strong>Spacing Utilities</strong>:
+<ul>
+<li><code>py-5</code> adds vertical padding</li>
+<li><code>mb-3/4</code> adds margin bottom</li>
+<li><code>g-5</code> adds gutters between columns</li>
+</ul>
+</li>
+<li><strong>Typography</strong>:
+<ul>
+<li><code>display-3</code> makes heading larger</li>
+<li><code>lead</code> styles paragraph as introduction text</li>
+</ul>
+</li>
+<li><strong>Flex Utilities</strong>:
+<ul>
+<li><code>d-grid d-md-flex</code> changes button layout on different screens</li>
+<li><code>align-items-center</code> vertically centers content</li>
+</ul>
+</li>
+<li><strong>Components</strong>:
+<ul>
+<li><code>btn-lg</code> makes buttons larger</li>
+<li><code>shadow</code> adds depth to primary button</li>
+<li><code>opacity-75</code> reduces icon opacity for visual effect</li>
+</ul>
+</li>
+</ul></blockquote>
+<h3 id="step-2-add-custom-css-styles">
+  Step 2: Add Custom CSS Styles
+  <a class="anchor" href="#step-2-add-custom-css-styles">#</a>
+</h3>
+<ol>
+<li>Open <code>wwwroot/css/site.css</code></li>
+<li>Add custom styles for form and gradient backgrounds</li>
+</ol>
+<blockquote>
+<p><code>wwwroot/css/site.css</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">hero-gradient</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">background</span>: linear-gradient(<span style="color:#ae81ff">135</span><span style="color:#66d9ef">deg</span>, <span style="color:#a6e22e">var</span>(<span style="color:#f92672">--</span>bs<span style="color:#f92672">-</span>primary) <span style="color:#ae81ff">0</span><span style="color:#66d9ef">%</span>, <span style="color:#a6e22e">var</span>(<span style="color:#f92672">--</span>bs<span style="color:#f92672">-</span>info) <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span></code></pre></div><blockquote>
+<p>💡 <strong>Information</strong></p>
+<ul>
+<li><strong>Gradient Background</strong>:
+<ul>
+<li>Creates a diagonal gradient using Bootstrap theme colors</li>
+<li>Uses CSS variables to maintain theme consistency</li>
+<li>135-degree angle creates visual interest</li>
+</ul>
+</li>
+</ul></blockquote>
+<h3 id="step-3-style-the-about-page">
+  Step 3: Style the About Page
+  <a class="anchor" href="#step-3-style-the-about-page">#</a>
+</h3>
+<p>The About page maintains the same card-based layout and styling patterns as the other pages while introducing new elements like images and feature highlights.</p>
+<ol>
+<li>Add an image to the <code>wwwroot/images</code> folder and name it <code>about-header.jpg</code></li>
+<li>Create the About page with consistent styling</li>
+</ol>
+<blockquote>
+<p><code>Views/Home/About.cshtml</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>@{
+</span></span><span style="display:flex;"><span>    ViewData[&#34;Title&#34;] = &#34;About CloudSoft&#34;;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container py-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;row justify-content-center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-12 col-lg-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card shadow&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;~/images/about-header.jpg&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-img-top&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;CloudSoft Office&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-body&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">h2</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-title h3 mb-4&#34;</span>&gt;About CloudSoft&lt;/<span style="color:#f92672">h2</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;row g-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-md-6&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">h3</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;h5 mb-3&#34;</span>&gt;Our Mission&lt;/<span style="color:#f92672">h3</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">p</span>&gt;At CloudSoft, we&#39;re passionate about delivering cutting-edge cloud solutions that help businesses thrive in the digital age.&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-md-6&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">h3</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;h5 mb-3&#34;</span>&gt;Our Vision&lt;/<span style="color:#f92672">h3</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">p</span>&gt;We envision a future where every business, regardless of size, can harness the power of cloud technology to achieve their goals.&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-12&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bg-light p-4 rounded&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                &lt;<span style="color:#f92672">h3</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;h5 mb-3&#34;</span>&gt;Why Choose Us?&lt;/<span style="color:#f92672">h3</span>&gt;
+</span></span><span style="display:flex;"><span>                                &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;row g-3&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-md-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;d-flex align-items-center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                            &lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fas fa-cloud-upload-alt text-primary fa-2x me-3&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;
+</span></span><span style="display:flex;"><span>                                            &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                                                &lt;<span style="color:#f92672">h4</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;h6 mb-1&#34;</span>&gt;Cloud Expertise&lt;/<span style="color:#f92672">h4</span>&gt;
+</span></span><span style="display:flex;"><span>                                                &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;small mb-0&#34;</span>&gt;10+ years experience&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>                                            &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                                        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                                    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                                    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-md-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;d-flex align-items-center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                            &lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fas fa-users text-primary fa-2x me-3&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;
+</span></span><span style="display:flex;"><span>                                            &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                                                &lt;<span style="color:#f92672">h4</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;h6 mb-1&#34;</span>&gt;Support Team&lt;/<span style="color:#f92672">h4</span>&gt;
+</span></span><span style="display:flex;"><span>                                                &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;small mb-0&#34;</span>&gt;24/7 availability&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>                                            &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                                        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                                    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                                    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-md-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;d-flex align-items-center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                            &lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fas fa-shield-alt text-primary fa-2x me-3&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;
+</span></span><span style="display:flex;"><span>                                            &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                                                &lt;<span style="color:#f92672">h4</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;h6 mb-1&#34;</span>&gt;Security First&lt;/<span style="color:#f92672">h4</span>&gt;
+</span></span><span style="display:flex;"><span>                                                &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;small mb-0&#34;</span>&gt;Enterprise-grade&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>                                            &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                                        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                                    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                                &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><blockquote>
+<p>💡 <strong>Information</strong></p>
+<ul>
+<li><strong>Image Handling</strong>:
+<ul>
+<li><code>card-img-top</code> properly sizes the header image</li>
+<li>Images should be placed in <code>wwwroot/images</code></li>
+</ul>
+</li>
+<li><strong>Grid Layout</strong>:
+<ul>
+<li>Uses nested rows and columns for complex layouts</li>
+<li><code>g-4</code> adds gutters between grid items</li>
+</ul>
+</li>
+<li><strong>Content Cards</strong>:
+<ul>
+<li><code>bg-light</code> creates subtle section backgrounds</li>
+<li><code>rounded</code> adds consistent border radius</li>
+</ul>
+</li>
+<li><strong>Icons &amp; Typography</strong>:
+<ul>
+<li>Font Awesome icons with consistent sizing</li>
+<li>Hierarchical heading structure with Bootstrap classes</li>
+</ul>
+</li>
+<li><strong>Responsive Behavior</strong>:
+<ul>
+<li>Single column on mobile</li>
+<li>Multi-column layout on larger screens</li>
+</ul>
+</li>
+</ul></blockquote>
+<h2 id="final-tests">
+  Final Tests
+  <a class="anchor" href="#final-tests">#</a>
+</h2>
+<h3 id="visual-inspection">
+  Visual Inspection
+  <a class="anchor" href="#visual-inspection">#</a>
+</h3>
+<ol>
+<li>Check responsive behavior:
+<ul>
+<li>Resize browser window</li>
+</ul>
+</li>
+</ol>
+<p>✅ <strong>Expected Results</strong></p>
+<ul>
+<li>Hero section should:
+<ul>
+<li>Fill viewport width</li>
+<li>Have smooth gradient background</li>
+</ul>
+</li>
+</ul>
+<h3 id="functionality-test">
+  Functionality Test
+  <a class="anchor" href="#functionality-test">#</a>
+</h3>
+<ol>
+<li>Click &ldquo;Subscribe Now&rdquo; button</li>
+<li>Verify navigation to subscription page</li>
+</ol>
+<p>✅ <strong>Expected Results</strong></p>
+<ul>
+<li>Buttons navigate to correct pages</li>
+<li>Links work correctly</li>
+<li>Smooth transitions between pages</li>
+<li>Consistent styling across pages</li>
+</ul>
+<h1 id="exercise-done-">
+  Exercise Done! 🎉
+  <a class="anchor" href="#exercise-done-">#</a>
+</h1>
+<p>You&rsquo;ve created an engaging landing page that draws users to your newsletter subscription! 🚀</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#goal">Goal</a></li>
+    <li><a href="#learning-objectives">Learning Objectives</a></li>
+    <li><a href="#step-by-step-instructions">Step-by-Step Instructions</a>
+      <ul>
+        <li><a href="#step-1-create-the-landing-page">Step 1: Create the Landing Page</a></li>
+        <li><a href="#step-2-add-custom-css-styles">Step 2: Add Custom CSS Styles</a></li>
+        <li><a href="#step-3-style-the-about-page">Step 3: Style the About Page</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-tests">Final Tests</a>
+      <ul>
+        <li><a href="#visual-inspection">Visual Inspection</a></li>
+        <li><a href="#functionality-test">Functionality Test</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

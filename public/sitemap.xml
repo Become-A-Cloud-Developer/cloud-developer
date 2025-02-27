@@ -8,12 +8,27 @@
     <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/1.-hello-world/</loc>
     <lastmod>2025-02-16T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/docs/2.-exercises/2.-service-layer/1.-implement-service-layer/</loc>
+    <lastmod>2025-02-16T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/docs/4.-exercises/2.-network/exercise-1---creating-a-virtual-network/</loc>
     <lastmod>2024-12-02T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/docs/4.-exercises/1.-virtual-machine/</loc>
+    <lastmod>2024-11-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/docs/4.-exercises/1.-virtual-machine/exercise-1---provisioning-a-vm-via-azure-portal-with-username-and-password/</loc>
+    <lastmod>2024-11-25T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/docs/1.-development/</loc>
   </url><url>
+    <loc>http://localhost:1313/docs/2.-exercises/2.-service-layer/</loc>
+    <lastmod>2025-02-16T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/2.-create-a-form-using-basic-html/</loc>
+    <lastmod>2025-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/docs/2.-exercises/2.-service-layer/2.-project-structure-and-unit-tests/</loc>
     <lastmod>2025-02-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/docs/2.-exercises/</loc>
@@ -25,8 +40,14 @@
     <loc>http://localhost:1313/docs/4.-exercises/2.-network/exercise-2---creating-a-virtual-network-with-enhanced-security/</loc>
     <lastmod>2024-12-02T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/docs/4.-exercises/1.-virtual-machine/exercise-2---provisioning-a-vm-with-ssh-keys-and-exploring-linux/</loc>
+    <lastmod>2024-11-25T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/</loc>
     <lastmod>2025-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/docs/4.-exercises/1.-virtual-machine/exercise-3---automating-nginx-installation-with-custom-data-scripts/</loc>
+    <lastmod>2024-11-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/docs/3.-basic-it/</loc>
   </url><url>
@@ -36,10 +57,22 @@
     <loc>http://localhost:1313/docs/4.-exercises/</loc>
     <lastmod>2024-12-02T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/docs/4.-exercises/1.-virtual-machine/exercise-4---creating-a-resource-group-using-az-cli/</loc>
+    <lastmod>2024-11-25T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/5.-server-side-validation/</loc>
     <lastmod>2025-02-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/6.-display-a-list-of-subscribers/</loc>
+    <lastmod>2025-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/7.-implement-unsubscribe-feature/</loc>
+    <lastmod>2025-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/8.-style-with-bootstrap/</loc>
+    <lastmod>2025-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/9.-create-a-landing-page/</loc>
     <lastmod>2025-02-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>

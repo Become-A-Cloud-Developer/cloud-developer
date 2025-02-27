@@ -4,55 +4,52 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="
-  Displaying a List of Subscribers
-  #
-
-
   Goal
   #
 
-Enhance the application by adding a new view to list all subscribers and updating the navigation bar to include a button linking to the new page.
+Add the ability for users to unsubscribe from the newsletter and enhance the subscriber list with action buttons.
 
   Learning Objectives
   #
 
 By the end of this exercise, you will:
 
-Create a new view to display a list of subscribers.
-Modify the controller to pass subscriber data to the view.
-Update the navigation bar to provide access to the new page.
+Add an unsubscribe action to the controller
+Implement confirmation dialogs for destructive actions
+Add action buttons to table rows
+Handle POST requests securely with anti-forgery tokens
 
 
   Step-by-Step Instructions
   #
 
 
-  Step 1: Update the Controller to Provide Subscriber Data
+  Step 1: Update the Controller with Unsubscribe Action
   #
 
 
-Open NewsletterController.cs.
-Add a new action method to return a list of subscribers to the view.
+Open NewsletterController.cs
+Add a new action method for handling unsubscribe requests
 
 
 Controllers/NewsletterController.cs">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/2.-exercises/1.-presentation-layer/6.-display-a-list-of-subscribers/">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/2.-exercises/1.-presentation-layer/7.-implement-unsubscribe-feature/">
   <meta property="og:site_name" content="Cloud Developer">
-  <meta property="og:title" content="6. Displaying a List of Subscribers">
-  <meta property="og:description" content="Displaying a List of Subscribers # Goal # Enhance the application by adding a new view to list all subscribers and updating the navigation bar to include a button linking to the new page.
+  <meta property="og:title" content="7. Unsubscribe Functionality">
+  <meta property="og:description" content="Goal # Add the ability for users to unsubscribe from the newsletter and enhance the subscriber list with action buttons.
 Learning Objectives # By the end of this exercise, you will:
-Create a new view to display a list of subscribers. Modify the controller to pass subscriber data to the view. Update the navigation bar to provide access to the new page. Step-by-Step Instructions # Step 1: Update the Controller to Provide Subscriber Data # Open NewsletterController.cs. Add a new action method to return a list of subscribers to the view. Controllers/NewsletterController.cs">
+Add an unsubscribe action to the controller Implement confirmation dialogs for destructive actions Add action buttons to table rows Handle POST requests securely with anti-forgery tokens Step-by-Step Instructions # Step 1: Update the Controller with Unsubscribe Action # Open NewsletterController.cs Add a new action method for handling unsubscribe requests Controllers/NewsletterController.cs">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2025-02-16T00:00:00+00:00">
     <meta property="article:modified_time" content="2025-02-16T00:00:00+00:00">
-<title>6. Displaying a List of Subscribers | Cloud Developer</title>
+<title>7. Unsubscribe Functionality | Cloud Developer</title>
 <link rel="icon" href="/favicon.png" >
 <link rel="manifest" href="/manifest.json">
-<link rel="canonical" href="http://localhost:1313/docs/2.-exercises/1.-presentation-layer/6.-display-a-list-of-subscribers/">
+<link rel="canonical" href="http://localhost:1313/docs/2.-exercises/1.-presentation-layer/7.-implement-unsubscribe-feature/">
 <link rel="stylesheet" href="/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
   <script defer src="/en.search.min.dd6bdf4e2778db1776f93d6da63a20b19c1473858e505900fc8811ce6cd493a6.js" integrity="sha256-3WvfTid42xd2&#43;T1tpjogsZwUc4WOUFkA/IgRzmzUk6Y=" crossorigin="anonymous"></script>
@@ -219,7 +216,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/2.-exercises/1.-presentation-layer/6.-display-a-list-of-subscribers/" class="active">6. Displaying a List of Subscribers</a>
+    <a href="/docs/2.-exercises/1.-presentation-layer/6.-display-a-list-of-subscribers/" class="">6. Displaying a List of Subscribers</a>
   
 
         </li>
@@ -232,7 +229,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/2.-exercises/1.-presentation-layer/7.-implement-unsubscribe-feature/" class="">7. Unsubscribe Functionality</a>
+    <a href="/docs/2.-exercises/1.-presentation-layer/7.-implement-unsubscribe-feature/" class="active">7. Unsubscribe Functionality</a>
   
 
         </li>
@@ -512,7 +509,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <h3>6. Displaying a List of Subscribers</h3>
+  <h3>7. Unsubscribe Functionality</h3>
 
   <label for="toc-control">
     
@@ -532,17 +529,16 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#learning-objectives">Learning Objectives</a></li>
     <li><a href="#step-by-step-instructions">Step-by-Step Instructions</a>
       <ul>
-        <li><a href="#step-1-update-the-controller-to-provide-subscriber-data">Step 1: Update the Controller to Provide Subscriber Data</a></li>
-        <li><a href="#step-2-create-the-subscriber-list-view">Step 2: Create the Subscriber List View</a></li>
-        <li><a href="#step-3-add-a-navigation-button-to-the-navbar">Step 3: Add a Navigation Button to the Navbar</a></li>
+        <li><a href="#step-1-update-the-controller-with-unsubscribe-action">Step 1: Update the Controller with Unsubscribe Action</a></li>
+        <li><a href="#step-2-update-the-subscriber-list-view">Step 2: Update the Subscriber List View</a></li>
       </ul>
     </li>
     <li><a href="#final-tests">Final Tests</a>
       <ul>
-        <li><a href="#run-the-application-and-validate-your-work">Run the Application and Validate Your Work</a></li>
+        <li><a href="#functionality-test">Functionality Test</a></li>
+        <li><a href="#security-test">Security Test</a></li>
       </ul>
     </li>
-    <li><a href="#shout-out-"><strong>Shout Out! 🎉</strong></a></li>
   </ul>
 </nav>
 
@@ -555,62 +551,80 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown book-article"><h1 id="displaying-a-list-of-subscribers">
-  Displaying a List of Subscribers
-  <a class="anchor" href="#displaying-a-list-of-subscribers">#</a>
-</h1>
-<h2 id="goal">
+  <article class="markdown book-article"><h2 id="goal">
   Goal
   <a class="anchor" href="#goal">#</a>
 </h2>
-<p>Enhance the application by adding a <strong>new view to list all subscribers</strong> and updating the <strong>navigation bar</strong> to include a button linking to the new page.</p>
+<p>Add the ability for users to <strong>unsubscribe</strong> from the newsletter and enhance the subscriber list with <strong>action buttons</strong>.</p>
 <h2 id="learning-objectives">
   Learning Objectives
   <a class="anchor" href="#learning-objectives">#</a>
 </h2>
 <p>By the end of this exercise, you will:</p>
 <ul>
-<li>Create a <strong>new view</strong> to display a list of subscribers.</li>
-<li>Modify the <strong>controller</strong> to pass subscriber data to the view.</li>
-<li>Update the <strong>navigation bar</strong> to provide access to the new page.</li>
+<li>Add an <strong>unsubscribe action</strong> to the controller</li>
+<li>Implement <strong>confirmation dialogs</strong> for destructive actions</li>
+<li>Add <strong>action buttons</strong> to table rows</li>
+<li>Handle <strong>POST requests</strong> securely with <strong>anti-forgery tokens</strong></li>
 </ul>
 <h2 id="step-by-step-instructions">
   Step-by-Step Instructions
   <a class="anchor" href="#step-by-step-instructions">#</a>
 </h2>
-<h3 id="step-1-update-the-controller-to-provide-subscriber-data">
-  Step 1: Update the Controller to Provide Subscriber Data
-  <a class="anchor" href="#step-1-update-the-controller-to-provide-subscriber-data">#</a>
+<h3 id="step-1-update-the-controller-with-unsubscribe-action">
+  Step 1: Update the Controller with Unsubscribe Action
+  <a class="anchor" href="#step-1-update-the-controller-with-unsubscribe-action">#</a>
 </h3>
 <ol>
-<li>Open <code>NewsletterController.cs</code>.</li>
-<li>Add a new action method to return a list of subscribers to the view.</li>
+<li>Open <code>NewsletterController.cs</code></li>
+<li>Add a new action method for handling unsubscribe requests</li>
 </ol>
 <blockquote>
 <p><code>Controllers/NewsletterController.cs</code></p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span>...
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
-</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [HttpGet]</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> IActionResult Subscribers()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#a6e22e">    [HttpPost]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [ValidateAntiForgeryToken]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> IActionResult Unsubscribe(<span style="color:#66d9ef">string</span> email)
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> View(_subscribers);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> subscriber = _subscribers.FirstOrDefault(s =&gt; s.Email == email);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (subscriber != <span style="color:#66d9ef">null</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            _subscribers.Remove(subscriber);
+</span></span><span style="display:flex;"><span>            TempData[<span style="color:#e6db74">&#34;SuccessMessage&#34;</span>] = <span style="color:#e6db74">$&#34;Successfully unsubscribed {email} from the newsletter.&#34;</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> RedirectToAction(nameof(Subscribers));
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>...
 </span></span></code></pre></div><blockquote>
-<p><strong>Information</strong></p>
+<p>💡 <strong>Information</strong></p>
 <ul>
-<li><code>Subscribers()</code> action returns the <strong>list of subscribers</strong> to the view.</li>
-<li>The list is retrieved from the <strong>in-memory static list</strong>.</li>
+<li>
+<p>Uses <code>HttpPost</code> to prevent accidental unsubscribes via GET requests</p>
+</li>
+<li>
+<p>Removes subscriber from list based on email</p>
+</li>
+<li>
+<p>Provides feedback via TempData</p>
+</li>
+<li>
+<p>Redirects back to subscriber list</p>
+</li>
+<li>
+<p>The <code>[ValidateAntiForgeryToken]</code> attribute ensures that:</p>
+<ul>
+<li>The form submission includes a valid anti-forgery token</li>
+<li>Protects against Cross-Site Request Forgery (CSRF) attacks</li>
+<li>Will return a 400 Bad Request if the token is missing or invalid</li>
+<li>The client-side token we have in the View <code>@Html.AntiForgeryToken()</code> works together with this server-side validation to provide security against CSRF attacks.</li>
+</ul>
+</li>
 </ul></blockquote>
-<h3 id="step-2-create-the-subscriber-list-view">
-  Step 2: Create the Subscriber List View
-  <a class="anchor" href="#step-2-create-the-subscriber-list-view">#</a>
+<h3 id="step-2-update-the-subscriber-list-view">
+  Step 2: Update the Subscriber List View
+  <a class="anchor" href="#step-2-update-the-subscriber-list-view">#</a>
 </h3>
 <ol>
-<li>Navigate to the <code>Views/Newsletter/</code> folder.</li>
-<li>Create a new file named <code>Subscribers.cshtml</code>.</li>
-<li>Add the following code to display subscribers in a table.</li>
+<li>Open <code>Views/Newsletter/Subscribers.cshtml</code></li>
+<li>Add an unsubscribe button and confirmation dialog</li>
 </ol>
 <blockquote>
 <p><code>Views/Newsletter/Subscribers.cshtml</code></p></blockquote>
@@ -621,6 +635,15 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h2</span>&gt;Subscriber List&lt;/<span style="color:#f92672">h2</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- Display message from the TempData sent by the controller --&gt;</span>
+</span></span><span style="display:flex;"><span>@if (TempData[&#34;SuccessMessage&#34;] != null)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert alert-success alert-dismissible fade show&#34;</span> <span style="color:#a6e22e">role</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        @TempData[&#34;SuccessMessage&#34;]
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn-close&#34;</span> <span style="color:#a6e22e">data-bs-dismiss</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert&#34;</span> <span style="color:#a6e22e">aria-label</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Close&#34;</span>&gt;&lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fas fa-times&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>@if (Model.Count == 0)
 </span></span><span style="display:flex;"><span>{
@@ -633,6 +656,7 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">tr</span>&gt;
 </span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">th</span>&gt;Name&lt;/<span style="color:#f92672">th</span>&gt;
 </span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">th</span>&gt;Email&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">th</span>&gt;&lt;/<span style="color:#f92672">th</span>&gt;
 </span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">tr</span>&gt;
 </span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">thead</span>&gt;
 </span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">tbody</span>&gt;
@@ -641,71 +665,85 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">tr</span>&gt;
 </span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">td</span>&gt;@subscriber.Name&lt;/<span style="color:#f92672">td</span>&gt;
 </span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">td</span>&gt;@subscriber.Email&lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">asp-action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Unsubscribe&#34;</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;d-inline&#34;</span>
+</span></span><span style="display:flex;"><span>                                <span style="color:#a6e22e">onsubmit</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;return confirm(&#39;Are you sure you want to unsubscribe @subscriber.Email?&#39;);&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            @Html.AntiForgeryToken()
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;@subscriber.Email&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-outline-danger btn-sm&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                &lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fas fa-user-minus me-1&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;Unsubscribe
+</span></span><span style="display:flex;"><span>                            &lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;/<span style="color:#f92672">td</span>&gt;
 </span></span><span style="display:flex;"><span>                &lt;/<span style="color:#f92672">tr</span>&gt;
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">tbody</span>&gt;
 </span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">table</span>&gt;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><blockquote>
-<p><strong>Information</strong></p>
+<p>💡 <strong>Information</strong></p>
 <ul>
-<li>Displays <strong>all subscribers</strong> in a table.</li>
-<li>If no subscribers exist, it shows a <strong>fallback message</strong>.</li>
-</ul></blockquote>
-<h3 id="step-3-add-a-navigation-button-to-the-navbar">
-  Step 3: Add a Navigation Button to the Navbar
-  <a class="anchor" href="#step-3-add-a-navigation-button-to-the-navbar">#</a>
-</h3>
-<ol>
-<li>Open <code>Views/Shared/_Layout.cshtml</code>.</li>
-<li>Add a new navigation link to the <strong>Subscriber List</strong> page.</li>
-</ol>
-<blockquote>
-<p><code>Views/Shared/_Layout.cshtml</code></p></blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>...
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nav-item&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>	    &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nav-link text-dark&#34;</span> <span style="color:#a6e22e">asp-area</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">asp-controller</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Newsletter&#34;</span> <span style="color:#a6e22e">asp-action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Subscribers&#34;</span>&gt;Subscribers&lt;/<span style="color:#f92672">a</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;/<span style="color:#f92672">li</span>&gt;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>...
-</span></span></code></pre></div><blockquote>
-<p><strong>Information</strong></p>
-<ul>
-<li>Adds a <strong>navigation button</strong> to access the <strong>Subscriber List page</strong>.</li>
+<li>Uses <code>form</code> tag for secure POST requests</li>
+<li>Includes <strong>anti-forgery token</strong> <code>@Html.AntiForgeryToken()</code></li>
+<li>Adds confirmation dialog using JavaScript <code>onsubmit=&quot;return confirm('Are you sure you want to unsubscribe @subscriber.Email?');&quot;</code></li>
 </ul></blockquote>
 <h2 id="final-tests">
   Final Tests
   <a class="anchor" href="#final-tests">#</a>
 </h2>
-<h3 id="run-the-application-and-validate-your-work">
-  Run the Application and Validate Your Work
-  <a class="anchor" href="#run-the-application-and-validate-your-work">#</a>
+<h3 id="functionality-test">
+  Functionality Test
+  <a class="anchor" href="#functionality-test">#</a>
+</h3>
+<ol>
+<li>Subscribe a new user</li>
+<li>View the subscriber list</li>
+<li>Click unsubscribe button</li>
+<li>Verify confirmation dialog appears</li>
+<li>Confirm unsubscribe</li>
+</ol>
+<p>✅ <strong>Expected Results</strong></p>
+<ul>
+<li>Confirmation dialog shows correct email</li>
+<li>Success message appears after unsubscribe</li>
+<li>User is removed from list</li>
+<li>List updates immediately</li>
+</ul>
+<h3 id="security-test">
+  Security Test
+  <a class="anchor" href="#security-test">#</a>
 </h3>
 <ol>
 <li>
-<p>Start the application:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet run
+<p>Temporarily comment out the <code>[ValidateAntiForgeryToken]</code></p>
+</li>
+<li>
+<p>Add subscriber: <code>test@example.com</code></p>
+</li>
+<li>
+<p>Go to the subscriber list page</p>
+</li>
+<li>
+<p>Open a terminal and run this command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X POST http://localhost:5220/Newsletter/Unsubscribe -d <span style="color:#e6db74">&#34;email=test@example.com&#34;</span>
 </span></span></code></pre></div></li>
 <li>
-<p>Open a browser and navigate to:</p>
-<pre tabindex="0"><code>http://localhost:5000/Newsletter/Subscribe
-</code></pre></li>
-<li>
-<p>Subscribe with <strong>multiple names and emails</strong>.</p>
+<p>Refresh the subscriber list page and verify the subscriber <code>test@example.com</code> is gone</p>
 </li>
 <li>
-<p>Click <strong>Subscribers</strong> in the navbar to view the <strong>subscriber list</strong>.</p>
+<p>Remove the comment and run step 2. 3. 4. again</p>
 </li>
 <li>
-<p>Ensure all <strong>submitted data appears correctly</strong> in the table.</p>
+<p>Refresh the subscriber list page and verify the subscriber <code>test@example.com</code> is still there</p>
 </li>
 </ol>
-<h2 id="shout-out-">
-  <strong>Shout Out! 🎉</strong>
-  <a class="anchor" href="#shout-out-">#</a>
-</h2>
-<p>Great job! You&rsquo;ve successfully added a <strong>subscriber list page</strong> and a <strong>navigation button</strong> to improve user experience! 🚀</p>
+<blockquote>
+<p><code>-d &quot;email=test@example.com&quot;</code> specifies the data that is being sent in the body of the POST request.</p></blockquote>
+<h1 id="exercise-done-">
+  Exercise Done! 🎉
+  <a class="anchor" href="#exercise-done-">#</a>
+</h1>
+<p>You&rsquo;ve successfully added unsubscribe functionality with proper security measures and user feedback! ✨</p>
 </article>
  
       
@@ -751,17 +789,16 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#learning-objectives">Learning Objectives</a></li>
     <li><a href="#step-by-step-instructions">Step-by-Step Instructions</a>
       <ul>
-        <li><a href="#step-1-update-the-controller-to-provide-subscriber-data">Step 1: Update the Controller to Provide Subscriber Data</a></li>
-        <li><a href="#step-2-create-the-subscriber-list-view">Step 2: Create the Subscriber List View</a></li>
-        <li><a href="#step-3-add-a-navigation-button-to-the-navbar">Step 3: Add a Navigation Button to the Navbar</a></li>
+        <li><a href="#step-1-update-the-controller-with-unsubscribe-action">Step 1: Update the Controller with Unsubscribe Action</a></li>
+        <li><a href="#step-2-update-the-subscriber-list-view">Step 2: Update the Subscriber List View</a></li>
       </ul>
     </li>
     <li><a href="#final-tests">Final Tests</a>
       <ul>
-        <li><a href="#run-the-application-and-validate-your-work">Run the Application and Validate Your Work</a></li>
+        <li><a href="#functionality-test">Functionality Test</a></li>
+        <li><a href="#security-test">Security Test</a></li>
       </ul>
     </li>
-    <li><a href="#shout-out-"><strong>Shout Out! 🎉</strong></a></li>
   </ul>
 </nav>
 

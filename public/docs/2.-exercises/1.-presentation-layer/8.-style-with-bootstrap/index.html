@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Goal
+  #
+
+Transform the basic newsletter form and subscriber list into professional-looking interfaces using Bootstrap&rsquo;s components, utilities, and responsive design features.
+
+  Learning Objectives
+  #
+
+By the end of this exercise, you will:
+
+Use Bootstrap&rsquo;s card component for content organization
+Implement responsive grid system for layout control
+Style forms using Bootstrap&rsquo;s form components and utilities
+Create responsive tables with proper styling
+Apply Bootstrap&rsquo;s utility classes for spacing and typography
+
+
+  Step-by-Step Instructions
+  #
+
+
+  Step 1: Style the Newsletter Signup Form
+  #
+
+
+Open Views/Newsletter/Subscribe.cshtml
+Update the form with Bootstrap components and utilities
+
+
+File: Views/Newsletter/Subscribe.cshtml">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/2.-exercises/1.-presentation-layer/8.-style-with-bootstrap/">
+  <meta property="og:site_name" content="Cloud Developer">
+  <meta property="og:title" content="8. Enhancing UI with Bootstrap">
+  <meta property="og:description" content="Goal # Transform the basic newsletter form and subscriber list into professional-looking interfaces using Bootstrap’s components, utilities, and responsive design features.
+Learning Objectives # By the end of this exercise, you will:
+Use Bootstrap’s card component for content organization Implement responsive grid system for layout control Style forms using Bootstrap’s form components and utilities Create responsive tables with proper styling Apply Bootstrap’s utility classes for spacing and typography Step-by-Step Instructions # Step 1: Style the Newsletter Signup Form # Open Views/Newsletter/Subscribe.cshtml Update the form with Bootstrap components and utilities File: Views/Newsletter/Subscribe.cshtml">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-02-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-16T00:00:00+00:00">
+<title>8. Enhancing UI with Bootstrap | Cloud Developer</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://localhost:1313/docs/2.-exercises/1.-presentation-layer/8.-style-with-bootstrap/">
+<link rel="stylesheet" href="/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.dd6bdf4e2778db1776f93d6da63a20b19c1473858e505900fc8811ce6cd493a6.js" integrity="sha256-3WvfTid42xd2&#43;T1tpjogsZwUc4WOUFkA/IgRzmzUk6Y=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Cloud Developer</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Development</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="toggle" checked />
+    <label for="section-aeeb64ad5ae3e17f68e72bd80cab69f0" class="flex justify-between">
+      <a role="button" class="">1. Presentation Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/1.-hello-world/" class="">1. Hello World</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/2.-create-a-form-using-basic-html/" class="">2. Create A Form With Basic HTML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/" class="">3. Helper Tags and Model Binding</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/4.-client-side-validation-with-data-annotations/" class="">4. Data Annotations and Client-Side Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/5.-server-side-validation/" class="">5. Server-Side Validation and Improved Feedback</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/6.-display-a-list-of-subscribers/" class="">6. Displaying a List of Subscribers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/7.-implement-unsubscribe-feature/" class="">7. Unsubscribe Functionality</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/8.-style-with-bootstrap/" class="active">8. Enhancing UI with Bootstrap</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/1.-presentation-layer/9.-create-a-landing-page/" class="">9. Landing Page with Hero Section</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-33da466f9353b53d40da04cbb117ee6d" class="toggle"  />
+    <label for="section-33da466f9353b53d40da04cbb117ee6d" class="flex justify-between">
+      <a role="button" class="">2. Service Layer</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/2.-service-layer/1.-implement-service-layer/" class="">1. Implement Service Layer</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/2.-service-layer/2.-project-structure-and-unit-tests/" class="">2. Implement Unit Tests and Organize Solution</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Basic IT</span>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Exercises</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7d0a2b83d4441b1271f24ade16347a90" class="toggle"  />
+    <label for="section-7d0a2b83d4441b1271f24ade16347a90" class="flex justify-between">
+      <a role="button" class="">1. Virtual Machine</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-1---provisioning-a-vm-via-azure-portal-with-username-and-password/" class="">1. Provisioning a VM via Azure Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-2---provisioning-a-vm-with-ssh-keys-and-exploring-linux/" class="">2. Provisioning a VM with SSH Keys and Exploring Linux</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-3---automating-nginx-installation-with-custom-data-scripts/" class="">3. Automating Nginx Installation with Custom Data Scripts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/1.-virtual-machine/exercise-4---creating-a-resource-group-using-az-cli/" class="">4. Creating a Resource Group Using AZ CLI</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1fb80a125bb9cc435f505b7ef954f3ca" class="toggle"  />
+    <label for="section-1fb80a125bb9cc435f505b7ef954f3ca" class="flex justify-between">
+      <a role="button" class="">2. Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-1---creating-a-virtual-network/" class="">1. Creating a Virtual Network (vNet)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/4.-exercises/2.-network/exercise-2---creating-a-virtual-network-with-enhanced-security/" class="">2. Creating a Virtual Network with Enhanced Security</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>8. Enhancing UI with Bootstrap</h3>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#goal">Goal</a></li>
+    <li><a href="#learning-objectives">Learning Objectives</a></li>
+    <li><a href="#step-by-step-instructions">Step-by-Step Instructions</a>
+      <ul>
+        <li><a href="#step-1-style-the-newsletter-signup-form">Step 1: Style the Newsletter Signup Form</a></li>
+        <li><a href="#step-2-style-the-subscriber-list">Step 2: Style the Subscriber List</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-tests">Final Tests</a>
+      <ul>
+        <li><a href="#visual-inspection">Visual Inspection</a></li>
+        <li><a href="#functionality-test">Functionality Test</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="goal">
+  Goal
+  <a class="anchor" href="#goal">#</a>
+</h2>
+<p>Transform the basic newsletter form and subscriber list into <strong>professional-looking interfaces</strong> using Bootstrap&rsquo;s components, utilities, and responsive design features.</p>
+<h2 id="learning-objectives">
+  Learning Objectives
+  <a class="anchor" href="#learning-objectives">#</a>
+</h2>
+<p>By the end of this exercise, you will:</p>
+<ul>
+<li>Use Bootstrap&rsquo;s <strong>card component</strong> for content organization</li>
+<li>Implement <strong>responsive grid system</strong> for layout control</li>
+<li>Style forms using Bootstrap&rsquo;s <strong>form components and utilities</strong></li>
+<li>Create <strong>responsive tables</strong> with proper styling</li>
+<li>Apply Bootstrap&rsquo;s <strong>utility classes</strong> for spacing and typography</li>
+</ul>
+<h2 id="step-by-step-instructions">
+  Step-by-Step Instructions
+  <a class="anchor" href="#step-by-step-instructions">#</a>
+</h2>
+<h3 id="step-1-style-the-newsletter-signup-form">
+  Step 1: Style the Newsletter Signup Form
+  <a class="anchor" href="#step-1-style-the-newsletter-signup-form">#</a>
+</h3>
+<ol>
+<li>Open <code>Views/Newsletter/Subscribe.cshtml</code></li>
+<li>Update the form with Bootstrap components and utilities</li>
+</ol>
+<blockquote>
+<p><strong>File:</strong> <code>Views/Newsletter/Subscribe.cshtml</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>@model CloudSoft.Models.Subscriber
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@{
+</span></span><span style="display:flex;"><span>    ViewData[&#34;Title&#34;] = &#34;Newsletter Signup&#34;;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container py-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;row justify-content-center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-12 col-md-8 col-lg-6&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card shadow&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-header bg-primary text-white&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">h2</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-title h4 mb-0&#34;</span>&gt;Newsletter Signup&lt;/<span style="color:#f92672">h2</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-body&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">&lt;!-- Display validation summary for model-level errors --&gt;</span>
+</span></span><span style="display:flex;"><span>                    @if (!ViewData.ModelState.IsValid)
+</span></span><span style="display:flex;"><span>                    {
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert alert-danger alert-dismissible fade show&#34;</span> <span style="color:#a6e22e">role</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            @Html.ValidationSummary(false, null, new { @class = &#34;text-danger&#34; })
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn-close&#34;</span> <span style="color:#a6e22e">data-bs-dismiss</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert&#34;</span> <span style="color:#a6e22e">aria-label</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Close&#34;</span>&gt;&lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fas fa-times&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">&lt;!-- Display message from the TempData sent by the controller --&gt;</span>
+</span></span><span style="display:flex;"><span>                    @if (TempData[&#34;SuccessMessage&#34;] != null)
+</span></span><span style="display:flex;"><span>                    {
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert alert-success alert-dismissible fade show&#34;</span> <span style="color:#a6e22e">role</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            @TempData[&#34;SuccessMessage&#34;]
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn-close&#34;</span> <span style="color:#a6e22e">data-bs-dismiss</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert&#34;</span> <span style="color:#a6e22e">aria-label</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Close&#34;</span>&gt;&lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fas fa-times&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">asp-action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Subscribe&#34;</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mb-3&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">asp-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Name&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-label&#34;</span>&gt;&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input-group&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input-group-text&#34;</span>&gt;&lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fas fa-user&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>                                &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">asp-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Name&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-control&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Enter your name&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>                            &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">asp-validation-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Name&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-danger small&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mb-3&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">asp-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Email&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-label&#34;</span>&gt;&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input-group&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input-group-text&#34;</span>&gt;&lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fas fa-envelope&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>                                &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">asp-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Email&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-control&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Enter your email&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>                            &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">asp-validation-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Email&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-danger small&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;d-grid&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-primary&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                &lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fas fa-paper-plane me-2&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;Sign Up
+</span></span><span style="display:flex;"><span>                            &lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@section Scripts {
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">partial</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;_ValidationScriptsPartial&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>💡 <strong>Information</strong></p>
+<ul>
+<li><strong>Container &amp; Grid</strong>: <code>container</code> provides padding and max-width, while <code>row</code> and <code>col-*</code> create a responsive layout</li>
+<li><strong>Card Component</strong>: <code>card</code> creates a bordered box with header and body sections</li>
+<li><strong>Input Group</strong>: Combines form controls with icons using <code>input-group</code> and <code>input-group-text</code></li>
+<li><strong>Utilities</strong>:
+<ul>
+<li><code>shadow</code> adds box shadow</li>
+<li><code>py-4</code> adds vertical padding</li>
+<li><code>mb-3</code> adds bottom margin</li>
+<li><code>d-grid</code> makes button full-width</li>
+</ul>
+</li>
+</ul></blockquote>
+<h3 id="step-2-style-the-subscriber-list">
+  Step 2: Style the Subscriber List
+  <a class="anchor" href="#step-2-style-the-subscriber-list">#</a>
+</h3>
+<ol>
+<li>Open <code>Views/Newsletter/Subscribers.cshtml</code></li>
+<li>Enhance the table with Bootstrap components</li>
+</ol>
+<blockquote>
+<p><strong>File:</strong> <code>Views/Newsletter/Subscribers.cshtml</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>@model List&lt;<span style="color:#f92672">CloudSoft.Models.Subscriber</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@{
+</span></span><span style="display:flex;"><span>    ViewData[&#34;Title&#34;] = &#34;Subscriber List&#34;;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container py-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;row justify-content-center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-12 col-lg-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card shadow&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-header bg-primary text-white d-flex justify-content-between align-items-center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">h2</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-title h4 mb-0&#34;</span>&gt;Subscriber List&lt;/<span style="color:#f92672">h2</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;badge bg-light text-primary&#34;</span>&gt;Total: @Model.Count&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-body&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                    @if (TempData[&#34;SuccessMessage&#34;] != null)
+</span></span><span style="display:flex;"><span>                    {
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert alert-success alert-dismissible fade show&#34;</span> <span style="color:#a6e22e">role</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            @TempData[&#34;SuccessMessage&#34;]
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn-close&#34;</span> <span style="color:#a6e22e">data-bs-dismiss</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert&#34;</span> <span style="color:#a6e22e">aria-label</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Close&#34;</span>&gt;&lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fas fa-times&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    @if (Model.Count == 0)
+</span></span><span style="display:flex;"><span>                    {
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-center py-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fas fa-users fa-3x text-muted mb-3&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lead text-muted&#34;</span>&gt;No subscribers yet.&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    else
+</span></span><span style="display:flex;"><span>                    {
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;table-responsive&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;<span style="color:#f92672">table</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;table table-hover align-middle mb-0&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                &lt;<span style="color:#f92672">thead</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;table-light&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                    &lt;<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>                                        &lt;<span style="color:#f92672">th</span>&gt;&lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fas fa-user me-2&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;Name&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                                        &lt;<span style="color:#f92672">th</span>&gt;&lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fas fa-envelope me-2&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;Email&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                                        &lt;<span style="color:#f92672">th</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-end&#34;</span>&gt;Actions&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>                                    &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>                                &lt;/<span style="color:#f92672">thead</span>&gt;
+</span></span><span style="display:flex;"><span>                                &lt;<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>                                    @foreach (var subscriber in Model)
+</span></span><span style="display:flex;"><span>                                    {
+</span></span><span style="display:flex;"><span>                                        &lt;<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>                                            &lt;<span style="color:#f92672">td</span>&gt;@subscriber.Name&lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>                                            &lt;<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>                                                &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mailto:@subscriber.Email&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-decoration-none&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                                    @subscriber.Email
+</span></span><span style="display:flex;"><span>                                                &lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>                                            &lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>                                            &lt;<span style="color:#f92672">td</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-end&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                                &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">asp-action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Unsubscribe&#34;</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;d-inline&#34;</span>
+</span></span><span style="display:flex;"><span>                                                        <span style="color:#a6e22e">onsubmit</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;return confirm(&#39;Are you sure you want to unsubscribe @subscriber.Email?&#39;);&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                                    @Html.AntiForgeryToken()
+</span></span><span style="display:flex;"><span>                                                    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;@subscriber.Email&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>                                                    &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-outline-danger btn-sm&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                                                        &lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fas fa-user-minus me-1&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;Unsubscribe
+</span></span><span style="display:flex;"><span>                                                    &lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>                                                &lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>                                            &lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>                                        &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>                                    }
+</span></span><span style="display:flex;"><span>                                &lt;/<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;/<span style="color:#f92672">table</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><blockquote>
+<p>💡 <strong>Information</strong></p>
+<ul>
+<li><strong>Table Classes</strong>:
+<ul>
+<li><code>table-responsive</code> enables horizontal scrolling on small screens</li>
+<li><code>table-hover</code> adds hover effect to rows</li>
+<li><code>align-middle</code> vertically centers content</li>
+</ul>
+</li>
+<li><strong>Flex Utilities</strong>:
+<ul>
+<li><code>d-flex</code> creates flexible container</li>
+<li><code>justify-content-between</code> spaces items</li>
+<li><code>align-items-center</code> vertically centers items</li>
+</ul>
+</li>
+<li><strong>Badge Component</strong>: <code>badge</code> creates a small count indicator</li>
+<li><strong>Empty State</strong>: Uses <code>text-center</code> and icon for better visual feedback</li>
+</ul></blockquote>
+<h2 id="final-tests">
+  Final Tests
+  <a class="anchor" href="#final-tests">#</a>
+</h2>
+<h3 id="visual-inspection">
+  Visual Inspection
+  <a class="anchor" href="#visual-inspection">#</a>
+</h3>
+<ol>
+<li>Check responsive behavior:
+<ul>
+<li>Resize browser window</li>
+<li>Test on mobile device or DevTools mobile view</li>
+<li>Verify form and table adapt correctly</li>
+</ul>
+</li>
+</ol>
+<p>✅ <strong>Expected Results</strong></p>
+<ul>
+<li>
+<p>Form should be:</p>
+<ul>
+<li>Centered on page</li>
+<li>Full width on mobile</li>
+<li>~50% width on desktop</li>
+<li>Have consistent spacing</li>
+<li>Show icons in input fields</li>
+</ul>
+</li>
+<li>
+<p>Table should:</p>
+<ul>
+<li>Scroll horizontally on mobile</li>
+<li>Show hover effects</li>
+<li>Display badge with correct count</li>
+<li>Have centered content</li>
+</ul>
+</li>
+</ul>
+<h3 id="functionality-test">
+  Functionality Test
+  <a class="anchor" href="#functionality-test">#</a>
+</h3>
+<ol>
+<li>Submit form with errors</li>
+<li>Check success message</li>
+<li>View subscriber list</li>
+</ol>
+<p>✅ <strong>Expected Results</strong></p>
+<ul>
+<li>Error messages properly styled in red</li>
+<li>Success alert in green with close button</li>
+<li>Table rows properly aligned with hover effect</li>
+<li>Clickable email addresses</li>
+<li>Correct icon display</li>
+</ul>
+<h1 id="exercise-done-">
+  Exercise Done! 🎉
+  <a class="anchor" href="#exercise-done-">#</a>
+</h1>
+<p>You&rsquo;ve transformed basic HTML into a professional-looking interface using Bootstrap&rsquo;s powerful component library! 🚀</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#goal">Goal</a></li>
+    <li><a href="#learning-objectives">Learning Objectives</a></li>
+    <li><a href="#step-by-step-instructions">Step-by-Step Instructions</a>
+      <ul>
+        <li><a href="#step-1-style-the-newsletter-signup-form">Step 1: Style the Newsletter Signup Form</a></li>
+        <li><a href="#step-2-style-the-subscriber-list">Step 2: Style the Subscriber List</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-tests">Final Tests</a>
+      <ul>
+        <li><a href="#visual-inspection">Visual Inspection</a></li>
+        <li><a href="#functionality-test">Functionality Test</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
