@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/docs/2.-exercises/3.-data-layer-copy/1.-implementing-repository-pattern/</loc>
+    <loc>http://localhost:1313/docs/2.-exercises/3.-data-layer/1.-implementing-repository-pattern/</loc>
     <lastmod>2025-02-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/</loc>
@@ -25,7 +25,7 @@
   </url><url>
     <loc>http://localhost:1313/docs/1.-development/</loc>
   </url><url>
-    <loc>http://localhost:1313/docs/2.-exercises/3.-data-layer-copy/2.-implementing-mongodb-repository/</loc>
+    <loc>http://localhost:1313/docs/2.-exercises/3.-data-layer/2.-implementing-mongodb-repository/</loc>
     <lastmod>2025-02-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/docs/2.-exercises/</loc>
@@ -49,7 +49,10 @@
     <loc>http://localhost:1313/docs/4.-exercises/1.-virtual-machine/exercise-2---provisioning-a-vm-with-ssh-keys-and-exploring-linux/</loc>
     <lastmod>2024-11-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/docs/2.-exercises/3.-data-layer-copy/</loc>
+    <loc>http://localhost:1313/docs/2.-exercises/3.-data-layer/</loc>
+    <lastmod>2025-02-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/docs/2.-exercises/3.-data-layer/3.-azure-blob-storage-for-images/</loc>
     <lastmod>2025-02-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/docs/2.-exercises/1.-presentation-layer/3.-implement-helper-tags-and-model-binding/</loc>

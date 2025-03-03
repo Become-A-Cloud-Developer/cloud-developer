@@ -4,41 +4,50 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="
-  Hello World
+  Hello World MVC Application
   #
 
 
+  Goal
+  #
 
-Create the app
-dotnet new mvc
-dotnet new gitignore
+Create a basic ASP.NET Core MVC application, run it locally, and prepare it for version control with Git.
+
+  Learning Objectives
+  #
+
+By the end of this exercise, you will:
+
+Create a new ASP.NET Core MVC project
+Understand the basic project structure of an MVC application
+Run a web application locally
+Initialize Git for version control
+Publish your code to GitHub
 
 
-Run the app
-dotnet run
+  Step-by-Step Instructions
+  #
 
 
-Prepare the app for git
-dotnet new gitignore
-
-git init
-git add .
-git commit -m &#34;Create MVC webapp&#34;
+  Step 1: Create a New ASP.NET Core MVC Application
+  #
 
 
-Use VS Code to publish the repository to Github. After that you can push commits with:
-git push
-">
+Open a terminal or command prompt
+Navigate to your desired project location
+Run the following command to create a new MVC application:
+
+dotnet new mvc -n CloudSoft
+
+💡 Information">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/2.-exercises/1.-presentation-layer/1.-hello-world/">
   <meta property="og:site_name" content="Cloud Developer">
   <meta property="og:title" content="1. Hello World">
-  <meta property="og:description" content="Hello World # Create the app
-dotnet new mvc dotnet new gitignore Run the app
-dotnet run Prepare the app for git
-dotnet new gitignore git init git add . git commit -m &#34;Create MVC webapp&#34; Use VS Code to publish the repository to Github. After that you can push commits with:
-git push">
+  <meta property="og:description" content="Hello World MVC Application # Goal # Create a basic ASP.NET Core MVC application, run it locally, and prepare it for version control with Git.
+Learning Objectives # By the end of this exercise, you will:
+Create a new ASP.NET Core MVC project Understand the basic project structure of an MVC application Run a web application locally Initialize Git for version control Publish your code to GitHub Step-by-Step Instructions # Step 1: Create a New ASP.NET Core MVC Application # Open a terminal or command prompt Navigate to your desired project location Run the following command to create a new MVC application: dotnet new mvc -n CloudSoft 💡 Information">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -50,7 +59,7 @@ git push">
 <link rel="canonical" href="http://localhost:1313/docs/2.-exercises/1.-presentation-layer/1.-hello-world/">
 <link rel="stylesheet" href="/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.4a34d6164ad31a54195c2cf8857db4e7fc4eb9a2cfce32b48230fd14cd928b42.js" integrity="sha256-SjTWFkrTGlQZXCz4hX205/xOuaLPzjK0gjD9FM2Si0I=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.21a9116b2b9c280344e61b4422b33e00ac17310e7a83e3e538ba3ac36b9c8954.js" integrity="sha256-IakRayucKANE5htEIrM&#43;AKwXMQ56g&#43;PlOLo6w2uciVQ=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -318,9 +327,9 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-1a6d8353dcab7579d685ae0815427792" class="toggle"  />
-    <label for="section-1a6d8353dcab7579d685ae0815427792" class="flex justify-between">
-      <a role="button" class="">3. Data Layer Copy</a>
+    <input type="checkbox" id="section-cddc957e7fd23809e8852a68e9b33a7e" class="toggle"  />
+    <label for="section-cddc957e7fd23809e8852a68e9b33a7e" class="flex justify-between">
+      <a role="button" class="">3. Data Layer</a>
     </label>
   
 
@@ -334,7 +343,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/2.-exercises/3.-data-layer-copy/1.-implementing-repository-pattern/" class="">1. Implement the Repository Pattern</a>
+    <a href="/docs/2.-exercises/3.-data-layer/1.-implementing-repository-pattern/" class="">1. Implement the Repository Pattern</a>
   
 
         </li>
@@ -347,7 +356,20 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/2.-exercises/3.-data-layer-copy/2.-implementing-mongodb-repository/" class="">2. Implementing MongoDB Repository</a>
+    <a href="/docs/2.-exercises/3.-data-layer/2.-implementing-mongodb-repository/" class="">2. Implementing MongoDB Repository</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/2.-exercises/3.-data-layer/3.-azure-blob-storage-for-images/" class="">3. Azure Blob Storage for Images</a>
   
 
         </li>
@@ -568,7 +590,28 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#goal">Goal</a></li>
+    <li><a href="#learning-objectives">Learning Objectives</a></li>
+    <li><a href="#step-by-step-instructions">Step-by-Step Instructions</a>
+      <ul>
+        <li><a href="#step-1-create-a-new-aspnet-core-mvc-application">Step 1: Create a New ASP.NET Core MVC Application</a></li>
+        <li><a href="#step-2-explore-the-project-structure">Step 2: Explore the Project Structure</a></li>
+        <li><a href="#step-3-run-the-application-locally">Step 3: Run the Application Locally</a></li>
+        <li><a href="#step-4-initialize-git-for-version-control">Step 4: Initialize Git for Version Control</a></li>
+        <li><a href="#step-5-publish-to-github">Step 5: Publish to GitHub</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-tests">Final Tests</a>
+      <ul>
+        <li><a href="#test-1-verify-your-web-application">Test 1: Verify Your Web Application</a></li>
+        <li><a href="#test-2-verify-your-github-repository">Test 2: Verify Your GitHub Repository</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-complete-">Exercise Complete! 🎉</a></li>
+  </ul>
+</nav>
 
 
 
@@ -579,32 +622,190 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown book-article"><h1 id="hello-world">
-  Hello World
-  <a class="anchor" href="#hello-world">#</a>
+  <article class="markdown book-article"><h1 id="hello-world-mvc-application">
+  Hello World MVC Application
+  <a class="anchor" href="#hello-world-mvc-application">#</a>
 </h1>
+<h2 id="goal">
+  Goal
+  <a class="anchor" href="#goal">#</a>
+</h2>
+<p>Create a basic ASP.NET Core MVC application, run it locally, and prepare it for version control with Git.</p>
+<h2 id="learning-objectives">
+  Learning Objectives
+  <a class="anchor" href="#learning-objectives">#</a>
+</h2>
+<p>By the end of this exercise, you will:</p>
+<ul>
+<li>Create a new ASP.NET Core MVC project</li>
+<li>Understand the basic project structure of an MVC application</li>
+<li>Run a web application locally</li>
+<li>Initialize Git for version control</li>
+<li>Publish your code to GitHub</li>
+</ul>
+<h2 id="step-by-step-instructions">
+  Step-by-Step Instructions
+  <a class="anchor" href="#step-by-step-instructions">#</a>
+</h2>
+<h3 id="step-1-create-a-new-aspnet-core-mvc-application">
+  Step 1: Create a New ASP.NET Core MVC Application
+  <a class="anchor" href="#step-1-create-a-new-aspnet-core-mvc-application">#</a>
+</h3>
+<ol>
+<li>Open a terminal or command prompt</li>
+<li>Navigate to your desired project location</li>
+<li>Run the following command to create a new MVC application:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet new mvc -n CloudSoft
+</span></span></code></pre></div><blockquote>
+<p>💡 <strong>Information</strong></p>
+<ul>
+<li>The <code>dotnet new mvc</code> command creates a new ASP.NET Core MVC project</li>
+<li>The <code>-n CloudSoft</code> parameter sets the project name to &ldquo;CloudSoft&rdquo;</li>
+<li>This creates a folder structure with Controllers, Models, and Views folders</li>
+</ul></blockquote>
+<ol start="4">
+<li>Navigate to the newly created project folder:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd CloudSoft
+</span></span></code></pre></div><h3 id="step-2-explore-the-project-structure">
+  Step 2: Explore the Project Structure
+  <a class="anchor" href="#step-2-explore-the-project-structure">#</a>
+</h3>
+<p>Take a moment to explore the generated project structure:</p>
+<ul>
+<li><strong>Controllers/</strong> - Contains controller classes that handle HTTP requests</li>
+<li><strong>Models/</strong> - Contains data model classes</li>
+<li><strong>Views/</strong> - Contains Razor view files (.cshtml) for rendering HTML</li>
+<li><strong>wwwroot/</strong> - Contains static files (CSS, JavaScript, images)</li>
+<li><strong>Program.cs</strong> - The application entry point</li>
+<li><strong>CloudSoft.csproj</strong> - The project file with dependencies and configuration</li>
+</ul>
+<blockquote>
+<p>💡 <strong>Information</strong></p>
+<p>The MVC (Model-View-Controller) pattern separates an application into three main components:</p>
+<ul>
+<li><strong>Models</strong>: Data and business logic</li>
+<li><strong>Views</strong>: User interface (UI)</li>
+<li><strong>Controllers</strong>: Handle user input and responses</li>
+</ul></blockquote>
+<h3 id="step-3-run-the-application-locally">
+  Step 3: Run the Application Locally
+  <a class="anchor" href="#step-3-run-the-application-locally">#</a>
+</h3>
+<ol>
+<li>Start the application:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet run
+</span></span></code></pre></div><ol start="2">
+<li>Open a web browser and navigate to:</li>
+</ol>
+<pre tabindex="0"><code>https://localhost:7240
+</code></pre><p>or</p>
+<pre tabindex="0"><code>http://localhost:5000
+</code></pre><p>(Note: The exact port numbers may vary)</p>
+<blockquote>
+<p>✅ <strong>Verification Step:</strong></p>
+<p>You should see the default ASP.NET Core welcome page with links to resources and documentation.</p></blockquote>
+<h3 id="step-4-initialize-git-for-version-control">
+  Step 4: Initialize Git for Version Control
+  <a class="anchor" href="#step-4-initialize-git-for-version-control">#</a>
+</h3>
+<ol>
+<li>Create a .gitignore file to exclude unnecessary files from version control:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet new gitignore
+</span></span></code></pre></div><ol start="2">
+<li>Initialize a new Git repository:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git init
+</span></span></code></pre></div><ol start="3">
+<li>Add all files to the Git staging area:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add .
+</span></span></code></pre></div><ol start="4">
+<li>Create your first commit:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;Initial commit: Create ASP.NET Core MVC application&#34;</span>
+</span></span></code></pre></div><blockquote>
+<p>💡 <strong>Information</strong></p>
+<ul>
+<li>Git tracks changes to your codebase</li>
+<li>The .gitignore file prevents unnecessary files (like build artifacts) from being tracked</li>
+<li>Each commit represents a snapshot of your code at a specific point in time</li>
+</ul></blockquote>
+<h3 id="step-5-publish-to-github">
+  Step 5: Publish to GitHub
+  <a class="anchor" href="#step-5-publish-to-github">#</a>
+</h3>
 <ol>
 <li>
-<p>Create the app</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet new mvc
-</span></span><span style="display:flex;"><span>dotnet new gitignore
-</span></span></code></pre></div></li>
+<p>Create a new repository on GitHub:</p>
+<ul>
+<li>Go to <a href="https://github.com">GitHub</a></li>
+<li>Click the &ldquo;+&rdquo; icon in the top right and select &ldquo;New repository&rdquo;</li>
+<li>Name your repository (e.g., &ldquo;CloudSoft&rdquo;)</li>
+<li>Do not initialize with a README, .gitignore, or license</li>
+<li>Click &ldquo;Create repository&rdquo;</li>
+</ul>
+</li>
 <li>
-<p>Run the app</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet run
-</span></span></code></pre></div></li>
-<li>
-<p>Prepare the app for git</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet new gitignore
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>git init
-</span></span><span style="display:flex;"><span>git add .
-</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;Create MVC webapp&#34;</span>
-</span></span></code></pre></div></li>
+<p>Link your local repository to GitHub and push your code:</p>
+</li>
 </ol>
-<p>Use VS Code to publish the repository to Github. After that you can push commits with:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git push
-</span></span></code></pre></div></article>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git remote add origin https://github.com/YourUsername/CloudSoft.git
+</span></span><span style="display:flex;"><span>git branch -M main
+</span></span><span style="display:flex;"><span>git push -u origin main
+</span></span></code></pre></div><blockquote>
+<p>💡 <strong>Information</strong></p>
+<ul>
+<li>Replace &ldquo;YourUsername&rdquo; with your actual GitHub username</li>
+<li>This establishes a connection between your local repository and GitHub</li>
+<li>The <code>-u</code> flag sets up tracking, which simplifies future pushes</li>
+</ul></blockquote>
+<h2 id="final-tests">
+  Final Tests
+  <a class="anchor" href="#final-tests">#</a>
+</h2>
+<h3 id="test-1-verify-your-web-application">
+  Test 1: Verify Your Web Application
+  <a class="anchor" href="#test-1-verify-your-web-application">#</a>
+</h3>
+<ol>
+<li>Ensure your application is running:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet run
+</span></span></code></pre></div><ol start="2">
+<li>Open a browser and navigate to the application URL</li>
+<li>Verify the homepage loads correctly</li>
+</ol>
+<p>✅ <strong>Expected Result</strong>:</p>
+<ul>
+<li>The application runs without errors</li>
+<li>The welcome page appears in your browser</li>
+<li>You can navigate to the Privacy page using the link in the header</li>
+</ul>
+<h3 id="test-2-verify-your-github-repository">
+  Test 2: Verify Your GitHub Repository
+  <a class="anchor" href="#test-2-verify-your-github-repository">#</a>
+</h3>
+<ol>
+<li>Go to your GitHub account</li>
+<li>Navigate to your new repository</li>
+<li>Verify that your code has been pushed successfully</li>
+</ol>
+<p>✅ <strong>Expected Result</strong>:</p>
+<ul>
+<li>All project files are visible in your GitHub repository</li>
+<li>You can see your commit message</li>
+<li>The repository structure matches your local project</li>
+</ul>
+<h2 id="exercise-complete-">
+  Exercise Complete! 🎉
+  <a class="anchor" href="#exercise-complete-">#</a>
+</h2>
+<p>Congratulations!</p>
+</article>
  
       
 
@@ -643,7 +844,28 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#goal">Goal</a></li>
+    <li><a href="#learning-objectives">Learning Objectives</a></li>
+    <li><a href="#step-by-step-instructions">Step-by-Step Instructions</a>
+      <ul>
+        <li><a href="#step-1-create-a-new-aspnet-core-mvc-application">Step 1: Create a New ASP.NET Core MVC Application</a></li>
+        <li><a href="#step-2-explore-the-project-structure">Step 2: Explore the Project Structure</a></li>
+        <li><a href="#step-3-run-the-application-locally">Step 3: Run the Application Locally</a></li>
+        <li><a href="#step-4-initialize-git-for-version-control">Step 4: Initialize Git for Version Control</a></li>
+        <li><a href="#step-5-publish-to-github">Step 5: Publish to GitHub</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-tests">Final Tests</a>
+      <ul>
+        <li><a href="#test-1-verify-your-web-application">Test 1: Verify Your Web Application</a></li>
+        <li><a href="#test-2-verify-your-github-repository">Test 2: Verify Your GitHub Repository</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise-complete-">Exercise Complete! 🎉</a></li>
+  </ul>
+</nav>
 
 
  
