@@ -26,6 +26,12 @@
     <loc>http://localhost:1313/docs/2.-exercises/2.-service-layer/1.-implement-service-layer/</loc>
     <lastmod>2025-02-16T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/docs/10.-exercises/1.-docker/</loc>
+    <lastmod>2025-02-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/docs/10.-exercises/1.-docker/exercise-1---run-.net-webapp-in-a-docker-container/</loc>
+    <lastmod>2025-02-10T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/docs/4.-exercises/2.-network/exercise-1---creating-a-virtual-network/</loc>
     <lastmod>2024-12-02T00:00:00+00:00</lastmod>
   </url><url>
@@ -116,6 +122,11 @@
   </url><url>
     <loc>http://localhost:1313/docs/8.-exercises/</loc>
     <lastmod>2025-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/docs/9.-docker/</loc>
+  </url><url>
+    <loc>http://localhost:1313/docs/10.-exercises/</loc>
+    <lastmod>2025-02-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>
     <lastmod>2025-03-24T00:00:00+00:00</lastmod>
